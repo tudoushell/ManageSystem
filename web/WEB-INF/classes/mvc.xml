@@ -1,0 +1,26 @@
+<actions>
+    <action name="login.do" class="UserAction" method="doLogin">
+        <result name="success" type="redirect">/manager/main.jsp</result>
+        <result name="fail" type="forward">/manager/login.jsp</result>
+    </action>
+    <action name="list.do" class="DeptAction" method="doList">
+        <result name="success" type="redirect">/manager/main.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
+    </action>
+    <action name="add.do" class="DeptAction" method="doAdd">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
+    </action>
+    <action name="del.do" class="DeptAction" method="doDel">
+        <result name="success" type="redirect" >/manager/success.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
+    </action>
+    <action name="get.do" class="DeptAction" method="doGet">
+        <result name="success" type="redirect">/manager/changeDept.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
+    </action>
+    <action name="change.do" class="DeptAction" method="doChange">
+        <result name="success" type="redirect" >/manager/success.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
+    </action>
+</actions>

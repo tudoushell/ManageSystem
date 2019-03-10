@@ -1,0 +1,25 @@
+<beans>
+    <bean key="DeptDao" value="dao.Impl.DeptDaoImpl"/>
+    <bean key="Transaction" value="util.TransactionImp"/>
+    <bean key="DeptService" value="service.Impl.DeptServiceImpl">
+        <property name="DeptDao" ref="DeptDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
+    <bean key="UserDao" value="dao.Impl.UserDaoImpl"/>
+    <bean key="UserService" value="service.Impl.UserServiceImpl">
+        <property name="UserDao" ref="UserDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
+    <bean key="UserService" value="service.Impl.UserServiceImpl">
+        <property name="UserDao" ref="UserDao"></property>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
+    <bean key="UserAction" value="servlet.UserAction">
+        <property name="UserService" ref="UserService"></property>
+    </bean>
+    <bean key="DeptAction" value="servlet.DeptAction">
+        <property name="DeptService" ref="DeptService"></property>
+    </bean>
+
+
+</beans>
