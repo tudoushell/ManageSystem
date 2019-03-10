@@ -31,8 +31,8 @@ public class LoginFilter implements Filter {
 //        }catch (Exception e){
 //
 //        }
-        for (int i = 0; i < dologin.length - 1; i++) {
-                if(uri.endsWith(dologin[i]) || uri.endsWith(dologin[i + 1])){
+        for (int i = 0; i < dologin.length - 2; i++) {
+                if(uri.endsWith(dologin[i]) || uri.endsWith(dologin[i + 1]) || uri.endsWith(dologin[i + 2])){
                     break;
                 }
 //                if(uri.endsWith(dologin[i]) || dologin[i + 1].equalsIgnoreCase(type)){

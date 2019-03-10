@@ -1,0 +1,167 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.clearfix::after,.clearfix::before{
+    content: "";
+    display: table;
+    clear: both;
+}
+#wrap{
+    width: 950px;
+    margin: 0 auto;
+
+}
+#title{
+    width: 950px;
+    height: 80px;
+}
+#title .blue{
+    height: 45px;
+    background-color: #0070a2;
+}
+.blue > h2{
+    font-weight: normal;
+    line-height: 45px;
+    color: #fff;
+    margin-left: 10px;
+    display: inline-block;
+}
+.blue > span{
+    color: #fff;
+    font-size: 20px;
+    float: right;
+    line-height: 45px;
+    margin-right: 10px;
+}
+#title > .smalltitle{
+    height: 35px;
+    text-align: center;
+    border: 1px solid gainsboro;
+}
+.smalltitle > p{
+    line-height: 35px;
+}
+#exit{
+    color: white;
+    font-size: 17px;
+
+}
+/************** 标题结束 *****************/
+#content{
+    width: 948px;
+    border: 1px solid gainsboro;
+}
+#content .leftcontent{
+    float: left;
+    width: 165px;
+    border-right: 1px solid gainsboro;
+}
+/* 左边内容 */
+.leftcontent > .hr{
+    list-style-type: none;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+a{
+    text-decoration: none;
+}
+.mainManager{
+    display: block;
+    color: #616378;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 15px 0 0 15px;
+}
+.otherManager{
+    display: block;
+    color: #616378;
+    font-size: 14px;
+    margin: 10px 0 10px 40px;
+}
+
+.leftcontent > .finance{
+    list-style-type: none;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.leftcontent > .systemManager{
+    list-style-type: none;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+/* 右边内容 */
+.rightcontent{
+    width: 782px;
+    float: right;
+    /*display: none;*/
+}
+.rightcontent .top_part{
+    height: 30px;
+    background-color: #95bfe0;
+}
+.top_part > p{
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.bottom_content{
+    height: 291px;
+    padding-bottom: 70px;
+    background-color: #edeff0;
+}
+
+.main_table{
+    width: 600px;
+    margin: 0 auto;
+}
+.main_table > p {
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 14px;
+}
+.main_table > p > a >img{
+    width: 17px;
+    height: 17px;
+    margin-right: 10px
+}
+table{
+    text-align: center;
+    border-collapse: collapse;
+}
+th,td,tr{
+    width: 125px;
+    height: 30px;
+    border: 5px solid #e3e3e3;
+
+}
+th{
+    background-color: #ffeed0;
+}
+table img{
+    width: 17px;
+    height: 17px;
+}
+
+/*新添加的*/
+.changePage{
+    margin-top: 10px;
+    text-align: center;
+}
+.changePage > a{
+    color: #000000;
+    margin: 0 5px;
+}
+
+/*********** 主要内容结束 ***********/
+#footer{
+    height: 38px;
+    border: 1px solid gainsboro;
+}
+#footer > p{
+    text-align: center;
+    font-size: 14px;
+    line-height: 38px;
+}
