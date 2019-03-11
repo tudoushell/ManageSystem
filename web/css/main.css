@@ -96,12 +96,12 @@ a{
 .rightcontent{
     width: 782px;
     float: right;
-    /*display: none;*/
 }
 .rightcontent .top_part{
     height: 30px;
     background-color: #95bfe0;
 }
+
 .top_part > p{
     line-height: 30px;
     font-size: 14px;

@@ -14,6 +14,7 @@
 ### 数据库
 
 * 采用MySQL
+
 * 创建部门表格
 
 ```
@@ -51,3 +52,44 @@ CREATE TABLE user(
 INSERT INTO user VALUES('admin','admin');
 INSERT INTO user VALUES('test','test');
 ```
+
+* 员工表
+
+```
+CREATE TABLE employee(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+	emp_no VARCHAR(20) NOT NULL COMMENT '员工编号',
+	emp_name VARCHAR(20) NOT NULL COMMENT '员工姓名',
+	emp_dept VARCHAR(20) NOT NULL COMMENT '部门名称',
+	sex VARCHAR(10) NOT NULL COMMENT '性别',
+	education VARCHAR(10) COMMENT '学历',
+	email VARCHAR(20) COMMENT '邮箱',
+	phone VARCHAR(20) NOT NULL COMMENT '联系方式',
+	entry_time VARCHAR(20) NOT NULL COMMENT '入职时间',
+	create_time VARCHAR(20) NOT NULL COMMENT '创建时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+* 插入数据
+
+```
+INSERT INTO employee(emp_no,emp_name,emp_dept,sex,phone,entry_time,create_time) values(
+	'E0001',
+	'李雷',
+	'总经办',
+	'男',
+	'13888888888',
+	'2018-10-2',
+	'2018-10-15'
+);
+
+INSERT INTO employee(emp_no,emp_name,emp_dept,sex,phone,entry_time,create_time) values(
+	'E0002',
+	'韩梅梅',
+	'渠道部',
+	'女',
+	'13999999999',
+	'2018-10-2',
+	'2018-10-15'
+);
+```
+

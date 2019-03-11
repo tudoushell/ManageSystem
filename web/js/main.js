@@ -38,6 +38,7 @@ $(function(){
             window.event.returnValue = false;
         }
     });
+
 });
 // 删除部门
 function del(deptid){

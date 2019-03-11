@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>管理系统</title>
-        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
         <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
         <script type="text/javascript" src="../js/main.js"></script>
     </head>
@@ -44,8 +44,8 @@
                 <div class="leftcontent">
                     <a href="#" id="hrM" class="mainManager">人事管理</a>
                     <ul class="hr">
-                        <li><a href="list.do?page=1" id="moreDepart" class="otherManager">部门管理</a></li>
-                        <li><a href="#" class="otherManager">员工管理</a></li>
+                        <li><a href="list.do?page=1" id="moreDepart" class="otherManager" target="contentPage">部门管理</a></li>
+                        <li><a href="../employee/empManager.jsp" class="otherManager" target="contentPage">员工管理</a></li>
                         <li><a href="#" class="otherManager">请假管理</a></li>
                     </ul>
                     <a href="#" id="financeM" class="mainManager">财务管理</a>
@@ -63,50 +63,7 @@
                 </div>
                 <!-- 右边内容 -->
                 <div class="rightcontent">
-                    <div class="top_part">
-                        <p>首页 >>部门管理</p>
-                    </div>
-                    <div class="bottom_content clearfix">
-                        <div class="main_table">
-                            <p><a href="addDept.jsp"><img id="add_table" src="img/add.png" alt="add">添加部门 </a></p>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th>部门编号</th>
-                                        <th>部门名称</th>
-                                        <th>部门位置</th>
-                                        <th>部门负责人</th>
-                                        <th>操作列表</th>
-                                    </tr>
-                                    <c:forEach items="${deptLists}" var="listDept">
-                                        <tr>
-                                            <td>${listDept.deptId}</td>
-                                            <td>${listDept.deptName}</td>
-                                            <td>${listDept.deptLoc}</td>
-                                            <td>${listDept.deptLeader}</td>
-                                            <td>
-                                                <a href="javascript:del('${listDept.deptId}');">
-                                                    <img class="del_table" src="img/bullet_delete.png" alt="#">
-                                                </a>
-                                                <a href="javascript:changeDept('${listDept.deptId}');">
-                                                    <img src="img/calendar_edit.png" alt="#">
-                                                </a>
-                                                <img src="img/detail.png" alt="#">
-                                             </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                            <div class="changePage">
-                                <a href="list.do?page=1">首页</a>
-                                <a href="list.do?page=${page - 1}">上一页</a>
-                                <a href="list.do?page=${page + 1}">下一页</a>
-                                <a href="list.do?page=${sum}">尾页</a>
-                                <span>第${page}页</span>
-                                <span>共${sum}页</span>
-                            </div>
-                        </div>
-                    </div>
+                    <iframe name="contentPage" width="782px" height="410px" frameborder="0"></iframe>
                 </div>
             </div>
             <!-- 底部 -->

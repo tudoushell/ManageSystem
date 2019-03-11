@@ -4,7 +4,7 @@
         <result name="fail" type="forward">/manager/login.jsp</result>
     </action>
     <action name="list.do" class="DeptAction" method="doList">
-        <result name="success" type="redirect">/manager/main.jsp</result>
+        <result name="success" type="redirect">/manager/deptManager.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>
     </action>
     <action name="add.do" class="DeptAction" method="doAdd">
