@@ -14,12 +14,18 @@
         <property name="UserDao" ref="UserDao"></property>
         <property name="Transaction" ref="Transaction"/>
     </bean>
+    <bean key="EmpDao" value="dao.Impl.EmpDaoImpl"/>
+    <bean key="EmpService" value="service.Impl.EmpServiceImpl">
+        <property name="EmpDao" ref="EmpDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
     <bean key="UserAction" value="servlet.UserAction">
         <property name="UserService" ref="UserService"></property>
     </bean>
     <bean key="DeptAction" value="servlet.DeptAction">
         <property name="DeptService" ref="DeptService"></property>
     </bean>
-
-
+    <bean key="EmpAction" value="servlet.EmpAction">
+        <property name="EmpService" ref="EmpService"></property>
+    </bean>
 </beans>

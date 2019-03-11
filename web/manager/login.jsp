@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>登录</title>
-        <link rel="stylesheet" type="text/css" href="css/user.css">
+        <link rel="stylesheet" type="text/css" href="../css/user.css">
     </head>
     <body>
         <div id="wrap">
