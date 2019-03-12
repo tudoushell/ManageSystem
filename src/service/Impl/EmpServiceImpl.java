@@ -15,6 +15,27 @@ public class EmpServiceImpl implements EmpService {
 
 
     @Override
+    public List<Employee> listEmpByConditions(int page,String empName, String empDept) {
+        try {
+            transaction.start();
+            List<Employee> list = empDao.listEmpByCondition(page,empName,empDept);
+            if(list != null){
+                transaction.commit();
+                return list;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
     public List<Employee> listEmps() {
         try {
             transaction.start();
@@ -22,6 +43,26 @@ public class EmpServiceImpl implements EmpService {
             if(list != null){
                 transaction.commit();
                 return list;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Employee> listEmpByPages(int page) {
+        try {
+            transaction.start();
+            List<Employee> listEmp = empDao.listEmpByPage(page);
+            if(listEmp != null){
+                transaction.commit();
+                return listEmp;
             }
         } catch (SQLException e) {
             try {

@@ -91,5 +91,25 @@ INSERT INTO employee(emp_no,emp_name,emp_dept,sex,phone,entry_time,create_time) 
 	'2018-10-2',
 	'2018-10-15'
 );
+
+INSERT INTO employee(emp_no,emp_name,emp_dept,sex,phone,entry_time,create_time) values(
+	'E0003',
+	'王左',
+	'就业部',
+	'女',
+	'13111111111',
+	'2018-10-3',
+	'2018-10-14'
+);
+
+INSERT INTO employee(emp_no,emp_name,emp_dept,sex,phone,entry_time,create_time) values(
+	'E0004',
+	'小明',
+	'就业部',
+	'男',
+	'18111111111',
+	'2018-10-4',
+	'2018-10-15'
+);
 ```
 

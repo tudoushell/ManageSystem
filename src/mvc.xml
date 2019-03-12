@@ -27,4 +27,8 @@
         <result name="success" type="redirect" >/employee/empManager.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>
     </action>
+    <action name="empCondition.do" class="EmpAction" method="doEmpCondition">
+        <result name="success" type="redirect" >/employee/empManager.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
+    </action>
 </actions>

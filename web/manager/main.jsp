@@ -45,7 +45,7 @@
                     <a href="#" id="hrM" class="mainManager">人事管理</a>
                     <ul class="hr">
                         <li><a href="list.do?page=1" id="moreDepart" class="otherManager" target="contentPage">部门管理</a></li>
-                        <li><a href="../employee/empManager.jsp" class="otherManager" target="contentPage">员工管理</a></li>
+                        <li><a href="empList.do?page=1" class="otherManager" target="contentPage">员工管理</a></li>
                         <li><a href="#" class="otherManager">请假管理</a></li>
                     </ul>
                     <a href="#" id="financeM" class="mainManager">财务管理</a>

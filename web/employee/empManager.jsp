@@ -21,11 +21,11 @@
 <div class="bottom_content clearfix">
     <div class="main_table">
         <div id="empSearch">
-            <form action="#"  method="post" accept-charset="UTF-8">
+            <form action="#"  method="get" accept-charset="UTF-8">
                 <span>姓名：</span>
-                <input type="text"name="emp_name">
+                <input type="text"name="empName">
                 <span>部门：</span>
-                <select name="dept">
+                <select name="empDept">
                     <option value="总经办">总经办</option>
                     <option value="渠道部">渠道部</option>
                     <option value="市场营销部">市场营销部</option>
@@ -47,18 +47,18 @@
                 <th>入职时间</th>
                 <th>操作列表</th>
             </tr>
-            <c:forEach items="${deptLists}" var="listDept">
+            <c:forEach items="${listEmp}" var="emp">
                 <tr>
-                    <td>${listDept.deptId}</td>
-                    <td>${listDept.deptName}</td>
-                    <td>${listDept.deptLoc}</td>
-                    <td>${listDept.deptLeader}</td>
-                    <td></td>
+                    <td>${emp.empNo}</td>
+                    <td>${emp.empName}</td>
+                    <td>${emp.sex}</td>
+                    <td>${emp.empDept}</td>
+                    <td>${emp.entryTime}</td>
                     <td>
-                        <a href="javascript:del('${listDept.deptId}');">
+                        <a href="javascript:del('${emp.empNo}');">
                             <img class="del_table" src="../img/bullet_delete.png" alt="#">
                         </a>
-                        <a href="javascript:changeDept('${listDept.deptId}');">
+                        <a href="javascript:changeDept('${emp.empNo}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
                         <img src="../img/detail.png" alt="#">
@@ -68,12 +68,12 @@
             </tbody>
         </table>
         <div class="changePage">
-            <a href="list.do?page=1">首页</a>
-            <a href="list.do?page=${page - 1}">上一页</a>
-            <a href="list.do?page=${page + 1}">下一页</a>
-            <a href="list.do?page=${sum}">尾页</a>
+            <a href="empList.do?page=1">首页</a>
+            <a href="empList.do?page=${page - 1}">上一页</a>
+            <a href="empList.do?page=${page + 1}">下一页</a>
+            <a href="empList.do?page=${allPage}">尾页</a>
             <span>第${page}页</span>
-            <span>共${sum}页</span>
+            <span>共${allPage}页</span>
         </div>
     </div>
 </div>
