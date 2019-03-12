@@ -13,6 +13,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/emp.css">
+    <script>
+    </script>
 </head>
 <body>
 <div class="top_part" style=" background-color: #95bfe0;">
@@ -21,11 +23,11 @@
 <div class="bottom_content clearfix">
     <div class="main_table">
         <div id="empSearch">
-            <form action="#"  method="get" accept-charset="UTF-8">
+            <form action="empList.do?page=1"  method="post" accept-charset="UTF-8">
                 <span>姓名：</span>
-                <input type="text"name="empName">
+                <input type="text"name="empName" id="empNames">
                 <span>部门：</span>
-                <select name="empDept">
+                <select name="empDept" id="emDepts">
                     <option value="总经办">总经办</option>
                     <option value="渠道部">渠道部</option>
                     <option value="市场营销部">市场营销部</option>
@@ -33,10 +35,10 @@
                     <option value="教学部">教学部</option>
                     <option value="就业部">就业部</option>
                 </select>
-                <input type="submit" value="查询">
+                <input type="submit" value="查询" id="search">
             </form>
         </div>
-        <p><a href="addDept.jsp"><img id="add_table" src="../img/add.png" alt="add">添加员工</a></p>
+        <p><a href="/web/employee/addEmp.jsp"><img id="add_table" src="../img/add.png" alt="add">添加员工</a></p>
         <table>
             <tbody>
             <tr>
@@ -68,10 +70,10 @@
             </tbody>
         </table>
         <div class="changePage">
-            <a href="empList.do?page=1">首页</a>
-            <a href="empList.do?page=${page - 1}">上一页</a>
-            <a href="empList.do?page=${page + 1}">下一页</a>
-            <a href="empList.do?page=${allPage}">尾页</a>
+            <a href="empList.do?page=1&empName=${empNames}&empDept=${empDepts}">首页</a>
+            <a href="empList.do?page=${page - 1}&empName=${empNames}&empDept=${empDepts}">上一页</a>
+            <a href="empList.do?page=${page + 1}&empName=${empNames}&empDept=${empDepts}">下一页</a>
+            <a href="empList.do?page=${allPage}&empName=${empNames}&empDept=${empDepts}">尾页</a>
             <span>第${page}页</span>
             <span>共${allPage}页</span>
         </div>

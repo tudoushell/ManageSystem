@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#wrap{
+    text-align: center;
+    width: 600px;
+    margin: 30px auto;
+}
+.left{
+    text-align: left;
+    margin-left: 192px;
+}

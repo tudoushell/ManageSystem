@@ -12,6 +12,17 @@ import java.util.List;
 public class EmpDaoImpl implements EmpDao {
 
     @Override
+    public int countEmpByCondition(String empName, String empDept) {
+        int count = 0;
+        String sql = "SELECT * FROM employee WHERE emp_name LIKE ? and emp_dept=?";
+        List<Object> list = JDBCUtil.executeQuery(sql,new EmployeeRowMapping(),empName + "%" , empDept );
+        if(list != null){
+            count = list.size();
+        }
+        return count;
+    }
+
+    @Override
     public List<Employee> listEmpByCondition(int page, String empName, String empDept) {
         String sql = "SELECT * FROM employee WHERE emp_name LIKE ? and emp_dept=? LIMIT ?,3";
         List<Employee> empList = new ArrayList<>();
@@ -61,6 +72,7 @@ public class EmpDaoImpl implements EmpDao {
 
     public static void main(String[] args) {
         EmpDaoImpl empDao = (EmpDaoImpl) BeanFactory.getObject("empdao");
-        System.out.println(empDao.listEmpByCondition(0,"小明","就业部").size());
+//        System.out.println(empDao.listEmpByCondition(0,"小明","就业部").size());
+        System.out.println(empDao.countEmpByCondition("i","就业部"));
     }
 }

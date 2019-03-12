@@ -6,6 +6,14 @@ import java.util.List;
 
 public interface EmpDao {
 
+    /**
+     * 根据员工的条件来统计条数
+     * @param empName
+     * @param empDept
+     * @return
+     */
+
+    int countEmpByCondition(String empName, String empDept);
 
     /**
      * 根据条件来列出员工
