@@ -7,6 +7,20 @@ import java.util.List;
 public interface EmpDao {
 
     /**
+     * 根据员工的编号来删除
+     * @param empNo
+     * @return
+     */
+    boolean deleteEmp(String empNo);
+
+    /**
+     * 通过员工的编号判断是否重复
+     * @param empNo
+     * @return
+     */
+    boolean getEmpByNo(String empNo);
+
+    /**
      * 根据员工的条件来统计条数
      * @param empName
      * @param empDept
@@ -25,10 +39,10 @@ public interface EmpDao {
 
     /**
      * 添加员工
-     * @param employee
+     * @param emp
      * @return
      */
-    boolean saveEmp(Employee employee);
+    boolean saveEmp(Employee emp);
 
 
     /**

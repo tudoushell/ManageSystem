@@ -7,6 +7,8 @@ import service.EmpService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +16,35 @@ import java.util.Map;
 public class EmpAction {
     private EmpService empService = (EmpService) BeanFactory.getObject("empservice");
 
+    /**
+     * 添加员工
+     * @param request
+     * @param response
+     * @return
+     */
+    public  String doAddEmp(HttpServletRequest request , HttpServletResponse response) throws UnsupportedEncodingException{
+        request.setCharacterEncoding("UTF-8");
+        String empNo = request.getParameter("empNo");
+        String empName = request.getParameter("empName");
+        String sex = request.getParameter("sex");
+        String empDept =request.getParameter("empDept");
+        String entryTime = request.getParameter("entryTime");
+        Employee emp = new Employee(empNo,empName,empDept,sex,
+                         null,null,null,entryTime,
+                          new Date(new java.util.Date().getTime()).toString());
+        try {
+          empService.saveEmps(emp);
+            request.setAttribute("result","员工添加成功！");
+            request.setAttribute("method", "empList.do?page=1");
+            return "success";
+        } catch (EmpException e) {
+            request.setAttribute("result",e.getErrorMsg());
+            request.setAttribute("method", "empList.do?page=1");
+            return "fail";
+        }
 
+
+    }
 
 
 

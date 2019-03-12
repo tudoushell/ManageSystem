@@ -90,6 +90,7 @@ public class DeptAction {
         try {
             deptService.addDepts(department);
             request.setAttribute("result","部门添加成功！");
+            request.setAttribute("method","list.do?page=1");
             return "success";
         } catch (DeptException e) {
             request.setAttribute("result",e.getErrorMsg());

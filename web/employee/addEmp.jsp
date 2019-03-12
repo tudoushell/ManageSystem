@@ -16,7 +16,7 @@
 </head>
 <body>
 <div id="wrap">
-    <form action="#" method="post" class="emp_info" accept-charset="UTF-8">
+    <form action="addEmp.do" method="post" class="emp_info" accept-charset="UTF-8">
         <span>员工编号：</span>
         <input type="text" name="empNo"><br>
         <span>员工姓名：</span>

@@ -10,7 +10,7 @@
 <script>
     window.onload = function () {
         alert("${result}");
-        window.location.href = "/web/manager/list.do?page=1";
+        window.location.href = "/web/manager/${method}";
     }
 </script>
 <head>

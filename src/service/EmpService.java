@@ -9,6 +9,19 @@ public interface EmpService {
 
 
     /**
+     * 判断是否存在相同的员工编号
+     * @param empNo
+     * @return
+     */
+    boolean getEmpByNo(String empNo);
+
+    /**
+     * 添加员工
+     * @param emp
+     * @return
+     */
+    boolean saveEmps(Employee emp) throws EmpException;
+    /**
      * 根据条件来统计符合标准的数据
      * @param empName
      * @param empDept

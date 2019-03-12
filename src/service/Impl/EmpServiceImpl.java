@@ -16,6 +16,41 @@ public class EmpServiceImpl implements EmpService{
 
 
     @Override
+    public boolean getEmpByNo(String empNo) {
+        boolean flag = empDao.getEmpByNo(empNo);
+        if (flag){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean saveEmps(Employee emp) throws EmpException{
+        if(emp.getEmpNo() == null && emp.getEmpNo().trim().length() == 0){
+            throw new EmpException("员工编号不能为空！");
+        }
+        if(getEmpByNo(emp.getEmpNo())){
+            throw new EmpException("员工编号已存在！");
+        }
+        try {
+            transaction.start();
+            boolean flag = empDao.saveEmp(emp);
+            if(flag){
+                transaction.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public int countEmpByConditions(String empName, String empDept) throws  EmpException{
         try {
             transaction.start();

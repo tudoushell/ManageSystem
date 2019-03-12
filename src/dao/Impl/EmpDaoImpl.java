@@ -12,6 +12,24 @@ import java.util.List;
 public class EmpDaoImpl implements EmpDao {
 
     @Override
+    public boolean deleteEmp(String empNo) {
+        String sql = "DELETE FROM employee WHERE emp_no=?";
+
+        return false;
+    }
+
+    @Override
+    public boolean getEmpByNo(String empNo) {
+        String sql = "SELECT * FROM employee WHERE emp_no=?";
+        List<Object> obj = JDBCUtil.executeQuery(sql,new EmployeeRowMapping(),empNo);
+        if(obj != null){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
     public int countEmpByCondition(String empName, String empDept) {
         int count = 0;
         String sql = "SELECT * FROM employee WHERE emp_name LIKE ? and emp_dept=?";
@@ -37,8 +55,21 @@ public class EmpDaoImpl implements EmpDao {
     }
 
     @Override
-    public boolean saveEmp(Employee employee) {
-
+    public boolean saveEmp(Employee emp){
+        String sql = "INSERT INTO employee(emp_no,emp_name,emp_dept,sex,education," +
+                                          "email,phone,entry_time,create_time) values(?,?,?,?,?,?,?,?,?)";
+        int flag =  JDBCUtil.update(sql,emp.getEmpNo(),
+                                        emp.getEmpName(),
+                                        emp.getEmpDept(),
+                                        emp.getSex(),
+                                        emp.getEducation(),
+                                        emp.getEmail(),
+                                        emp.getPhone(),
+                                        emp.getEntryTime(),
+                                        emp.getCreateTime());
+        if(flag != 0){
+            return true;
+        }
         return false;
     }
 
@@ -73,6 +104,6 @@ public class EmpDaoImpl implements EmpDao {
     public static void main(String[] args) {
         EmpDaoImpl empDao = (EmpDaoImpl) BeanFactory.getObject("empdao");
 //        System.out.println(empDao.listEmpByCondition(0,"小明","就业部").size());
-        System.out.println(empDao.countEmpByCondition("i","就业部"));
+        System.out.println(empDao.getEmpByNo("E000"));
     }
 }
