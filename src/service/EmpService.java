@@ -6,14 +6,25 @@ import exception.EmpException;
 import java.util.List;
 
 public interface EmpService {
+    /**
+     * 更新员工信息
+     * @param emp
+     * @return
+     */
+    boolean updateEmp(Employee emp);
 
-
+    /**
+     * 根据员工号来删除信息
+     * @param empNo
+     * @return
+     */
+    boolean deleteEmp(String empNo);
     /**
      * 判断是否存在相同的员工编号
      * @param empNo
      * @return
      */
-    boolean getEmpByNo(String empNo);
+    List<Employee> getEmpByNo(String empNo);
 
     /**
      * 添加员工

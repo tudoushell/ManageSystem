@@ -67,6 +67,7 @@ public class DeptAction {
         String deptId = request.getParameter("deptId");
         deptService.delDept(deptId);
         request.setAttribute("result","删除成功！");
+        request.setAttribute("method","list.do?page=1");
         return "success";
     }
 

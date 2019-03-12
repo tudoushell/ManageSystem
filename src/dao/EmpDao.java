@@ -7,6 +7,13 @@ import java.util.List;
 public interface EmpDao {
 
     /**
+     * 修改员工信息
+     * @param emp
+     * @return
+     */
+    boolean updateEmp(Employee emp);
+
+    /**
      * 根据员工的编号来删除
      * @param empNo
      * @return
@@ -18,7 +25,7 @@ public interface EmpDao {
      * @param empNo
      * @return
      */
-    boolean getEmpByNo(String empNo);
+    List<Employee> getEmpByNo(String empNo);
 
     /**
      * 根据员工的条件来统计条数

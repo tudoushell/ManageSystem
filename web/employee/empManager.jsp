@@ -13,8 +13,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/emp.css">
-    <script>
-    </script>
+    <script src="../js/operateEmp.js"></script>
 </head>
 <body>
 <div class="top_part" style=" background-color: #95bfe0;">
@@ -60,7 +59,7 @@
                         <a href="javascript:del('${emp.empNo}');">
                             <img class="del_table" src="../img/bullet_delete.png" alt="#">
                         </a>
-                        <a href="javascript:changeDept('${emp.empNo}');">
+                        <a href="javascript:updateDept('${emp.empNo}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
                         <img src="../img/detail.png" alt="#">

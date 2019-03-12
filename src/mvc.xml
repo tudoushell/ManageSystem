@@ -31,4 +31,16 @@
         <result name="success" type="redirect" >/manager/success.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>
     </action>
+    <action name="delEmp.do" class="EmpAction" method="doDelEmp">
+        <result name="success" type="redirect" >/manager/success.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
+    </action>
+    <action name="getEmp.do" class="EmpAction" method="doGetEmp">
+        <result name="success" type="redirect" >/employee/updateEmp.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
+    </action>
+    <action name="updateEmp.do" class="EmpAction" method="doUpdateEmp">
+        <result name="success" type="redirect" >/manager/success.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
+    </action>
 </actions>

@@ -16,12 +16,41 @@ public class EmpServiceImpl implements EmpService{
 
 
     @Override
-    public boolean getEmpByNo(String empNo) {
-        boolean flag = empDao.getEmpByNo(empNo);
-        if (flag){
+    public boolean updateEmp(Employee emp) {
+        boolean flag = empDao.updateEmp(emp);
+        if(flag){
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean deleteEmp(String empNo) {
+        try {
+            transaction.start();
+            boolean flag = empDao.deleteEmp(empNo);
+            if(flag){
+                transaction.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public List<Employee> getEmpByNo(String empNo) {
+        List<Employee> list = empDao.getEmpByNo(empNo);
+        if (list != null){
+            return list;
+        }
+        return null;
     }
 
     @Override
@@ -29,7 +58,7 @@ public class EmpServiceImpl implements EmpService{
         if(emp.getEmpNo() == null && emp.getEmpNo().trim().length() == 0){
             throw new EmpException("员工编号不能为空！");
         }
-        if(getEmpByNo(emp.getEmpNo())){
+        if(getEmpByNo(emp.getEmpNo()) != null){
             throw new EmpException("员工编号已存在！");
         }
         try {
@@ -139,5 +168,6 @@ public class EmpServiceImpl implements EmpService{
 //        List<Employee> list = empService.listEmps();
 //        int list = empService.countEmpByConditions("小","就业部");
 //        System.out.println(list);
+        System.out.println(empService.getEmpByNo("E0001") == null);
     }
 }

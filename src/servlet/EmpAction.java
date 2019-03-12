@@ -16,6 +16,37 @@ import java.util.Map;
 public class EmpAction {
     private EmpService empService = (EmpService) BeanFactory.getObject("empservice");
 
+    public String doUpdateEmp(HttpServletRequest request , HttpServletResponse response){
+
+                return null;
+    }
+
+    public String doGetEmp(HttpServletRequest request , HttpServletResponse response){
+            String empNo = request.getParameter("empNo");
+            List<Employee> list = empService.getEmpByNo(empNo);
+            request.setAttribute("emp",list.get(0));
+            return "success";
+    }
+
+
+    /**
+     * 根据员工号来删除员工信息
+     * @param request
+     * @param response
+     * @return
+     */
+    public String doDelEmp(HttpServletRequest request , HttpServletResponse response){
+        String empNo = request.getParameter("empNo");
+        boolean flag = empService.deleteEmp(empNo);
+        if(flag){
+            request.setAttribute("result","删除成功！");
+            request.setAttribute("method","empList.do?page=1");
+            return "success";
+        }else {
+            return "fail";
+        }
+    }
+
     /**
      * 添加员工
      * @param request
@@ -42,7 +73,6 @@ public class EmpAction {
             request.setAttribute("method", "empList.do?page=1");
             return "fail";
         }
-
 
     }
 
