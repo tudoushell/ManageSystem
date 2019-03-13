@@ -12,6 +12,20 @@ public class ReimburseDaoImpl implements ReimburseDao {
 
 
     @Override
+    public List<Reimburse> listReimburesByUser(int page, String reimName, String reimType, String reimStatus) {
+        String sql = "SELECT * FROM reimburse WHERE reim_name=? AND reim_type=? AND reim_status=? LIMIT ?,3";
+        List<Object> list = JDBCUtil.executeQuery(sql,new ReimburseRowMapping(),reimName,reimType,reimStatus,page);
+        List<Reimburse> listReiburse = new ArrayList<>();
+        if(list != null){
+            for(Object obj : list){
+                listReiburse.add((Reimburse) obj);
+            }
+            return listReiburse;
+        }
+        return null;
+    }
+
+    @Override
     public int countReimburseByName(String reimName) {
         String sql = "SELECT * FROM reimburse WHERE reim_name=?";
         List<Object> list = JDBCUtil.executeQuery(sql,new ReimburseRowMapping(),reimName);
@@ -90,6 +104,6 @@ public class ReimburseDaoImpl implements ReimburseDao {
 
     public static void main(String[] args) {
         ReimburseDao reimburseDao = new ReimburseDaoImpl();
-        System.out.println(reimburseDao.countReimburseByName("som"));
+        System.out.println(reimburseDao.listReimburesByUser(0,"som","差旅","草稿"));
     }
 }

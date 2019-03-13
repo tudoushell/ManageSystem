@@ -7,6 +7,16 @@ import java.util.List;
 public interface ReimburseDao {
 
     /**
+     * 普通用户查询报销信息
+     * @param page
+     * @param reimName
+     * @param reimType
+     * @param reimStatus
+     * @return
+     */
+    List<Reimburse> listReimburesByUser(int page,String reimName,String reimType ,String reimStatus);
+
+    /**
      * 根据姓名来统计总条数
      * @param reimName
      * @return

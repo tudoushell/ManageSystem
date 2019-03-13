@@ -15,6 +15,29 @@ public class ReimburseServiceImpl implements ReimburseService {
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
     @Override
+    public List<Reimburse> listReimburseByUser(int page,String reimName, String reimType, String reimStatus)
+            throws ReimburseException{
+        try {
+            transaction.start();
+            List<Reimburse> list  = reimburseDao.listReimburesByUser(page,reimName,reimType,reimStatus);
+            if(list != null){
+                transaction.commit();
+                return list;
+            }else {
+                throw new ReimburseException("没有此报销单！");
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public int countReimburseByNames(String reinName) {
         try {
             transaction.start();
