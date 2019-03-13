@@ -17,9 +17,20 @@ public class EmpServiceImpl implements EmpService{
 
     @Override
     public boolean updateEmp(Employee emp) {
-        boolean flag = empDao.updateEmp(emp);
-        if(flag){
-            return true;
+        try {
+            transaction.start();
+            boolean flag = empDao.updateEmp(emp);
+            if(flag){
+                transaction.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
         }
         return false;
     }
@@ -45,10 +56,10 @@ public class EmpServiceImpl implements EmpService{
     }
 
     @Override
-    public List<Employee> getEmpByNo(String empNo) {
-        List<Employee> list = empDao.getEmpByNo(empNo);
-        if (list != null){
-            return list;
+    public Employee getEmpByNo(String empNo) {
+        Employee emp = empDao.getEmpByNo(empNo);
+        if (emp != null){
+            return emp;
         }
         return null;
     }
@@ -168,6 +179,7 @@ public class EmpServiceImpl implements EmpService{
 //        List<Employee> list = empService.listEmps();
 //        int list = empService.countEmpByConditions("小","就业部");
 //        System.out.println(list);
-        System.out.println(empService.getEmpByNo("E0001") == null);
+        boolean flag = empService.updateEmp(new Employee("123","2","1","1","1","1","1","1","1"));
+        System.out.println(flag);
     }
 }

@@ -40,7 +40,7 @@ public class EmpDaoImpl implements EmpDao {
     }
 
     @Override
-    public List<Employee> getEmpByNo(String empNo) {
+    public Employee getEmpByNo(String empNo) {
         String sql = "SELECT * FROM employee WHERE emp_no=?";
         List<Employee> listEmpNo = new ArrayList<>();
         List<Object> obj = JDBCUtil.executeQuery(sql,new EmployeeRowMapping(),empNo);
@@ -48,7 +48,7 @@ public class EmpDaoImpl implements EmpDao {
             for(Object objs : obj){
                 listEmpNo.add((Employee) objs);
             }
-            return listEmpNo;
+            return listEmpNo.get(0);
         }else {
             return null;
         }
@@ -136,7 +136,7 @@ public class EmpDaoImpl implements EmpDao {
 
     public static void main(String[] args) {
         EmpDaoImpl empDao = (EmpDaoImpl) BeanFactory.getObject("empdao");
-//        System.out.println(empDao.listEmpByCondition(0,"小明","就业部").size());
-        System.out.println(empDao.getEmpByNo("E000"));
+        boolean flag = empDao.updateEmp(new Employee("123","1","1","1","1","1","1","1","1"));
+        System.out.println(flag);
     }
 }

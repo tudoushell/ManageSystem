@@ -41,16 +41,29 @@ INSERT INTO dept VALUES('A0006','就业部','106室','花千骨');
 
 ```
 CREATE TABLE user(
-  username varchar(20) NOT NULL,
-  password varchar(20) NOT NULL
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+  user_account VARCHAR(20) NOT NULL COMMENT '登录账号',
+  user_pwd  VARCHAR(20) NOT NULL COMMENT '登录密码',
+  emp_no VARCHAR(20) COMMENT '所属员工编号',
+  role_id VARCHAR(10) NOT NULL COMMENT '角色',
+  create_time VARCHAR(20) NOT NULL COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
 * 插入数据
 
 ```
-INSERT INTO user VALUES('admin','admin');
+INSERT INTO user VALUES('admin','admin','1','1','2019-3-4');
 INSERT INTO user VALUES('test','test');
+```
+* 角色表
+
+```
+CREATE TABLE role(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+	role_name VARCHAR(10) NOT NULL COMMENT '角色名称',
+	create_time VARCHAR(20) NOT NULL COMMENT '创建时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
 * 员工表

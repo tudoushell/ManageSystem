@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public boolean getUser(String username,String password) {
-        String sql = "SELECT * FROM user WHERE username=? AND password=?";
+        String sql = "SELECT * FROM user WHERE user_account=? AND user_pwd=?";
         List<Object> list =  JDBCUtil.executeQuery(sql, new UserRowMapping(),username,password);
         if(list != null ){
             return true;
@@ -25,4 +25,8 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
+    public static void main(String[] args) {
+        UserDao userDao = new UserDaoImpl();
+        System.out.println(userDao.getUser("admin","admin"));
+    }
 }

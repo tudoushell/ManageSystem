@@ -30,7 +30,6 @@ public class DeptAction {
         String deptLoc = request.getParameter("deptLoc");
         String deptLeader = request.getParameter("deptLeader");
         Department newDt = new Department(deptId,deptName,deptLoc,deptLeader);
-        System.out.println("deptID: " + deptId + " userDeptId: " + userDeptId);
         if(!deptId.equals(userDeptId)){
             request.setAttribute("result","非法提交");
             request.setAttribute("method","get.do?deptId=" + deptId);

@@ -16,15 +16,35 @@ import java.util.Map;
 public class EmpAction {
     private EmpService empService = (EmpService) BeanFactory.getObject("empservice");
 
-    public String doUpdateEmp(HttpServletRequest request , HttpServletResponse response){
+    public String doUpdateEmp(HttpServletRequest request , HttpServletResponse response) throws UnsupportedEncodingException {
+                request.setCharacterEncoding("UTF-8");
+                //从getEmp获取参数
+                Employee empl = (Employee) request.getSession().getAttribute("emp");
+                String no = empl.getEmpNo();
+                String empNo = request.getParameter("empNo");
+                String empName = request.getParameter("empName");
+                String sex = request.getParameter("sex");
+                String empDept = request.getParameter("empDept");
+                String entryTime = request.getParameter("entryTime");
 
-                return null;
+                Employee emps = new Employee(empNo,empName,empDept,sex,
+                                    null,null,null,
+                                            entryTime,empl.getCreateTime());
+                if(! no.equals(empNo)){
+                    request.setAttribute("result","非法参数！");
+                    request.setAttribute("method","getEmp.do?empNo=" + no);
+                    return "fail";
+                }
+                empService.updateEmp(emps);
+                request.setAttribute("result","修改成功！");
+                request.setAttribute("method","empList.do?page=1");
+                return "success";
     }
 
     public String doGetEmp(HttpServletRequest request , HttpServletResponse response){
             String empNo = request.getParameter("empNo");
-            List<Employee> list = empService.getEmpByNo(empNo);
-            request.setAttribute("emp",list.get(0));
+            Employee emp = empService.getEmpByNo(empNo);
+            request.getSession().setAttribute("emp",emp);
             return "success";
     }
 

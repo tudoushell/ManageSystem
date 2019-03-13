@@ -25,7 +25,7 @@ public interface EmpDao {
      * @param empNo
      * @return
      */
-    List<Employee> getEmpByNo(String empNo);
+    Employee getEmpByNo(String empNo);
 
     /**
      * 根据员工的条件来统计条数

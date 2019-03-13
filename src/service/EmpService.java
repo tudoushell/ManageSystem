@@ -24,7 +24,7 @@ public interface EmpService {
      * @param empNo
      * @return
      */
-    List<Employee> getEmpByNo(String empNo);
+    Employee getEmpByNo(String empNo);
 
     /**
      * 添加员工

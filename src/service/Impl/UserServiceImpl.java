@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
-        boolean a = userService.isUser(" aasdfsdf  ","12314");
+        boolean a = userService.isUser(" admin  ","admin");
         System.out.println(a);
     }
 }

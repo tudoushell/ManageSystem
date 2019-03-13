@@ -9,13 +9,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>修改员工信息</title>
+    <link rel="stylesheet" href="../css/addEmp.css">
+    <script type="text/javascript" src="../laydate/laydate.js"></script>
+    <script type="text/javascript" src="../js/addEmp.js"></script>
 </head>
 <body>
 <div id="wrap">
     <form action="updateEmp.do" method="post" class="emp_info" accept-charset="UTF-8">
         <span>员工编号：</span>
-        <input type="text" name="empNo" value="${emp.empNo}"><br>
+        <input type="text" name="empNo" value="${emp.empNo}" ><br>
         <span>员工姓名：</span>
         <input type="text" name="empName" value="${emp.empName}"><br>
         <div class="left">
@@ -36,8 +40,7 @@
         </div>
         <span>入职时间：</span>
         <input type="text" name="entryTime" id="time" value="${emp.entryTime}"><br>
-        <input type="submit" value="添加">
-        <input type="reset" value="重置">
+        <input type="submit" value="修改">
         <input type="button" value="返回" id="back">
     </form>
 </div>
