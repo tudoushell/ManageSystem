@@ -19,6 +19,11 @@
         <property name="EmpDao" ref="EmpDao"/>
         <property name="Transaction" ref="Transaction"/>
     </bean>
+    <bean key="ReimburseDao" value="dao.Impl.ReimburseDaoImpl"/>
+    <bean key="ReimburseService" value="service.Impl.ReimburseServiceImpl">
+        <property name="ReimburseDao" ref="ReimburseDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
     <bean key="UserAction" value="servlet.UserAction">
         <property name="UserService" ref="UserService"></property>
     </bean>
@@ -27,5 +32,8 @@
     </bean>
     <bean key="EmpAction" value="servlet.EmpAction">
         <property name="EmpService" ref="EmpService"></property>
+    </bean>
+    <bean key="ReimburseAction" value="servlet.ReimburseAction">
+        <property name="ReimburseService" ref="ReimburseService"></property>
     </bean>
 </beans>

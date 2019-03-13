@@ -18,7 +18,7 @@
                         <%--判断用户是否登录--%>
                             <c:choose>
                                 <c:when test="${user != null}">
-                                    ${user.userName}
+                                    ${user}
                                     <a href="javascript:;" id="exit">退出</a>
                                     <%--超时退出--%>
                                     <%--<%--%>
@@ -50,7 +50,7 @@
                     </ul>
                     <a href="#" id="financeM" class="mainManager">财务管理</a>
                     <ul class="finance">
-                        <li><a href="#" class="otherManager">报销管理</a></li>
+                        <li><a href="listReimburse.do?page=1" class="otherManager" target="contentPage">报销管理</a></li>
                     </ul>
                     <a href="#" id="sysM" class="mainManager">系统管理</a>
                     <ul class="systemManager">

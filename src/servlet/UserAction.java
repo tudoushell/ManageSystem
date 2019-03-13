@@ -21,11 +21,10 @@ public class UserAction {
         request.setCharacterEncoding("utf-8");
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        User user = new User(userName,password);
-        request.getSession().setAttribute("user",user);
         String url = "/manager/login.jsp";
         //进行登录判断
         if(userService.isUser(userName,password)){
+            request.getSession().setAttribute("user",userName);
             return "success";
         }else {
             return "fail";

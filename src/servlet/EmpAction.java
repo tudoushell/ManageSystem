@@ -201,7 +201,7 @@ public class EmpAction {
      * @param sum  总共的页数
      * @return
      */
-    public Map<String,Integer> divisionPage(int count , int page , int sum){
+    public static Map<String,Integer> divisionPage(int count , int page , int sum){
             Map<String,Integer> map = new HashMap<>();
             //员工总条数
             int allPages = sum / count + (sum % count ==0 ? 0 : 1);

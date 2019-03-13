@@ -43,4 +43,8 @@
         <result name="success" type="redirect" >/manager/success.jsp</result>
         <result name="fail" type="forward">/employee/error.jsp</result>
     </action>
+    <action name="listReimburse.do" class="ReimburseAction" method="doListReimburse">
+        <result name="success" type="redirect">/finance/reimburseManage.jsp</result>
+        <result name="fail" type="forward">/employee/error.jsp</result>
+    </action>
 </actions>

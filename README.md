@@ -41,12 +41,13 @@ INSERT INTO dept VALUES('A0006','就业部','106室','花千骨');
 
 ```
 CREATE TABLE user(
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
-  user_account VARCHAR(20) NOT NULL COMMENT '登录账号',
-  user_pwd  VARCHAR(20) NOT NULL COMMENT '登录密码',
-  emp_no VARCHAR(20) COMMENT '所属员工编号',
-  role_id VARCHAR(10) NOT NULL COMMENT '角色',
-  create_time VARCHAR(20) NOT NULL COMMENT '创建时间'
+	  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+	  user_account VARCHAR(20) NOT NULL COMMENT '登录账号',
+	  user_pwd  VARCHAR(20) NOT NULL COMMENT '登录密码',
+	  emp_no VARCHAR(20) COMMENT '所属员工编号',
+	  emp_Name VARCHAR(10) NOT NULL COMMENT '员工姓名',
+	  role_id VARCHAR(10) NOT NULL COMMENT '角色',
+	  create_time VARCHAR(20) NOT NULL COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
@@ -70,16 +71,16 @@ CREATE TABLE role(
 
 ```
 CREATE TABLE employee(
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
-	emp_no VARCHAR(20) NOT NULL COMMENT '员工编号',
-	emp_name VARCHAR(20) NOT NULL COMMENT '员工姓名',
-	emp_dept VARCHAR(20) NOT NULL COMMENT '部门名称',
-	sex VARCHAR(10) NOT NULL COMMENT '性别',
-	education VARCHAR(10) COMMENT '学历',
-	email VARCHAR(20) COMMENT '邮箱',
-	phone VARCHAR(20) NOT NULL COMMENT '联系方式',
-	entry_time VARCHAR(20) NOT NULL COMMENT '入职时间',
-	create_time VARCHAR(20) NOT NULL COMMENT '创建时间'
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+		emp_no VARCHAR(20) NOT NULL COMMENT '员工编号',
+		emp_name VARCHAR(20) NOT NULL COMMENT '员工姓名',
+		emp_dept VARCHAR(20) NOT NULL COMMENT '部门名称',
+		sex VARCHAR(10) NOT NULL COMMENT '性别',
+		education VARCHAR(10) COMMENT '学历',
+		email VARCHAR(20) COMMENT '邮箱',
+		phone VARCHAR(20) NOT NULL COMMENT '联系方式',
+		entry_time VARCHAR(20) NOT NULL COMMENT '入职时间',
+		create_time VARCHAR(20) NOT NULL COMMENT '创建时间'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 * 插入数据
@@ -125,4 +126,17 @@ INSERT INTO employee(emp_no,emp_name,emp_dept,sex,phone,entry_time,create_time) 
 	'2018-10-15'
 );
 ```
+* 报销表
 
+```
+CREATE TABLE reimburse(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+	reim_no varchar(10) NOT NULL COMMENT '报销编号',
+	reim_name varchar(10) NOT NULL COMMENT '申请人',
+	reim_type varchar(10) NOT NULL COMMENT '报销类型',
+	reim_money DECIMAL(6,2) NOT NULL COMMENT '金额',
+	reim_create_time VARCHAR(20) NOT NULL COMMENT '申请时间',
+	reim_status VARCHAR(10) NOT NULL COMMENT '申请状态',
+	reim_abstract VARCHAR(30) NOT NULL COMMENT '摘要'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```

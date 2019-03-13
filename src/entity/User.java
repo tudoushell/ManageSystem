@@ -4,6 +4,7 @@ public class User {
     private String userAccount;
     private String userPwd;
     private String empNo;
+    private String empName;
     private String roleId;
     private String createTime;
 
@@ -11,10 +12,11 @@ public class User {
         super();
     }
 
-    public User(String userAccount, String userPwd, String empNo, String roleId, String createTime) {
+    public User(String userAccount, String userPwd, String empNo, String empName, String roleId, String createTime) {
         this.userAccount = userAccount;
         this.userPwd = userPwd;
         this.empNo = empNo;
+        this.empName = empName;
         this.roleId = roleId;
         this.createTime = createTime;
     }
@@ -59,12 +61,21 @@ public class User {
         this.createTime = createTime;
     }
 
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "userAccount='" + userAccount + '\'' +
                 ", userPwd='" + userPwd + '\'' +
                 ", empNo='" + empNo + '\'' +
+                ", empName='" + empName + '\'' +
                 ", roleId='" + roleId + '\'' +
                 ", createTime='" + createTime + '\'' +
                 '}';
