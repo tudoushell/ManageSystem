@@ -6,6 +6,20 @@ import java.util.List;
 
 public interface ReimburseDao {
 
+    /**
+     * 根据姓名来统计总条数
+     * @param reimName
+     * @return
+     */
+    int countReimburseByName(String reimName);
+
+    /**
+     * 根据姓名来列出报销记录(分页)
+     * @param page
+     * @param reimName
+     * @return
+     */
+    List<Reimburse> listReimburseByName(int page,String reimName);
 
     /**
      * 根据报销的类型来统计个数

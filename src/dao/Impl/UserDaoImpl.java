@@ -6,6 +6,7 @@ import entity.User;
 import entity.UserRowMapping;
 import util.JDBCUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -16,13 +17,15 @@ public class UserDaoImpl implements UserDao {
      * @return
      */
     @Override
-    public boolean getUser(String username,String password) {
+    public User getUser(String username,String password) {
         String sql = "SELECT * FROM user WHERE user_account=? AND user_pwd=?";
+        User user = new User();
         List<Object> list =  JDBCUtil.executeQuery(sql, new UserRowMapping(),username,password);
         if(list != null ){
-            return true;
+            user = (User) list.get(0);
+            return user;
         }
-        return false;
+        return null;
     }
 
     public static void main(String[] args) {

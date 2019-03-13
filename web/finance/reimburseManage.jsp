@@ -73,10 +73,10 @@
             </tbody>
         </table>
         <div class="changePage">
-            <a href="listReimburse.do?page=1">首页</a>
-            <a href="listReimburse.do?page=${page - 1}&empName=${empNames}&empDept=${empDepts}">上一页</a>
-            <a href="listReimburse.do?page=${page + 1}&empName=${empNames}&empDept=${empDepts}">下一页</a>
-            <a href="listReimburse.do?page=${allPage}&empName=${empNames}&empDept=${empDepts}">尾页</a>
+            <a href="listReimburse.do?page=1&reimType=${reimType}&reimStatus=${reimStatus}">首页</a>
+            <a href="listReimburse.do?page=${page - 1}&reimType=${reimType}&reimStatus=${reimStatus}">上一页</a>
+            <a href="listReimburse.do?page=${page + 1}&reimType=${reimType}&reimStatus=${reimStatus}">下一页</a>
+            <a href="listReimburse.do?page=${allPage}&reimType=${reimType}&reimStatus=${reimStatus}">尾页</a>
             <span>第${page}页</span>
             <span>共${allPage}页</span>
         </div>

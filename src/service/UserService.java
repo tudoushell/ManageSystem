@@ -1,5 +1,7 @@
 package service;
 
+import entity.User;
+
 public interface UserService {
-    boolean isUser(String username,String password);
+    User isUser(String username, String password);
 }

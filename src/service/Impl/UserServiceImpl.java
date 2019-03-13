@@ -20,13 +20,13 @@ public class UserServiceImpl implements UserService {
      */
 
     @Override
-    public boolean isUser(String username,String password) {
+    public User isUser(String username,String password) {
         try {
             transaction.start();
-            boolean flag = userDao.getUser(username.trim(),password.trim());
-            transaction.commit();
-            if(flag){
-                return true;
+            User user = userDao.getUser(username,password);
+            if(user != null){
+                transaction.commit();
+                return user;
             }
         } catch (SQLException e) {
             try {
@@ -36,12 +36,12 @@ public class UserServiceImpl implements UserService {
             }
             e.printStackTrace();
         }
-        return  false;
+        return  null;
     }
 
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
-        boolean a = userService.isUser(" admin  ","admin");
-        System.out.println(a);
+        System.out.println(userService.isUser("admin","admin"));
+//        System.out.println(a);
     }
 }

@@ -18,7 +18,7 @@
                         <%--判断用户是否登录--%>
                             <c:choose>
                                 <c:when test="${user != null}">
-                                    ${user}
+                                    ${user.empName}
                                     <a href="javascript:;" id="exit">退出</a>
                                     <%--超时退出--%>
                                     <%--<%--%>

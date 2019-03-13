@@ -23,8 +23,9 @@ public class UserAction {
         String password = request.getParameter("password");
         String url = "/manager/login.jsp";
         //进行登录判断
-        if(userService.isUser(userName,password)){
-            request.getSession().setAttribute("user",userName);
+        User user = userService.isUser(userName,password);
+        if(user != null){
+            request.getSession().setAttribute("user",user);
             return "success";
         }else {
             return "fail";
