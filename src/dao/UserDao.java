@@ -7,6 +7,7 @@ import java.util.List;
 public interface UserDao {
 
 
+    boolean updateUser(String userAccount , String password);
 
     /**
      * 根据用户名来验证

@@ -55,6 +55,7 @@
 #content .leftcontent{
     float: left;
     width: 165px;
+    height: 417px;
     border-right: 1px solid gainsboro;
 }
 /* 左边内容 */

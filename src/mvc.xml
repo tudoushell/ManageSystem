@@ -3,6 +3,10 @@
         <result name="success" type="redirect">/manager/main.jsp</result>
         <result name="fail" type="forward">/manager/login.jsp</result>
     </action>
+    <action name="updateUser.do" class="UserAction" method="doUpdateUser">
+        <result name="success" type="redirect">/system/jumpPage.jsp</result>
+        <result name="fail" type="redirect">/system/error.jsp</result>
+    </action>
     <action name="list.do" class="DeptAction" method="doList">
         <result name="success" type="redirect">/manager/deptManager.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>

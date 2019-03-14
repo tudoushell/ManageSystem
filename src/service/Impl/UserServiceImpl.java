@@ -12,6 +12,26 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao = (UserDao) BeanFactory.getObject("userdao");
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
+    @Override
+    public boolean updateUser(String username, String password) {
+        try {
+            transaction.start();
+           boolean flag = userDao.updateUser(username,password);
+           if(flag){
+               transaction.commit();
+               return true;
+           }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     /**
      * 从前台获取用户名和密码来进行判断
      * @param username

@@ -12,6 +12,22 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     /**
+     * 更改用户密码
+     * @param userAccount
+     * @param password
+     * @return
+     */
+    @Override
+    public boolean updateUser(String userAccount, String password) {
+        String sql = "UPDATE user set user_pwd=? WHERE user_account=?";
+        int flag = JDBCUtil.update(sql,password,userAccount);
+        if(flag != 0){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 通过用户名来获取信息
      * @param username
      * @return
@@ -30,6 +46,6 @@ public class UserDaoImpl implements UserDao {
 
     public static void main(String[] args) {
         UserDao userDao = new UserDaoImpl();
-        System.out.println(userDao.getUser("admin","admin"));
+        System.out.println(userDao.updateUser("admin","admin"));
     }
 }

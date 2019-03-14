@@ -13,7 +13,7 @@
 <body>
 <%
     session.removeAttribute("user");
-    response.sendRedirect("login.jsp");
+    response.sendRedirect("/web/manager/login.jsp");
 %>
 
 </body>

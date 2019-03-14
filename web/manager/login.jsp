@@ -16,7 +16,7 @@
                     <label for="userName">用户名：</label>
                     <input type="text" name="userName" id="userName" placeholder="用户名"><br>
                     <label for="password">密&nbsp;&nbsp;&nbsp;码：</label>
-                    <input type="text" name="password" id="password" placeholder="密码"><br>
+                    <input type="password" name="password" id="password" placeholder="密码"><br>
                     <label for="verification">验证码：</label>
                     <input type="text" name="verification" id="verification">
                     <div class="btn"><button>登 录</button></div>

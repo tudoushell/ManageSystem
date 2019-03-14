@@ -34,7 +34,7 @@ $(function(){
         var flag = confirm("是否退出？");
         if(flag){
             //跳转退出页面
-            window.location.href = "exit.jsp";
+            window.location.href = "/web/system/exit.jsp";
             window.event.returnValue = false;
         }
     });
