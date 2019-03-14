@@ -15,8 +15,51 @@ import java.util.Map;
 public class ReimburseAction {
     private ReimburseService reimburseService = (ReimburseService)BeanFactory.getObject("reimburseservice");
 
+
     /**
-     * 列出并进行分页
+     * 根据报销编号来删除记录
+     *      1. 先去判断用户的权限如果是管理员和人事可以对已提交的报销进行删除
+     *      2. 普通用户只能对申请状态为草稿进行删除
+     * @param request
+     * @param response
+     * @return
+     */
+    public String doDelReimburse(HttpServletRequest request, HttpServletResponse response)
+            throws UnsupportedEncodingException {
+            request.setCharacterEncoding("utf-8");
+            //获取报销编号
+            String reimNo = request.getParameter("reimNo");
+            //获取用户权限
+            User user = (User) request.getSession().getAttribute("user");
+            String userRoleId = user.getRoleId();
+            //获取报销的申请状态
+            Reimburse reimburse = reimburseService.getReimburseByReimNo(reimNo);
+            String  reimStatus = reimburse.getReimStatus();
+            //普通用户
+            if("2".equals(userRoleId) && "草稿".equals(reimStatus)){
+                reimburseService.deleteReimburseByReimNo(reimNo);
+                request.setAttribute("result","删除成功！");
+                request.setAttribute("method","listReimburse.do?page=1");
+                return "success";
+            }else if("2".equals(userRoleId) && "已提交".equals(reimStatus)){
+                request.setAttribute("result","不能删除已提交");
+                request.setAttribute("method","listReimburse.do?page=1");
+                return "fail";
+            }
+            //管理员和人事
+            if("1".equals(userRoleId) || "3".equals(userRoleId)){
+                reimburseService.deleteReimburseByReimNo(reimNo);
+                request.setAttribute("result","删除成功！");
+                request.setAttribute("method","listReimburse.do?page=1");
+                return "success";
+            }
+            return "fail";
+    }
+
+    /**
+     * 功能：
+     *      1.查询记录
+     *      2.列出记录
      * @param request
      * @param response
      * @return
@@ -35,6 +78,7 @@ public class ReimburseAction {
     }
 
     /**
+     * 查询
      * 根据条件来列出报销信息
      * @param request
      * @param response
@@ -58,7 +102,7 @@ public class ReimburseAction {
             List<Reimburse> list = null;
             //如果是普通用户则只能查询自己的报销信息数量，不能查询全部信息
             try {
-                sum = "2".equals(userRoleId) ? reimburseService.countReimburseByNames(reimName):
+                sum = "2".equals(userRoleId) ? reimburseService.countReimburseByUser(reimName,reimType,reimStatus):
                                             reimburseService.countReimburseByCondition(reimType,reimStatus);
             } catch (ReimburseException e) {
                 request.setAttribute("result",e.getErrorMsg());

@@ -101,6 +101,34 @@ public class JDBCUtil {
         return list;
     }
 
+    /**
+     * 用于数据统计数据
+     * @param sql
+     * @param args
+     * @return
+     */
+    public static int executeCountQuery(String sql,Object ... args){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = JDBCUtil.getConnection();
+            ps = conn.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                ps.setObject(i + 1 ,args[i]);
+            }
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+//            JDBCUtil.releaseDB(conn,ps,rs);
+        }
+        return 0;
+    }
+
 
 
     /**
@@ -142,28 +170,10 @@ public class JDBCUtil {
 
 
     public static void main(String [] args){
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try{
-            String sql = "SELECT * FROM dept";
-            conn = JDBCUtil.getConnection();
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()){
-                String a = rs.getString("dept_name");
-                System.out.println(a);
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            JDBCUtil.releaseDB(conn,ps,rs);
-        }
-
-
+        String sql = "SELECT count(*) FROM reimburse where reim_name=?";
+            int i = JDBCUtil.executeCountQuery(sql,"som");
+        System.out.println(i);
     }
-    
+
 
 }

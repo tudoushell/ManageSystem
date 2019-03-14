@@ -47,4 +47,8 @@
         <result name="success" type="redirect">/finance/reimburseManage.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>
     </action>
+    <action name="delReimburse.do" class="ReimburseAction" method="doDelReimburse">
+        <result name="success" type="redirect" >/manager/success.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
+    </action>
 </actions>

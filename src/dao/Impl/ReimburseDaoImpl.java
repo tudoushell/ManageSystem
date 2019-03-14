@@ -12,7 +12,68 @@ public class ReimburseDaoImpl implements ReimburseDao {
 
 
     @Override
-    public List<Reimburse> listReimburesByUser(int page, String reimName, String reimType, String reimStatus) {
+    public boolean saveReimburse(Reimburse reim) {
+        String sql = "INSERT INTO reimburse(reim_no," +
+                                            "reim_name," +
+                                            "reim_type," +
+                                            "reim_money," +
+                                            "reim_create_time," +
+                                            "reim_status," +
+                                            "reim_abstract) VALUES(?,?,?,?,?,?,?)";
+
+        int flag = JDBCUtil.update(sql,reim.getReimNo(),
+                                        reim.getReimName(),
+                                        reim.getReimType(),
+                                        reim.getReimMoney(),
+                                        reim.getCreateTime(),
+                                        reim.getReimStatus(),
+                                        reim.getReimAbstract());
+        if(flag != 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int getReimburseMaxId() {
+        String sql = "SELECT Max(id) FROM reimburse";
+        JDBCUtil.executeQuery(sql,new ReimburseRowMapping());
+        return 0;
+    }
+
+    @Override
+    public Reimburse getReimburseByReimNo(String reimNo) {
+        String sql = "SELECT * FROM reimburse where reim_no=?";
+        List<Object> obj = JDBCUtil.executeQuery(sql,new ReimburseRowMapping(),reimNo);
+        if(obj != null){
+             Reimburse reimburse = (Reimburse) obj.get(0);
+             return  reimburse;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean deleteReimburseByReimNo(String reimNo) {
+        String sql = "DELETE FROM reimburse WHERE reim_no=?";
+        int flag  = JDBCUtil.update(sql,reimNo);
+        if(flag != 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int countReimburseByUser(String reimName, String reimType, String reimStatus) {
+        String sql = "SELECT * FROM reimburse WHERE reim_name=? AND reim_type=? AND reim_status=?";
+        List<Object> obj = JDBCUtil.executeQuery(sql,new ReimburseRowMapping(),reimName,reimType,reimStatus);
+        if(obj != null){
+            return obj.size();
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Reimburse> listReimburseByUser(int page, String reimName, String reimType, String reimStatus) {
         String sql = "SELECT * FROM reimburse WHERE reim_name=? AND reim_type=? AND reim_status=? LIMIT ?,3";
         List<Object> list = JDBCUtil.executeQuery(sql,new ReimburseRowMapping(),reimName,reimType,reimStatus,page);
         List<Reimburse> listReiburse = new ArrayList<>();
@@ -104,6 +165,6 @@ public class ReimburseDaoImpl implements ReimburseDao {
 
     public static void main(String[] args) {
         ReimburseDao reimburseDao = new ReimburseDaoImpl();
-        System.out.println(reimburseDao.listReimburesByUser(0,"som","差旅","草稿"));
+        System.out.println(reimburseDao.saveReimburse(new Reimburse("sdaf","adsf","fadsf",324,"sdf","dsf","adsf")));
     }
 }

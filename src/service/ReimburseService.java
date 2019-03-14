@@ -8,6 +8,28 @@ import java.util.List;
 public interface ReimburseService {
 
     /**
+     * 根据报销编号来获取记录
+     * @param reimNo 报销编号
+     * @return
+     */
+    Reimburse getReimburseByReimNo(String reimNo);
+
+    /**
+     * 根据报销编号来删除
+     * @param reimNo 报销编号
+     * @return boolean
+     */
+    boolean deleteReimburseByReimNo(String reimNo);
+
+    /**
+     * 普通用户查询条件的条数
+     * @param reimName
+     * @param reimType
+     * @param reimStatus
+     * @return
+     */
+    int countReimburseByUser(String reimName,String reimType,String reimStatus) throws ReimburseException;
+    /**
      * 用于普通用户查询
      * @param page
      * @param reimName

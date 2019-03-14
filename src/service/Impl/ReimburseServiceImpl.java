@@ -15,11 +15,62 @@ public class ReimburseServiceImpl implements ReimburseService {
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
     @Override
+    public Reimburse getReimburseByReimNo(String reimNo) {
+         Reimburse reimburse = reimburseDao.getReimburseByReimNo(reimNo);
+         if(reimburse != null){
+             return  reimburse;
+         }
+        return null;
+    }
+
+    @Override
+    public boolean deleteReimburseByReimNo(String reimNo) {
+        try {
+            transaction.start();
+            boolean flag = reimburseDao.deleteReimburseByReimNo(reimNo);
+            if(flag){
+                transaction.commit();
+                return flag;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public int countReimburseByUser(String reimName, String reimType, String reimStatus) throws ReimburseException{
+        try {
+            transaction.start();
+            int flag = reimburseDao.countReimburseByUser(reimName,reimType,reimStatus);
+            if(flag != 0){
+                transaction.commit();
+                return flag;
+            }else{
+                throw new ReimburseException("没有此记录！");
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
     public List<Reimburse> listReimburseByUser(int page,String reimName, String reimType, String reimStatus)
             throws ReimburseException{
         try {
             transaction.start();
-            List<Reimburse> list  = reimburseDao.listReimburesByUser(page,reimName,reimType,reimStatus);
+            List<Reimburse> list  = reimburseDao.listReimburseByUser(page,reimName,reimType,reimStatus);
             if(list != null){
                 transaction.commit();
                 return list;
@@ -164,6 +215,6 @@ public class ReimburseServiceImpl implements ReimburseService {
 //        ReimburseService reimburseService = new ReimburseServiceImpl();
 //        System.out.println(reimburseService.listReimburse().size());
         ReimburseService reimburseService = (ReimburseService)BeanFactory.getObject("reimburseservice");
-        System.out.println(reimburseService.countReimburseByNames("som"));
+        System.out.println(reimburseService.getReimburseByReimNo("3"));
     }
 }

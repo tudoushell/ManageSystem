@@ -14,6 +14,16 @@ public class Reimburse {
         super();
     }
 
+    public Reimburse(String reimNo, String reimName, String reimType, double reimMoney, String createTime, String reimStatus, String reimAbstract) {
+        this.reimNo = reimNo;
+        this.reimName = reimName;
+        this.reimType = reimType;
+        this.reimMoney = reimMoney;
+        this.createTime = createTime;
+        this.reimStatus = reimStatus;
+        this.reimAbstract = reimAbstract;
+    }
+
     public String getReimNo() {
         return reimNo;
     }

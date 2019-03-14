@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/finacial.css">
-    <script src="../js/operateEmp.js"></script>
+    <script src="../js/operateReim.js"></script>
 </head>
 <body>
 <div class="top_part" style=" background-color: #95bfe0;">
@@ -39,7 +39,7 @@
                 <input type="submit" value="查询" id="search">
             </form>
         </div>
-        <p><a href="/web/employee/addEmp.jsp"><img id="add_table" src="../img/add.png" alt="add">添加报销</a></p>
+        <p><a href="/web/finance/addReimburse.jsp"><img id="add_table" src="../img/add.png" alt="add">添加报销</a></p>
         <table>
             <tbody>
             <tr>
