@@ -132,7 +132,7 @@ table{
     border-collapse: collapse;
 }
 th,td,tr{
-    width: 125px;
+    width: 200px;
     height: 30px;
     border: 5px solid #e3e3e3;
 

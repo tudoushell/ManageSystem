@@ -7,6 +7,13 @@ import java.util.List;
 public interface ReimburseDao {
 
     /**
+     * 更新报销单的信息
+     * @param reim
+     * @return
+     */
+    boolean updateReimburse(Reimburse reim);
+
+    /**
      * 存储报销单
      * @param reim 报销单
      * @return boolean

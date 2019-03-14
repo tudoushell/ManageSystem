@@ -9,11 +9,148 @@ import service.ReimburseService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
 public class ReimburseAction {
     private ReimburseService reimburseService = (ReimburseService)BeanFactory.getObject("reimburseservice");
+
+    /**
+     * 列出报销单的详细信息
+     * @param request
+     * @param response
+     * @return
+     */
+    public String doDetailReimburse(HttpServletRequest request , HttpServletResponse response){
+        String reimNo = request.getParameter("reimNo");
+        Reimburse reimburse = reimburseService.getReimburseByReimNo(reimNo);
+        request.setAttribute("reims",reimburse);
+        return "success";
+    }
+
+
+    public String doUpdateReimburse(HttpServletRequest request, HttpServletResponse response)
+            throws UnsupportedEncodingException {
+        request.setCharacterEncoding("utf-8");
+        //从Session中获取，防止用户恶意修改报销编号
+        Reimburse reimburse = (Reimburse) request.getSession().getAttribute("reim");
+        //获取报销编号
+        String reimNo = reimburse.getReimNo();
+        //获取报销类型
+        String reimType = request.getParameter("reimType");
+        if("请选择".equals(reimType)){
+            request.setAttribute("result","输入的格式有误！");
+            request.setAttribute("method","getReimburse.do?reimNo=" + reimNo);
+            return "fail";
+        }
+        //获取摘要
+        String reimAbstract = request.getParameter("reimAbstract");
+
+        //获取金额 输入的不是数字进行判断
+        double cost = 0;
+        try {
+            cost = Double.parseDouble(request.getParameter("cost"));
+        }catch (NumberFormatException e){
+            request.setAttribute("result","输入的格式有误！");
+            request.setAttribute("method","getReimburse.do?reimNo=" + reimNo);
+            return "fail";
+        }
+        //获取提交状态
+        String status = request.getParameter("reimStatus");
+        if("提交".equals(status)){
+            status = "已提交";
+        }
+        boolean flag = reimburseService.updateReimburse(new Reimburse(reimNo,
+                                                                        reimburse.getReimName(),
+                                                                        reimType,
+                                                                        cost,
+                                                                        reimburse.getCreateTime(),
+                                                                        status,
+                                                                        reimAbstract));
+        if(flag){
+            request.setAttribute("result","修改成功");
+            request.setAttribute("method","listReimburse.do?page=1");
+            return "success";
+        }
+        return null;
+    }
+
+
+    /**
+     * 通过报销单号来获取记录
+     * @param request
+     * @param response
+     * @return
+     */
+    public String doGetReimburse(HttpServletRequest request , HttpServletResponse response){
+            String reimNo = request.getParameter("reimNo");
+            Reimburse reimburse = reimburseService.getReimburseByReimNo(reimNo);
+            request.getSession().setAttribute("reim",reimburse);
+            return "success";
+    }
+
+    /**
+     * 添加报销单
+     * @param request
+     * @param response
+     * @return
+     */
+    public String doAddReimburse(HttpServletRequest request ,HttpServletResponse response)
+            throws UnsupportedEncodingException {
+
+        request.setCharacterEncoding("utf-8");
+        User user = (User) request.getSession().getAttribute("user");
+        //获取用户名字
+        String reimName =  user.getEmpName();
+
+        //设置报销编号
+        String reimNo = "BX100" + reimburseService.getReimburseMaxId();
+
+        //获取报销类型
+        String reimType = request.getParameter("reimType");
+        if("请选择".equals(reimType)){
+            request.setAttribute("result","输入的格式有误！");
+            request.setAttribute("method","addReimburse.jsp");
+            return "fail";
+        }
+
+        //获取摘要
+        String reimAbstract = request.getParameter("reimAbstract");
+
+        //获取金额 输入的不是数字进行判断
+        double cost = 0;
+        try {
+             cost = Double.parseDouble(request.getParameter("cost"));
+        }catch (NumberFormatException e){
+            request.setAttribute("result","输入的格式有误！");
+            request.setAttribute("method","addReimburse.jsp");
+            return "fail";
+        }
+        //创建时间
+        String createTime = new Date(new java.util.Date().getTime()).toString();
+
+        //获取提交状态
+        String status = request.getParameter("reimStatus");
+        if("提交".equals(status)){
+            status = "已提交";
+        }
+        boolean flag = reimburseService.saveReimburse(new Reimburse(reimNo,
+                                                        reimName,
+                                                        reimType,
+                                                        cost,
+                                                        createTime,
+                                                        status,
+                                                        reimAbstract));
+        if(flag){
+            request.setAttribute("result","添加成功！");
+            request.setAttribute("method","listReimburse.do?page=1");
+            return "success";
+        }
+        return "fail";
+
+    }
+
 
 
     /**
@@ -53,6 +190,8 @@ public class ReimburseAction {
                 request.setAttribute("method","listReimburse.do?page=1");
                 return "success";
             }
+            request.setAttribute("result","异常参数");
+            request.setAttribute("method","listReimburse.do?page=1");
             return "fail";
     }
 
@@ -171,4 +310,6 @@ public class ReimburseAction {
         request.setAttribute("listReimburse",allEmp);
         return "success";
     }
+
+
 }

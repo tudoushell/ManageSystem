@@ -19,18 +19,16 @@
                             <c:choose>
                                 <c:when test="${user != null}">
                                     ${user.empName}
-                                    <a href="javascript:;" id="exit">退出</a>
+                                    <%--<a href="javascript:;" id="exit">退出</a>--%>
                                     <%--超时退出--%>
                                     <%--<%--%>
                                         <%--session.setMaxInactiveInterval(10);--%>
                                     <%--%>--%>
                                 </c:when>
-                                <c:when test="${user == null}">
-                                    未登录
-                                </c:when>
+                                <%--<c:when test="${user == null}">--%>
+                                    <%--未登录--%>
+                                <%--</c:when>--%>
                             </c:choose>
-                        <c:if test="${user != null}">
-                        </c:if>
                     </span>
                     <h2>XX管理系统</h2>
                 </div>
@@ -58,7 +56,7 @@
                         <li><a href="#" class="otherManager">角色管理</a></li>
                         <li><a href="#" class="otherManager">权限管理</a></li>
                         <li><a href="#" class="otherManager">密码重置</a></li>
-                        <li><a href="#" class="otherManager">系统退出</a></li>
+                        <li id="exit"><a href="javascript:;" class="otherManager">系统退出</a></li>
                     </ul>
                 </div>
                 <!-- 右边内容 -->

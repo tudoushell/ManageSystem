@@ -63,10 +63,12 @@
                         <a href="javascript:del('${reim.reimNo}');">
                             <img class="del_table" src="../img/bullet_delete.png" alt="#">
                         </a>
-                        <a href="javascript:updateDept('${reim.reimNo}');">
+                        <a href="javascript:updateReim('${reim.reimNo}','${reim.reimStatus}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
-                        <img src="../img/detail.png" alt="#">
+                        <a href="javascript:detailReim('${reim.reimNo}');">
+                            <img src="../img/detail.png" alt="#">
+                        </a>
                     </td>
                 </tr>
             </c:forEach>

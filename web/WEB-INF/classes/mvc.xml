@@ -51,4 +51,20 @@
         <result name="success" type="redirect" >/manager/success.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>
     </action>
+    <action name="addReimburse.do" class="ReimburseAction" method="doAddReimburse">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+        <result name="fail" type="forward">/finance/error.jsp</result>
+    </action>
+    <action name="getReimburse.do" class="ReimburseAction" method="doGetReimburse">
+        <result name="success" type="redirect">/finance/updateReimburse.jsp</result>
+        <result name="fail" type="forward">/finance/error.jsp</result>
+    </action>
+    <action name="updateReimburse.do" class="ReimburseAction" method="doUpdateReimburse">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+        <result name="fail" type="forward">/finance/error.jsp</result>
+    </action>
+    <action name="detailReimburse.do" class="ReimburseAction" method="doDetailReimburse">
+        <result name="success" type="redirect">/finance/detailReimburse.jsp</result>
+    </action>
+
 </actions>

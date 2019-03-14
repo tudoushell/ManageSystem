@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="wrap">
-        <form action="#" method="post">
+        <form action="addReimburse.do" method="post">
             <div id="type">
                 <span>报销类型：</span>
                 <select name="reimType">
@@ -26,11 +26,11 @@
                 </select><br>
             </div>
             <span>摘要：</span>
-            <textarea></textarea><br>
+            <textarea name="reimAbstract"></textarea><br>
             <span>金额：</span>
             <input type="text" name="cost"><br>
-            <input type="submit" name="draft" value="草稿">
-            <input type="submit" name="submit" value="提交">
+            <input type="submit" name="reimStatus" value="草稿">
+            <input type="submit" name="reimStatus" value="提交">
             <input type="reset">
             <input type="button" value="返回" id="back">
         </form>

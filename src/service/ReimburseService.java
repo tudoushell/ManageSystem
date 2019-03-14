@@ -8,6 +8,26 @@ import java.util.List;
 public interface ReimburseService {
 
     /**
+     * 更新报销单
+     * @param reimburse
+     * @return
+     */
+    boolean updateReimburse(Reimburse reimburse);
+
+    /**
+     * 获取报销单的最大主键值
+     * @return
+     */
+    int getReimburseMaxId();
+
+    /**
+     * 存储报销单
+     * @param reim
+     * @return
+     */
+    boolean saveReimburse(Reimburse reim);
+
+    /**
      * 根据报销编号来获取记录
      * @param reimNo 报销编号
      * @return

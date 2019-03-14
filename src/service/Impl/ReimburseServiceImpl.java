@@ -15,6 +15,51 @@ public class ReimburseServiceImpl implements ReimburseService {
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
     @Override
+    public boolean updateReimburse(Reimburse reimburse) {
+        try {
+            transaction.start();
+            if(reimburseDao.updateReimburse(reimburse)){
+                transaction.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public int getReimburseMaxId() {
+        int count = reimburseDao.getReimburseMaxId();
+        return count;
+    }
+
+    @Override
+    public boolean saveReimburse(Reimburse reim) {
+        try {
+            transaction.start();
+            boolean flag = reimburseDao.saveReimburse(reim);
+            if(flag){
+                transaction.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public Reimburse getReimburseByReimNo(String reimNo) {
          Reimburse reimburse = reimburseDao.getReimburseByReimNo(reimNo);
          if(reimburse != null){

@@ -12,6 +12,25 @@ public class ReimburseDaoImpl implements ReimburseDao {
 
 
     @Override
+    public boolean updateReimburse(Reimburse reim) {
+        String sql = "UPDATE reimburse SET reim_type=?," +
+                                            "reim_abstract=?," +
+                                            "reim_money=?," +
+                                             "reim_status=? " +
+                                             "WHERE reim_no=?";
+
+        int flag = JDBCUtil.update(sql,reim.getReimType(),
+                                        reim.getReimAbstract(),
+                                        reim.getReimMoney(),
+                                        reim.getReimStatus(),
+                                        reim.getReimNo());
+        if(flag != 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean saveReimburse(Reimburse reim) {
         String sql = "INSERT INTO reimburse(reim_no," +
                                             "reim_name," +
@@ -37,8 +56,8 @@ public class ReimburseDaoImpl implements ReimburseDao {
     @Override
     public int getReimburseMaxId() {
         String sql = "SELECT Max(id) FROM reimburse";
-        JDBCUtil.executeQuery(sql,new ReimburseRowMapping());
-        return 0;
+        int count = JDBCUtil.executeCountQuery(sql);
+        return count;
     }
 
     @Override
@@ -165,6 +184,7 @@ public class ReimburseDaoImpl implements ReimburseDao {
 
     public static void main(String[] args) {
         ReimburseDao reimburseDao = new ReimburseDaoImpl();
-        System.out.println(reimburseDao.saveReimburse(new Reimburse("sdaf","adsf","fadsf",324,"sdf","dsf","adsf")));
+//        System.out.println(reimburseDao.saveReimburse(new Reimburse("sdaf","adsf","fadsf",324,"sdf","dsf","adsf")));
+        System.out.println(reimburseDao.getReimburseMaxId());
     }
 }

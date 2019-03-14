@@ -15,19 +15,19 @@
 
 * 采用MySQL
 
-* 创建部门表格
+* 部门表格
 
 ```
 CREATE TABLE dept(
-   dept_id varchar(11) NOT NULL,
-   dept_name varchar(20) DEFAULT NULL,
-   dept_loc varchar(10) DEFAULT NULL,
-   dept_leader varchar(20) DEFAULT NULL,
+   dept_id VARCHAR(11) NOT NULL,
+   dept_name VARCHAR(20) DEFAULT NULL,
+   dept_loc VARCHAR(10) DEFAULT NULL,
+   dept_leader VARCHAR(20) DEFAULT NULL,
    PRIMARY KEY (dept_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-* 插入数据
+* 部门表插入数据
 
 ```
 INSERT INTO dept VALUES('A0001','总经办','101室','李雷');
@@ -47,11 +47,11 @@ CREATE TABLE user(
 	  emp_no VARCHAR(20) COMMENT '所属员工编号',
 	  emp_Name VARCHAR(10) NOT NULL COMMENT '员工姓名',
 	  role_id VARCHAR(10) NOT NULL COMMENT '角色',
-	  create_time VARCHAR(20) NOT NULL COMMENT '创建时间'
+	  create_time DATE NOT NULL COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-* 插入数据
+* 用户表插入数据
 
 ```
 INSERT INTO user VALUES('admin','admin','1','1','2019-3-4');
@@ -63,8 +63,27 @@ INSERT INTO user VALUES('test','test');
 CREATE TABLE role(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
 	role_name VARCHAR(10) NOT NULL COMMENT '角色名称',
-	create_time VARCHAR(20) NOT NULL COMMENT '创建时间'
+	create_time DATE NOT NULL COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+* 角色表插入数据
+
+```
+INSERT INTO role (role_name,create_time) VALUES(
+	'管理员',
+	 curdate()
+); 
+
+INSERT INTO role (role_name,create_time) VALUES(
+	'普通用户',
+	 curdate()
+); 
+
+INSERT INTO role (role_name,create_time) VALUES(
+	'人事专员',
+	 curdate()
+); 
 ```
 
 * 员工表
@@ -79,8 +98,8 @@ CREATE TABLE employee(
 		education VARCHAR(10) COMMENT '学历',
 		email VARCHAR(20) COMMENT '邮箱',
 		phone VARCHAR(20) NOT NULL COMMENT '联系方式',
-		entry_time VARCHAR(20) NOT NULL COMMENT '入职时间',
-		create_time VARCHAR(20) NOT NULL COMMENT '创建时间'
+		entry_time DATE NOT NULL COMMENT '入职时间',
+		create_time DATE NOT NULL COMMENT '创建时间'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 * 插入数据
@@ -131,11 +150,11 @@ INSERT INTO employee(emp_no,emp_name,emp_dept,sex,phone,entry_time,create_time) 
 ```
 CREATE TABLE reimburse(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
-	reim_no varchar(10) NOT NULL COMMENT '报销编号',
-	reim_name varchar(10) NOT NULL COMMENT '申请人',
-	reim_type varchar(10) NOT NULL COMMENT '报销类型',
+	reim_no VARCHAR(10) NOT NULL COMMENT '报销编号',
+	reim_name VARCHAR(10) NOT NULL COMMENT '申请人',
+	reim_type VARCHAR(10) NOT NULL COMMENT '报销类型',
 	reim_money DECIMAL(6,2) NOT NULL COMMENT '金额',
-	reim_create_time VARCHAR(20) NOT NULL COMMENT '申请时间',
+	reim_create_time DATE NOT NULL COMMENT '申请时间',
 	reim_status VARCHAR(10) NOT NULL COMMENT '申请状态',
 	reim_abstract VARCHAR(30) NOT NULL COMMENT '摘要'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
