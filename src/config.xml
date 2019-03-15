@@ -24,6 +24,11 @@
         <property name="ReimburseDao" ref="ReimburseDao"/>
         <property name="Transaction" ref="Transaction"/>
     </bean>
+    <bean key="UserPrivilegesDao" value="dao.Impl.UserPrivilegesDaoImpl"/>
+    <bean key="UserPrivilegesService" value="service.Impl.UserPrivilegesServiceImpl">
+        <property name="UserPrivilegesDao" ref="UserPrivilegesDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
     <bean key="UserAction" value="servlet.UserAction">
         <property name="UserService" ref="UserService"></property>
     </bean>

@@ -57,6 +57,6 @@ public class BeanFactory {
         return  map.get(name);
     }
     public static void main(String[] args){
-        System.out.println(BeanFactory.getObject("reimburseservice"));
+        System.out.println(BeanFactory.getObject("userprivilegesservice"));
     }
 }

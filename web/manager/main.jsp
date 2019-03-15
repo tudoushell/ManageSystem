@@ -54,7 +54,7 @@
                     <ul class="systemManager">
                         <li><a href="#" class="otherManager">账户维护</a></li>
                         <li><a href="#" class="otherManager">角色管理</a></li>
-                        <li><a href="#" class="otherManager">权限管理</a></li>
+                        <li><a href="/web/system/permission.jsp" class="otherManager" target="contentPage">权限管理</a></li>
                         <li><a href="/web/system/recovery.jsp" class="otherManager" target="contentPage">密码重置</a></li>
                         <li id="exit"><a href="javascript:;" class="otherManager">系统退出</a></li>
                     </ul>

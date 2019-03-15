@@ -102,7 +102,7 @@ CREATE TABLE employee(
 		create_time DATE NOT NULL COMMENT '创建时间'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
-* 插入数据
+* 员工表插入数据
 
 ```
 INSERT INTO employee(emp_no,emp_name,emp_dept,sex,phone,entry_time,create_time) values(
@@ -158,4 +158,263 @@ CREATE TABLE reimburse(
 	reim_status VARCHAR(10) NOT NULL COMMENT '申请状态',
 	reim_abstract VARCHAR(30) NOT NULL COMMENT '摘要'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+* 菜单表
+
+```
+CREATE TABLE menu(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+	menu_name VARCHAR(10) NOT NULL COMMENT '菜单名称',
+	href_url VARCHAR(40) NOT NULL COMMENT '提交URL',
+	parent_id VARCHAR(10)  COMMENT '父子点',
+	create_time DATE NOT NULL COMMENT '创建时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+* 菜单表插入数据
+
+```
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'人事管理',
+	'*',
+	null,
+	curdate()
+);
+
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'财务管理',
+	'*',
+	null,
+	curdate()
+);
+
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'系统管理',
+	'*',
+	null,
+	curdate()
+);
+
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'部门管理',
+	'list.do?page=1',
+	'1',
+	curdate()
+);
+
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'员工管理',
+	'empList.do?page=1',
+	'1',
+	curdate()
+);
+
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'请假管理',
+	'*',
+	'1',
+	curdate()
+);
+
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'报销管理',
+	'listReimburse.do?page=1',
+	'2',
+	curdate()
+);
+
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'账户维护',
+	'*',
+	'3',
+	curdate()
+);
+
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'角色管理',
+	'*',
+	'3',
+	curdate()
+);
+
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'权限管理',
+	'*',
+	'3',
+	curdate()
+);
+
+INSERT INTO menu(menu_name,href_url,parent_id,create_time) VALUES(
+	'密码重置',
+	'/web/system/recovery.jsp',
+	'3',
+	curdate()
+);
+
+```
+
+* 权限表
+
+```
+CREATE TABLE permissions(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+	role_id VARCHAR(10) NOT NULL COMMENT '角色ID',
+	menu_id VARCHAR(10) NOT NULL COMMENT '菜单ID',
+	create_time DATE NOT NULL COMMENT '创建时间'
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+```
+
+* 权限表插入数据
+
+```
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'1',
+	'1',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'2',
+	'1',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'3',
+	'1',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'1',
+	'2',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'2',
+	'2',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'3',
+	'2',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'1',
+	'3',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'2',
+	'3',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'3',
+	'3',
+	curdate()
+);
+
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'1',
+	'4',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'1',
+	'5',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'1',
+	'6',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'1',
+	'7',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'1',
+	'8',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'1',
+	'9',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'1',
+	'10',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'2',
+	'6',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'2',
+	'7',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'3',
+	'4',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'3',
+	'5',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'3',
+	'6',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'3',
+	'7',
+	curdate()
+);
+
+INSERT INTO permissions (role_id,menu_id,create_time) VALUES(
+	'3',
+	'4',
+	curdate()
+);
+
+select role.id,role_name,permissions.menu_id,menu.menu_name from role,permissions,menu  where role.id=role_id and permissions.menu_id=menu.id;
+
+```
+
+* 创建权限视图
+
+```
+	CREATE VIEW user_privileges as 
+	SELECT permissions.id ,role.id as role_id,role_name,permissions.menu_id,menu.menu_name 
+	FROM role,permissions,menu  
+	WHERE role.id=role_id AND permissions.menu_id=menu.id;
+
 ```
