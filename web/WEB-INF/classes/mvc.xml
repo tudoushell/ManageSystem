@@ -3,6 +3,9 @@
         <result name="success" type="redirect">/manager/main.jsp</result>
         <result name="fail" type="forward">/manager/login.jsp</result>
     </action>
+    <action name="check.do" class="UserAction" method="doCheck">
+        <result name="success" type="redirect">/img/code.jpeg</result>
+    </action>
     <action name="updateUser.do" class="UserAction" method="doUpdateUser">
         <result name="success" type="redirect">/system/jumpPage.jsp</result>
         <result name="fail" type="redirect">/system/error.jsp</result>

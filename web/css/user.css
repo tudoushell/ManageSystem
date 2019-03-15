@@ -29,7 +29,7 @@ body{
     letter-spacing: 6px;
 }
 .info{
-    width: 50%;
+    width: 58%;
     margin: 40px auto;
 }
 .btn{
@@ -43,4 +43,8 @@ body{
     width: 60px;
     height: 21px;
     background-color: rgb(4, 163, 255);
+}
+
+#verification{
+    width: 60px;
 }

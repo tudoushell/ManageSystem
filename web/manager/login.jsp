@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <title>登录</title>
         <link rel="stylesheet" type="text/css" href="../css/user.css">
+
     </head>
     <body>
         <div id="wrap">
@@ -19,6 +20,7 @@
                     <input type="password" name="password" id="password" placeholder="密码"><br>
                     <label for="verification">验证码：</label>
                     <input type="text" name="verification" id="verification">
+                    <img src="/web/manager/check.do">
                     <div class="btn"><button>登 录</button></div>
                 </form>
             </div>
