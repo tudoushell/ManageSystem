@@ -1,5 +1,6 @@
-package entity;
+package entity.RowMapping;
 
+import entity.User;
 import util.RowMapperObject;
 
 import java.sql.ResultSet;

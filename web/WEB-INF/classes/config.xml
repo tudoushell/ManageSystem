@@ -29,16 +29,34 @@
         <property name="UserPrivilegesDao" ref="UserPrivilegesDao"/>
         <property name="Transaction" ref="Transaction"/>
     </bean>
+    <bean key="RoleDao" value="dao.Impl.RoleDaoImpl"/>
+    <bean key="RoleService" value="service.Impl.RoleServiceImpl">
+        <property name="RoleDao" ref="RoleDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
+    <bean key="MenuDao" value="dao.Impl.MenDaoImpl"/>
+    <bean key="MenuService" value="service.Impl.MenuServiceImpl">
+        <property name="MenuDao" ref="MenuDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
+    <bean key="PermissionsDao" value="dao.Impl.PermissionsDaoImpl"/>
+    <bean key="PermissionsService" value="service.Impl.PermissionsServiceImpl">
+        <property name="PermissionsDao" ref="PermissionsDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
     <bean key="UserAction" value="servlet.UserAction">
-        <property name="UserService" ref="UserService"></property>
+        <property name="UserService" ref="UserService"/>
     </bean>
     <bean key="DeptAction" value="servlet.DeptAction">
-        <property name="DeptService" ref="DeptService"></property>
+        <property name="DeptService" ref="DeptService"/>
     </bean>
     <bean key="EmpAction" value="servlet.EmpAction">
-        <property name="EmpService" ref="EmpService"></property>
+        <property name="EmpService" ref="EmpService"/>
     </bean>
     <bean key="ReimburseAction" value="servlet.ReimburseAction">
-        <property name="ReimburseService" ref="ReimburseService"></property>
+        <property name="ReimburseService" ref="ReimburseService"/>
+    </bean>
+    <bean key="PrivilegesAction" value="servlet.PrivilegesAction">
+        <property name="UserPrivilegesService" ref="UserPrivilegesService"/>
     </bean>
 </beans>

@@ -3,7 +3,7 @@ package dao.Impl;
 import beanfactory.BeanFactory;
 import dao.EmpDao;
 import entity.Employee;
-import entity.EmployeeRowMapping;
+import entity.RowMapping.EmployeeRowMapping;
 import util.JDBCUtil;
 
 import java.util.ArrayList;

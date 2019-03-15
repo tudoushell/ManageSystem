@@ -294,14 +294,14 @@ public class ReimburseAction {
         //用户页数
         int page = Integer.parseInt(request.getParameter("page"));
 
-        //获取员工总数 如果是普通用户则获取当前用户的报销数量
+        //获取报销总数 如果是普通用户则获取当前用户的报销数量
         int sum  = "2".equals(userRoleId) ? reimburseService.countReimburseByNames(user.getEmpName()) :
                                             reimburseService.listReimburse().size();
         Map<String,Integer> map = EmpAction.divisionPage(COUNT,page,sum);
         int allPages = map.get("allPages");
         page = map.get("page");
 
-        //按条数获取员工数 如果是普通用户则获取当前用户的报销情况
+        //按条数获取报销数 如果是普通用户则获取当前用户的报销情况
         List<Reimburse> allEmp = "2".equals(userRoleId) ? reimburseService.listReimburseByNames((page - 1) * COUNT,user.getEmpName()):
                                                                 reimburseService.listReimburseByPage((page - 1) * COUNT);
         request.setAttribute("page",page);

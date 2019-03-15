@@ -34,7 +34,6 @@
         <input type="text" name="cost" value="${reim.reimMoney}"><br>
         <input type="submit" name="reimStatus" value="草稿">
         <input type="submit" name="reimStatus" value="提交">
-        <input type="reset">
         <input type="button" value="返回" id="back">
     </form>
 </div>

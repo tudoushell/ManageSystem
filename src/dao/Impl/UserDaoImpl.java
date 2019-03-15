@@ -1,12 +1,10 @@
 package dao.Impl;
 
-import beanfactory.BeanFactory;
 import dao.UserDao;
+import entity.RowMapping.UserRowMapping;
 import entity.User;
-import entity.UserRowMapping;
 import util.JDBCUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {

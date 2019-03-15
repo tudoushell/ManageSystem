@@ -2,7 +2,7 @@ package dao.Impl;
 
 import dao.DeptDao;
 import entity.Department;
-import entity.DeptmentRowMapping;
+import entity.RowMapping.DeptmentRowMapping;
 import util.JDBCUtil;
 
 import java.util.ArrayList;

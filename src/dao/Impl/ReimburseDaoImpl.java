@@ -2,7 +2,7 @@ package dao.Impl;
 
 import dao.ReimburseDao;
 import entity.Reimburse;
-import entity.ReimburseRowMapping;
+import entity.RowMapping.ReimburseRowMapping;
 import util.JDBCUtil;
 
 import java.util.ArrayList;

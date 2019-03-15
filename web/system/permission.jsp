@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/finacial.css">
-    <script src="../js/operateReim.js"></script>
+    <script src="../js/operatePerm.js"></script>
 </head>
 <body>
 <div class="top_part" style=" background-color: #95bfe0;">
@@ -22,24 +22,25 @@
 <div class="bottom_content clearfix">
     <div class="main_table">
         <div id="finSearch">
-            <form action="listReimburse.do?page=1"  method="post" accept-charset="UTF-8">
+            <form action="listPrivileges.do?page=1"  method="post" accept-charset="UTF-8">
                 <span>角色：</span>
-                <select name="reimType" id="Type">
+                <select name="roleName" id="Type">
                     <option value="请选择">请选择</option>
-                    <option value="差旅费">差旅费</option>
-                    <option value="招待费">招待费</option>
-                    <option value="办公费">办公费</option>
+                    <c:forEach items="${listRole}" var="role">
+                        <option value="${role.roleName}">${role.roleName}</option>
+                    </c:forEach>
                 </select>
                 <span>菜单：</span>
-                <select name="reimStatus" id="status">
+                <select name="menuName" id="status">
                     <option value="请选择">请选择</option>
-                    <option value="草稿">草稿</option>
-                    <option value="已提交">已提交</option>
+                    <c:forEach items="${listMenu}" var="menu">
+                        <option value="${menu.menuName}">${menu.menuName}</option>
+                    </c:forEach>
                 </select>
                 <input type="submit" value="查询" id="search">
             </form>
         </div>
-        <p><a href="/web/finance/addReimburse.jsp"><img id="add_table" src="../img/add.png" alt="add">添加权限</a></p>
+        <p><a href="/web/system/addPermission.jsp"><img id="add_table" src="../img/add.png" alt="add">添加权限</a></p>
         <table>
             <tbody>
             <tr>
@@ -49,14 +50,14 @@
                 <th>菜单名称</th>
                 <th>操作列表</th>
             </tr>
-            <c:forEach items="${listReimburse}" var="reim">
+            <c:forEach items="${listPrivileges}" var="privileges">
                 <tr>
-                    <td>${reim.reimNo}</td>
-                    <td>${reim.reimName}</td>
-                    <td>${reim.reimType}</td>
-                    <td>${reim.reimMoney}</td>
+                    <td>${privileges.roleId}</td>
+                    <td>${privileges.roleName}</td>
+                    <td>${privileges.menuId}</td>
+                    <td>${privileges.menuName}</td>
                     <td>
-                        <a href="javascript:del('${reim.reimNo}');">
+                        <a href="javascript:del('${privileges.id}');">
                             <img class="del_table" src="../img/bullet_delete.png" alt="#">
                         </a>
                         <a href="javascript:updateReim('${reim.reimNo}','${reim.reimStatus}');">
@@ -68,10 +69,10 @@
             </tbody>
         </table>
         <div class="changePage">
-            <a href="listReimburse.do?page=1&reimType=${reimType}&reimStatus=${reimStatus}">首页</a>
-            <a href="listReimburse.do?page=${page - 1}&reimType=${reimType}&reimStatus=${reimStatus}">上一页</a>
-            <a href="listReimburse.do?page=${page + 1}&reimType=${reimType}&reimStatus=${reimStatus}">下一页</a>
-            <a href="listReimburse.do?page=${allPage}&reimType=${reimType}&reimStatus=${reimStatus}">尾页</a>
+            <a href="listPrivileges.do?page=1&roleName=${roleName}&menuName=${menuName}">首页</a>
+            <a href="listPrivileges.do?page=${page - 1}&roleName=${roleName}&menuName=${menuName}">上一页</a>
+            <a href="listPrivileges.do?page=${page + 1}&roleName=${roleName}&menuName=${menuName}">下一页</a>
+            <a href="listPrivileges.do?page=${allPage}&roleName=${roleName}&menuName=${menuName}">尾页</a>
             <span>第${page}页</span>
             <span>共${allPage}页</span>
         </div>
