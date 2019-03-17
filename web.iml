@@ -105,5 +105,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Tomcat 7.0.93" level="application_server_libraries" />
   </component>
 </module>

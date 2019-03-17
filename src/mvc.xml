@@ -4,7 +4,6 @@
         <result name="fail" type="forward">/manager/login.jsp</result>
     </action>
     <action name="check.do" class="UserAction" method="doCheck">
-        <result name="success" type="redirect">/img/code.jpeg</result>
     </action>
     <action name="updateUser.do" class="UserAction" method="doUpdateUser">
         <result name="success" type="redirect">/system/jumpPage.jsp</result>
@@ -79,5 +78,18 @@
     </action>
     <action name="delPerm.do" class="PrivilegesAction" method="doDelPrivileges">
         <result name="success" type="redirect">/manager/success.jsp</result>
+    </action>
+    <action name="addPerm.do" class="PrivilegesAction" method="doAddPrivileges">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+        <result name="fail" type="forward">/system/error.jsp</result>
+    </action>
+    <action name="getPerm.do" class="PrivilegesAction" method="doGetPerm">
+        <result name="success" type="redirect">/system/updatePermission.jsp</result>
+    </action>
+    <action name="updatePerm.do" class="PrivilegesAction" method="doUpdatePerm">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+    </action>
+    <action name="checkPrivileges.do" class="PrivilegesAction" method="doCheckPrivileges">
+        <!--<result name="success" type="redirect">/manager/main.jsp</result>-->
     </action>
 </actions>

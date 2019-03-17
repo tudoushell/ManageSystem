@@ -1,11 +1,10 @@
 package beanfactory;
 
-import dao.DeptDao;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import java.io.InputStream;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -57,6 +56,6 @@ public class BeanFactory {
         return  map.get(name);
     }
     public static void main(String[] args){
-        System.out.println(BeanFactory.getObject("permissionsservice"));
+        System.out.println(BeanFactory.getObject("permissionsdao"));
     }
 }

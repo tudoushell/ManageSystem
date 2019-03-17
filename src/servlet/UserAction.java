@@ -2,6 +2,7 @@ package servlet;
 
 import beanfactory.BeanFactory;
 import entity.User;
+import service.UserPrivilegesService;
 import service.UserService;
 
 import javax.imageio.ImageIO;
@@ -10,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.List;
 import java.util.Random;
 
 public class UserAction {
     private UserService userService = (UserService) BeanFactory.getObject("userservice");
+    private UserPrivilegesService userPrivileges = (UserPrivilegesService) BeanFactory.getObject("userprivilegesservice");
 
     /**
      * 重置用户密码
@@ -59,12 +62,19 @@ public class UserAction {
 
     }
 
-    public String doCheck(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException {
+    /**
+     * 获取验证码
+     * @param request
+     * @param response
+     * @return
+     * @throws FileNotFoundException
+     */
+    public String doCheck(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        String code = MakeCertPic.getCertPic(60, 20);
+        String code = MakeCertPic.getCertPic(60, 20,response.getOutputStream());
         request.getSession().setAttribute("code", code);
         System.out.println(code);
-        return "success";
+        return null;
     }
 
     /**
@@ -84,8 +94,14 @@ public class UserAction {
         String url = "/manager/login.jsp";
         //进行登录判断
         User user = userService.isUser(userName, password);
-        if (user != null && checkCode.equals(code)) {
+//        && checkCode.equalsIgnoreCase(code)
+        if (user != null ) {
             request.getSession().setAttribute("user", user);
+            //获取用户的权限
+            int roleId = Integer.parseInt(user.getRoleId());
+            List<String> menuList = userPrivileges.listRoleIdPrivileges(roleId);
+            System.out.println(menuList);
+            request.setAttribute("menuList", menuList);
             return "success";
         } else {
             return "fail";

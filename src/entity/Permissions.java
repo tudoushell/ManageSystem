@@ -11,11 +11,11 @@ public class Permissions {
         super();
     }
 
-    public Permissions(String roleId, String menuId, String createTime, int id) {
+    public Permissions(int id, String roleId, String menuId, String createTime) {
+        this.id = id;
         this.roleId = roleId;
         this.menuId = menuId;
         this.createTime = createTime;
-        this.id = id;
     }
 
     public String getRoleId() {

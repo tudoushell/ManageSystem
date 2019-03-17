@@ -25,9 +25,6 @@
                                         <%--session.setMaxInactiveInterval(10);--%>
                                     <%--%>--%>
                                 </c:when>
-                                <%--<c:when test="${user == null}">--%>
-                                    <%--未登录--%>
-                                <%--</c:when>--%>
                             </c:choose>
                     </span>
                     <h2>XX管理系统</h2>
@@ -42,19 +39,39 @@
                 <div class="leftcontent">
                     <a href="#" id="hrM" class="mainManager">人事管理</a>
                     <ul class="hr">
-                        <li><a href="list.do?page=1" id="moreDepart" class="otherManager" target="contentPage">部门管理</a></li>
-                        <li><a href="empList.do?page=1" class="otherManager" target="contentPage">员工管理</a></li>
-                        <li><a href="#" class="otherManager">请假管理</a></li>
+                        <c:forEach items="${menuList}" var="menu">
+                            <c:if test="${menu == 4}">
+                                <li><a href="list.do?page=1" id="moreDepart" class="otherManager" target="contentPage">部门管理</a></li>
+                            </c:if>
+                            <c:if test="${menu == 5}">
+                            <li><a href="empList.do?page=1" class="otherManager" target="contentPage">员工管理</a></li>
+                            </c:if>
+                            <c:if test="${menu == 6}">
+                            <li><a href="#" class="otherManager">请假管理</a></li>
+                            </c:if>
+                        </c:forEach>
                     </ul>
                     <a href="#" id="financeM" class="mainManager">财务管理</a>
                     <ul class="finance">
-                        <li><a href="listReimburse.do?page=1" class="otherManager" target="contentPage">报销管理</a></li>
+                        <c:forEach items="${menuList}" var="menu">
+                            <c:if test="${menu == 7}">
+                             <li><a href="listReimburse.do?page=1" class="otherManager" target="contentPage">报销管理</a></li>
+                            </c:if>
+                        </c:forEach>
                     </ul>
                     <a href="#" id="sysM" class="mainManager">系统管理</a>
                     <ul class="systemManager">
-                        <li><a href="#" class="otherManager">账户维护</a></li>
-                        <li><a href="#" class="otherManager">角色管理</a></li>
-                        <li><a href="listPrivileges.do?page=1" class="otherManager" target="contentPage">权限管理</a></li>
+                        <c:forEach items="${menuList}" var="menu">
+                            <c:if test="${menu == 8}">
+                                <li><a href="#" class="otherManager">账户维护</a></li>
+                            </c:if>
+                            <c:if test="${menu == 9}">
+                                <li><a href="#" class="otherManager">角色管理</a></li>
+                            </c:if>
+                            <c:if test="${menu == 10}">
+                                <li><a href="listPrivileges.do?page=1" class="otherManager" target="contentPage">权限管理</a></li>
+                            </c:if>
+                        </c:forEach>
                         <li><a href="/web/system/recovery.jsp" class="otherManager" target="contentPage">密码重置</a></li>
                         <li id="exit"><a href="javascript:;" class="otherManager">系统退出</a></li>
                     </ul>

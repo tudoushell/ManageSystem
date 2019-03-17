@@ -8,6 +8,34 @@ import java.util.List;
 public interface UserPrivilegesService {
 
     /**
+     * 根据角色id来列出权限
+     * @param roleId
+     * @return
+     */
+    List<String> listRoleIdPrivileges(int roleId);
+    /**
+     * 根据菜单名来获取id
+     * @param menuName
+     * @return
+     */
+    String getMenuId(String menuName) throws  PrivilegesException;
+
+    /**
+     * 根据角色名来获取id
+     * @param roleName
+     * @return
+     */
+    int getRoleId(String roleName) throws  PrivilegesException;
+
+    /**
+     * 根据角色名和菜单名来获取id
+     * @param roleName
+     * @param menuName
+     * @return
+     */
+    UserPrivileges getRoleIdAndMenuId(String roleName, String menuName) throws PrivilegesException;
+
+    /**
      * 统计按条件来查询的数量
      * @param roleName
      * @param menuName

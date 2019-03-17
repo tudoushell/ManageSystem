@@ -7,6 +7,25 @@ import java.util.List;
 public interface UserPrivilegesDao {
 
     /**
+     * 列出角色的权限
+     * @return
+     */
+    List<String> listRoleIdPrivileges(int roleId);
+    /**
+     * 根据菜单名来获取菜单id
+     * @param menuName
+     * @return
+     */
+    String getMenuId(String menuName);
+
+    /**
+     * 通过角色名来获取roleId
+     * @param roleName
+     * @return
+     */
+    int getRoleId(String roleName);
+
+    /**
      * 根据角色名和菜单名来获取id
      * @param roleName
      * @param menuName

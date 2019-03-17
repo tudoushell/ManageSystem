@@ -7,6 +7,7 @@ import exception.PrivilegesException;
 import service.UserPrivilegesService;
 import util.Transaction;
 
+
 import java.util.List;
 
 public class UserPrivilegesServiceImpl implements UserPrivilegesService {
@@ -14,6 +15,42 @@ public class UserPrivilegesServiceImpl implements UserPrivilegesService {
     private UserPrivilegesDao userPrivilegesDao = (UserPrivilegesDao) BeanFactory.getObject("userprivilegesdao");
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
+
+    @Override
+    public List<String> listRoleIdPrivileges(int roleId) {
+        List<String> userPrivileges = userPrivilegesDao.listRoleIdPrivileges(roleId);
+        return userPrivileges;
+    }
+
+    @Override
+    public String getMenuId(String menuName) throws  PrivilegesException{
+        String result = userPrivilegesDao.getMenuId(menuName);
+        if(result != null){
+            return result;
+        }else {
+            throw new PrivilegesException("请选择正确的选项");
+        }
+    }
+
+    @Override
+    public int getRoleId(String roleName) throws  PrivilegesException{
+        int result = userPrivilegesDao.getRoleId(roleName);
+        if(result != 0){
+            return result;
+        }else {
+            throw new PrivilegesException("请选择正确的选项");
+        }
+
+    }
+
+    @Override
+    public UserPrivileges getRoleIdAndMenuId(String roleName, String menuName) throws PrivilegesException{
+        UserPrivileges user = userPrivilegesDao.getRoleIdAndMenuId(roleName,menuName);
+        if(user == null){
+            throw new PrivilegesException("请选择正确的角色名和菜单名!");
+        }
+        return user;
+    }
 
     @Override
     public int countPrivileges(String roleName, String menuName) throws PrivilegesException{
@@ -46,8 +83,11 @@ public class UserPrivilegesServiceImpl implements UserPrivilegesService {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PrivilegesException {
         UserPrivilegesService userPrivilegesService = new UserPrivilegesServiceImpl();
-        System.out.println(userPrivilegesService.listPrivilegesCondition(0,"dsaf","fdas"));
+        System.out.println(userPrivilegesService.getMenuId("权限管理"));
+        System.out.println(userPrivilegesService.getRoleId("普通用户"));
+        System.out.println(userPrivilegesService.listRoleIdPrivileges(1));
+
     }
 }

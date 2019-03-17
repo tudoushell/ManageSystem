@@ -38,7 +38,7 @@ public class MakeCertPic {
 	 *
 	 * @return
 	 */
-	public static String getCertPic(int width,int height){
+	public static String getCertPic(int width,int height, OutputStream os){
 		if(width < 0){
 			width = 60;
 		}
@@ -91,9 +91,8 @@ public class MakeCertPic {
 		g.dispose();
 
 
-		OutputStream os = null;
+
 		try {
-			os = new FileOutputStream(new File("/Users/happy/Documents/javaWeb/JavaWeb/web/web/img/code.jpeg"));
 			ImageIO.write(image, "JPEG", os);
 		} catch (Exception e) {
 			e.printStackTrace();

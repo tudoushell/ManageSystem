@@ -29,7 +29,13 @@ public class ReimburseAction {
         return "success";
     }
 
-
+    /**
+     * 修改报销单
+     * @param request
+     * @param response
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     public String doUpdateReimburse(HttpServletRequest request, HttpServletResponse response)
             throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");

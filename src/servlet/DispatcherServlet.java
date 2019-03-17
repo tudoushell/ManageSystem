@@ -32,6 +32,9 @@ public class DispatcherServlet extends HttpServlet {
             try {
                 Method methods = obj.getClass().getDeclaredMethod(method,HttpServletRequest.class,HttpServletResponse.class);
                 Object result = methods.invoke(obj,request,response);
+                if(result == null){
+                    return;
+                }
                 Map<String, ResultConfig> resultConfigMap = actionConfig.getResultConfigMap();
                 ResultConfig resultConfig = resultConfigMap.get(result);
                 String type = resultConfig.getType();

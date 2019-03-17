@@ -60,7 +60,7 @@
                         <a href="javascript:del('${privileges.id}');">
                             <img class="del_table" src="../img/bullet_delete.png" alt="#">
                         </a>
-                        <a href="javascript:updateReim('${reim.reimNo}','${reim.reimStatus}');">
+                        <a href="javascript:updatePerm('${privileges.roleId}','${privileges.menuId}','${privileges.id}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
                     </td>

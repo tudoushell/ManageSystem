@@ -101,6 +101,54 @@ public class JDBCUtil {
         return list;
     }
 
+    public static List<Object> executeData(String sql, Object ... args){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Object> list = null;
+        try {
+            conn = JDBCUtil.getConnection();
+            ps = conn.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                ps.setObject(i + 1, args[i]);
+            }
+            rs = ps.executeQuery();
+            list = new ArrayList<>();
+            while(rs.next()){
+                list.add(rs.getObject(1));
+            }
+            if(list.size() == 0){
+                return null;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+//            JDBCUtil.releaseDB(conn,ps,rs);
+        }
+        return list;
+    }
+
+    public static Object executeQueryData(String sql,Object ... args){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = JDBCUtil.getConnection();
+            ps = conn.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                ps.setObject(i + 1, args[i]);
+            }
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getObject(1);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+//            JDBCUtil.releaseDB(conn,ps,rs);
+        }
+        return null;
+    }
     /**
      * 用于数据统计数据
      * @param sql
@@ -170,10 +218,8 @@ public class JDBCUtil {
 
 
     public static void main(String [] args){
-        String sql = "SELECT count(*) FROM reimburse where reim_name=?";
-            int i = JDBCUtil.executeCountQuery(sql,"som");
-        System.out.println(i);
+        String sql = "SELECT menu_id FROM user_privileges where role_id=?";
+           List<Object> list =  JDBCUtil.executeData(sql,2);
+        System.out.println(list);
     }
-
-
 }

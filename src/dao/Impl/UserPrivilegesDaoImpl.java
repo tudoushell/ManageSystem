@@ -11,6 +11,40 @@ import java.util.List;
 public class UserPrivilegesDaoImpl implements UserPrivilegesDao {
 
     @Override
+    public List<String> listRoleIdPrivileges(int roleId) {
+        String sql = "SELECT menu_id FROM user_privileges WHERE role_id=?";
+        List<Object> list = JDBCUtil.executeData(sql,roleId);
+        List<String> listPrivileges = new ArrayList<>();
+        if(list != null){
+            for(Object obj : list){
+                listPrivileges.add((String) obj);
+            }
+            return listPrivileges;
+        }
+        return null;
+    }
+
+    @Override
+    public String getMenuId(String menuName) {
+        String sql = "SELECT DISTINCT menu_id from user_privileges where menu_name=?";
+        Object menuId = JDBCUtil.executeQueryData(sql,menuName);
+        if(menuId != null){
+            return (String) menuId;
+        }
+        return null;
+    }
+
+    @Override
+    public int getRoleId(String roleName) {
+        String sql = "SELECT DISTINCT role_id from user_privileges where role_name=?";
+        Object roleId = JDBCUtil.executeQueryData(sql,roleName);
+        if(roleId != null){
+            return (int) roleId;
+        }
+        return 0;
+    }
+
+    @Override
     public UserPrivileges getRoleIdAndMenuId(String roleName, String menuName) {
         String sql = "SELECT * FROM user_privileges WHERE role_name=? AND menu_name=?";
         List<Object> list = JDBCUtil.executeQuery(sql, new UserPrivilegesRowMapping(), roleName,menuName);
@@ -70,7 +104,9 @@ public class UserPrivilegesDaoImpl implements UserPrivilegesDao {
 
     public static void main(String[] args) {
         UserPrivilegesDao dao = new UserPrivilegesDaoImpl();
-        System.out.println(dao.getRoleIdAndMenuId("管理员","人事管理"));
+        System.out.println(dao.getRoleId("管理员"));
+        System.out.println(dao.getMenuId("权限管理"));
+        System.out.println(dao.listRoleIdPrivileges(1));
 
     }
 }

@@ -60,6 +60,7 @@
 }
 /* 左边内容 */
 .leftcontent > .hr{
+    display: none;
     list-style-type: none;
     margin-top: 10px;
     margin-left: 20px;
@@ -82,12 +83,14 @@ a{
 }
 
 .leftcontent > .finance{
+    display: none;
     list-style-type: none;
     margin-top: 10px;
     margin-left: 20px;
 }
 
 .leftcontent > .systemManager{
+    display: none;
     list-style-type: none;
     margin-top: 10px;
     margin-left: 20px;

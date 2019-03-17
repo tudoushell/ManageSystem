@@ -1,11 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>登录</title>
         <link rel="stylesheet" type="text/css" href="../css/user.css">
-
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="kiben" content="no-cache">
     </head>
     <body>
         <div id="wrap">

@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="wrap">
-        <form action="#" method="post">
+        <form action="addPerm.do" method="post">
             <span>角色：</span>
             <select name="roleName" id="Type">
                 <option value="请选择">请选择</option>
