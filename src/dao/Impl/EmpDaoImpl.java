@@ -12,6 +12,16 @@ import java.util.List;
 public class EmpDaoImpl implements EmpDao {
 
     @Override
+    public boolean isEmpInDetp(String deptName) {
+        String sql = "SELECT * FROM employee WHERE emp_dept=?";
+        List<Object> list = JDBCUtil.executeQuery(sql,new EmployeeRowMapping(), deptName);
+        if(list != null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean updateEmp(Employee emp) {
         String sql = "UPDATE employee set emp_name=?," +
                                             "emp_dept=?," +
@@ -136,7 +146,8 @@ public class EmpDaoImpl implements EmpDao {
 
     public static void main(String[] args) {
         EmpDaoImpl empDao = (EmpDaoImpl) BeanFactory.getObject("empdao");
-        boolean flag = empDao.updateEmp(new Employee("123","1","1","1","1","1","1","1","1"));
-        System.out.println(flag);
+//        boolean flag = empDao.updateEmp(new Employee("123","1","1","1","1","1","1","1","1"));
+        System.out.println(empDao.isEmpInDetp("就业部"));
+//        System.out.println(flag);
     }
 }

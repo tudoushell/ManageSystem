@@ -38,7 +38,7 @@
                         <td>${listDept.deptLoc}</td>
                         <td>${listDept.deptLeader}</td>
                         <td>
-                            <a href="javascript:del('${listDept.deptId}');">
+                            <a href="javascript:del('${listDept.deptId}','${listDept.deptName}');">
                                 <img class="del_table" src="../img/bullet_delete.png" alt="#">
                             </a>
                             <a href="javascript:changeDept('${listDept.deptId}');">

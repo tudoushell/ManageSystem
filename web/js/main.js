@@ -41,10 +41,10 @@ $(function(){
 
 });
 // 删除部门
-function del(deptid){
+function del(deptid,deptName){
     var flag = confirm("是否删除" + deptid);
     if(flag){
-        window.location.href = "/web/manager/del.do?deptId=" + deptid;
+        window.location.href = "/web/manager/del.do?deptId=" + deptid + "&deptName=" + deptName;
     }
 }
 //修改部门

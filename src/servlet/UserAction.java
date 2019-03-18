@@ -94,7 +94,12 @@ public class UserAction {
         String url = "/manager/login.jsp";
         //进行登录判断
         User user = userService.isUser(userName, password);
-//        && checkCode.equalsIgnoreCase(code)
+        if(! checkCode.equalsIgnoreCase(code)){
+            request.setAttribute("result","验证码不正确！");
+            request.setAttribute("method", "login.jsp");
+            return "fail";
+        }
+
         if (user != null ) {
             request.getSession().setAttribute("user", user);
             //获取用户的权限
@@ -104,6 +109,8 @@ public class UserAction {
             request.setAttribute("menuList", menuList);
             return "success";
         } else {
+            request.setAttribute("result","用户名或密码不正确");
+            request.setAttribute("method", "login.jsp");
             return "fail";
         }
     }

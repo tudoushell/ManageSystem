@@ -3,6 +3,7 @@ package dao.Impl;
 import dao.DeptDao;
 import entity.Department;
 import entity.RowMapping.DeptmentRowMapping;
+import exception.DeptException;
 import util.JDBCUtil;
 
 import java.util.ArrayList;
@@ -14,17 +15,19 @@ public class DeptDaoImpl implements DeptDao {
      * @return
      */
     @Override
-    public List<Department> listDept() {
+    public List<Department> listDept() throws DeptException {
         String sql = "SELECT * FROM dept";
         List<Department> listDepartment = new ArrayList<>();
         List<Object> list =  JDBCUtil.executeQuery(sql,new DeptmentRowMapping());
-        if(list.size() > 0) {
+        if(list != null) {
             for(Object obj : list){
                 listDepartment.add((Department) obj);
             }
             return listDepartment;
+        }else {
+            throw new DeptException("没有部门");
         }
-        return null;
+
     }
 
     /**
@@ -109,7 +112,7 @@ public class DeptDaoImpl implements DeptDao {
 
     public static void main(String[] args) {
         DeptDao deptDao = new DeptDaoImpl();
-        List<Department> list = deptDao.listDept();
-        System.out.println(list);
+//        List<Department> list = deptDao.listDept();
+//        System.out.println(list);
     }
 }

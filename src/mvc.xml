@@ -1,7 +1,7 @@
 <actions>
     <action name="login.do" class="UserAction" method="doLogin">
         <result name="success" type="redirect">/manager/main.jsp</result>
-        <result name="fail" type="forward">/manager/login.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
     </action>
     <action name="check.do" class="UserAction" method="doCheck">
     </action>

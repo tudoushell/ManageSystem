@@ -16,6 +16,11 @@ public class EmpServiceImpl implements EmpService{
 
 
     @Override
+    public boolean isEmpInDept(String deptName) {
+        return empDao.isEmpInDetp(deptName);
+    }
+
+    @Override
     public boolean updateEmp(Employee emp) {
         try {
             transaction.start();
@@ -179,7 +184,8 @@ public class EmpServiceImpl implements EmpService{
 //        List<Employee> list = empService.listEmps();
 //        int list = empService.countEmpByConditions("小","就业部");
 //        System.out.println(list);
-        boolean flag = empService.updateEmp(new Employee("123","2","1","1","1","1","1","1","1"));
-        System.out.println(flag);
+//        boolean flag = empService.updateEmp(new Employee("123","2","1","1","1","1","1","1","1"));
+//        System.out.println(flag);
+        System.out.println(empService.isEmpInDept("就业部"));
     }
 }

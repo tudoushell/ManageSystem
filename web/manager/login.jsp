@@ -6,8 +6,14 @@
         <meta charset="UTF-8">
         <title>登录</title>
         <link rel="stylesheet" type="text/css" href="../css/user.css">
-        <meta http-equiv="Expires" content="0">
-        <meta http-equiv="kiben" content="no-cache">
+        <script>
+            window.onload = function (ev) {
+                var changeCode = document.getElementById("changeCode");
+                changeCode.onclick = function (ev1) {
+                    this.src = "check.do?date=" + new Date();
+                };
+            };
+        </script>
     </head>
     <body>
         <div id="wrap">
@@ -22,7 +28,7 @@
                     <input type="password" name="password" id="password" placeholder="密码"><br>
                     <label for="verification">验证码：</label>
                     <input type="text" name="verification" id="verification">
-                    <img src="/web/manager/check.do">
+                    <img src="/web/manager/check.do" id="changeCode">
                     <div class="btn"><button>登 录</button></div>
                 </form>
             </div>

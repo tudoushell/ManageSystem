@@ -4,6 +4,7 @@ import beanfactory.BeanFactory;
 import entity.Department;
 import exception.DeptException;
 import service.DeptService;
+import service.EmpService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class DeptAction {
-
+    private DeptService deptService = (DeptService) BeanFactory.getObject("deptservice");
+    private EmpService empService = (EmpService) BeanFactory.getObject("empservice");
     /**
      * 修改部门信息
      * @param request
@@ -20,7 +22,6 @@ public class DeptAction {
      * @return
      */
     public String doChange(HttpServletRequest request , HttpServletResponse response){
-        DeptService deptService = (DeptService) BeanFactory.getObject("deptservice");
         Department dt = (Department) request.getSession().getAttribute("dt");
         //从查询的数据获取id，防止用户恶意提交
         String deptId = dt.getDeptId();
@@ -62,12 +63,19 @@ public class DeptAction {
      * @return
      */
     public String doDel(HttpServletRequest request , HttpServletResponse response){
-        DeptService deptService = (DeptService) BeanFactory.getObject("deptservice");
         String deptId = request.getParameter("deptId");
-        deptService.delDept(deptId);
-        request.setAttribute("result","删除成功！");
-        request.setAttribute("method","list.do?page=1");
-        return "success";
+        String deptName = request.getParameter("deptName");
+        if(! empService.isEmpInDept(deptName)){
+            deptService.delDept(deptId);
+            request.setAttribute("result","删除成功！");
+            request.setAttribute("method","list.do?page=1");
+            return "success";
+        }else {
+            request.setAttribute("result","该部门下有员工，删除失败！");
+            request.setAttribute("method","list.do?page=1");
+            return "fail";
+        }
+
     }
 
     /**
@@ -80,7 +88,6 @@ public class DeptAction {
      */
 
     public String doAdd(HttpServletRequest request , HttpServletResponse response) throws ServletException, IOException {
-        DeptService deptService = (DeptService) BeanFactory.getObject("deptservice");
         String deptid  = request.getParameter("deptid");
         String deptname = request.getParameter("deptname");
         String deptloc = request.getParameter("deptloc");
@@ -107,7 +114,13 @@ public class DeptAction {
      */
     public  String  doList(HttpServletRequest request , HttpServletResponse response){
             DeptService list = (DeptService) BeanFactory.getObject("deptservice");
-            List<Department> deptList = list.listDept();
+            List<Department> deptList = null;
+            try{
+                deptList = list.listDept();
+             }catch (DeptException e){
+                e.getErrorMsg();
+                return "success";
+            }
             //列出所有部门的条数
             int count = deptList.size();
             //列出部门共几页
@@ -120,8 +133,13 @@ public class DeptAction {
                 pages = allpage;
             }
             //进行查询
-            List<Department> listLimit = list.listDeptByPage((pages -1)*3);
-            request.setAttribute("deptLists",listLimit);
+        List<Department> listLimit = null;
+        try {
+            listLimit = list.listDeptByPage((pages -1)*3);
+        } catch (DeptException e) {
+            e.printStackTrace();
+        }
+        request.setAttribute("deptLists",listLimit);
             //设置页数和设置当前第几页
             request.setAttribute("page",pages);
             //设置总共多少页和尾页

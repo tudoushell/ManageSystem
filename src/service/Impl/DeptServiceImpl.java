@@ -17,35 +17,25 @@ public class DeptServiceImpl implements DeptService {
 
 
     @Override
-    public  List<Department> listDept() {
-        try {
-            transaction.start();
-            List<Department> list = deptDao.listDept();
-            transaction.commit();
-            if(list.size() > 0){
-                return  list;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            try {
-                transaction.rollback();
-            } catch (SQLException e1) {
-                e.printStackTrace();
-            }
+    public  List<Department> listDept() throws DeptException{
+        List<Department> list = deptDao.listDept();
+        if (list != null) {
+            return list;
         }
-
-       return  null;
+        return null;
     }
 
     @Override
-    public List<Department> listDeptByPage(int page) {
+    public List<Department> listDeptByPage(int page) throws DeptException {
         try {
             transaction.start();
             List<Department> list = deptDao.listDeptByPage(page);
             if(list.size() > 0){
+                transaction.commit();
                 return list;
+            }else{
+                throw new DeptException("没有部门");
             }
-            transaction.commit();
         } catch (SQLException e) {
             try {
                 transaction.rollback();

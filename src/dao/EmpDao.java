@@ -7,6 +7,13 @@ import java.util.List;
 public interface EmpDao {
 
     /**
+     * 判断部门下有没有员工
+     * @param deptName
+     * @return
+     */
+    boolean isEmpInDetp(String deptName);
+
+    /**
      * 修改员工信息
      * @param emp
      * @return

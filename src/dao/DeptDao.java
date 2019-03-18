@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Department;
+import exception.DeptException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface DeptDao {
      * 列出所的有部门
      * @return
      */
-    List<Department> listDept();
+    List<Department> listDept() throws DeptException;
 
     /**
      * 根据page数来列出页面

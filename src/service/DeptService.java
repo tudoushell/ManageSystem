@@ -10,14 +10,14 @@ public interface DeptService {
      * 列出所有的部门
      * @return
      */
-    List<Department> listDept();
+    List<Department> listDept() throws DeptException;
 
     /**
      * 通过page来列出条数
      * @param page
      * @return
      */
-    List<Department> listDeptByPage(int page);
+    List<Department> listDeptByPage(int page) throws DeptException;
 
 
     /**

@@ -6,6 +6,13 @@ import exception.EmpException;
 import java.util.List;
 
 public interface EmpService {
+
+    /**
+     * 判断部门中有没有员工
+     * @param deptName
+     * @return
+     */
+    boolean isEmpInDept(String deptName);
     /**
      * 更新员工信息
      * @param emp
