@@ -1,7 +1,7 @@
 <actions>
     <action name="login.do" class="UserAction" method="doLogin">
         <result name="success" type="redirect">/manager/main.jsp</result>
-        <result name="fail" type="forward">/manager/login.jsp</result>
+        <result name="fail" type="forward">/manager/error.jsp</result>
     </action>
     <action name="check.do" class="UserAction" method="doCheck">
     </action>
@@ -90,6 +90,8 @@
         <result name="success" type="redirect">/manager/success.jsp</result>
     </action>
     <action name="checkPrivileges.do" class="PrivilegesAction" method="doCheckPrivileges">
-        <!--<result name="success" type="redirect">/manager/main.jsp</result>-->
+    </action>
+    <action name="listRole.do" class="RoleAction" method="doListRole">
+        <result name="success" type="redirect">/system/roleManage.jsp</result>
     </action>
 </actions>

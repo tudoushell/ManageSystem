@@ -80,6 +80,7 @@ public class EmpAction {
         String sex = request.getParameter("sex");
         String empDept =request.getParameter("empDept");
         String entryTime = request.getParameter("entryTime");
+
         Employee emp = new Employee(empNo,empName,empDept,sex,
                          null,null,null,entryTime,
                           new Date(new java.util.Date().getTime()).toString());
@@ -90,7 +91,7 @@ public class EmpAction {
             return "success";
         } catch (EmpException e) {
             request.setAttribute("result",e.getErrorMsg());
-            request.setAttribute("method", "empList.do?page=1");
+            request.setAttribute("method", "addEmp.jsp");
             return "fail";
         }
 
@@ -106,11 +107,12 @@ public class EmpAction {
      * @return
      */
     public String doList(HttpServletRequest request , HttpServletResponse response){
-        //获取员工姓名
-        String empName = null;
         String result = null;
-        empName = request.getParameter("empName");
-        if(empName.length() > 0){
+        //获取员工姓名
+        String empName = request.getParameter("empName");
+//        System.out.println("****" + empName.length());
+        System.out.println("*****" + empName);
+        if(!"".equals(empName)){
             result =  doEmpCondition(request,response);
         }else {
             result = listEmp(request,response);

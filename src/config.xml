@@ -59,4 +59,7 @@
     <bean key="PrivilegesAction" value="servlet.PrivilegesAction">
         <property name="UserPrivilegesService" ref="UserPrivilegesService"/>
     </bean>
+    <bean key="RoleAction" value="servlet.RoleAction">
+        <property name="RoleService" ref="RoleService"/>
+    </bean>
 </beans>

@@ -71,8 +71,10 @@ public class EmpServiceImpl implements EmpService{
 
     @Override
     public boolean saveEmps(Employee emp) throws EmpException{
-        if(emp.getEmpNo() == null && emp.getEmpNo().trim().length() == 0){
-            throw new EmpException("员工编号不能为空！");
+        //对用户的输入的数据进行判断
+        if(emp.getEmpNo() == null || emp.getEmpNo().trim().length() == 0
+                || emp.getCreateTime().trim().length() == 0 || emp.getEmpName().trim().length() == 0){
+            throw new EmpException("输入的数据有误！");
         }
         if(getEmpByNo(emp.getEmpNo()) != null){
             throw new EmpException("员工编号已存在！");
