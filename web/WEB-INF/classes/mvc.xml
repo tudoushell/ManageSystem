@@ -93,5 +93,6 @@
     </action>
     <action name="listRole.do" class="RoleAction" method="doListRole">
         <result name="success" type="redirect">/system/roleManage.jsp</result>
+        <result name="fail" type="forward">/manager/listRole.do</result>
     </action>
 </actions>

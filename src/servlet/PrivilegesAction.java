@@ -3,6 +3,7 @@ package servlet;
 import beanfactory.BeanFactory;
 import entity.*;
 import exception.PrivilegesException;
+import exception.RoleException;
 import service.MenuService;
 import service.PermissionsService;
 import service.RoleService;
@@ -211,7 +212,12 @@ public class PrivilegesAction {
      */
     public String dolist(HttpServletRequest request, HttpServletResponse response){
         //为角色和菜单的下拉框设置值
-        List<Role> listRole = roleService.listRole();
+        List<Role> listRole = null;
+        try {
+            listRole = roleService.listRole();
+        } catch (RoleException e) {
+            e.printStackTrace();
+        }
         request.getSession().setAttribute("listRole",listRole);
         List<Menu> listMenu = menuService.listMenu();
         request.getSession().setAttribute("listMenu",listMenu);

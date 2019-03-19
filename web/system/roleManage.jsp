@@ -29,15 +29,15 @@
                 <th>角色名称</th>
                 <th>操作列表</th>
             </tr>
-            <c:forEach items="${deptLists}" var="listDept">
+            <c:forEach items="${listRole}" var="role">
                 <tr>
-                    <td>${listDept.deptId}</td>
-                    <td>${listDept.deptName}</td>
+                    <td>${role.id}</td>
+                    <td>${role.roleName}</td>
                     <td>
-                        <a href="javascript:del('${listDept.deptId}','${listDept.deptName}');">
+                        <a href="javascript:del('${role.id}');">
                             <img class="del_table" src="../img/bullet_delete.png" alt="#">
                         </a>
-                        <a href="javascript:changeDept('${listDept.deptId}');">
+                        <a href="javascript:changeDept('${role.id}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
                         <img src="../img/detail.png" alt="#">

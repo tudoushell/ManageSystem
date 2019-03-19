@@ -66,7 +66,7 @@
                                 <li><a href="#" class="otherManager">账户维护</a></li>
                             </c:if>
                             <c:if test="${menu == 9}">
-                                <li><a href="/web/system/roleManage.jsp" class="otherManager" target="contentPage">角色管理</a></li>
+                                <li><a href="/web/system/listRole.do" class="otherManager" target="contentPage">角色管理</a></li>
                             </c:if>
                             <c:if test="${menu == 10}">
                                 <li><a href="listPrivileges.do?page=1" class="otherManager" target="contentPage">权限管理</a></li>
