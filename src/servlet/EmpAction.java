@@ -1,8 +1,11 @@
 package servlet;
 
 import beanfactory.BeanFactory;
+import entity.Department;
 import entity.Employee;
+import exception.DeptException;
 import exception.EmpException;
+import service.DeptService;
 import service.EmpService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +18,7 @@ import java.util.Map;
 
 public class EmpAction {
     private EmpService empService = (EmpService) BeanFactory.getObject("empservice");
+    private DeptService deptService = (DeptService) BeanFactory.getObject("deptservice");
 
     public String doUpdateEmp(HttpServletRequest request , HttpServletResponse response) throws UnsupportedEncodingException {
                 request.setCharacterEncoding("UTF-8");
@@ -45,6 +49,7 @@ public class EmpAction {
             String empNo = request.getParameter("empNo");
             Employee emp = empService.getEmpByNo(empNo);
             request.getSession().setAttribute("emp",emp);
+
             return "success";
     }
 
@@ -170,6 +175,13 @@ public class EmpAction {
      * @return
      */
     public String listEmp(HttpServletRequest request , HttpServletResponse response){
+        //列出部门名称
+        List<Department> listDept = null;
+        try {
+            listDept = deptService.listDept();
+        } catch (DeptException e) {
+            e.printStackTrace();
+        }
         //每页显示的条数
         int COUNT = 3;
         //用户页数
@@ -187,6 +199,8 @@ public class EmpAction {
         //尾页
         request.setAttribute("allPage",allPages);
         request.setAttribute("listEmp",allEmp);
+        //将部门名称输出到下拉框中
+        request.getSession().setAttribute("listDept", listDept);
         return "success";
     }
 
@@ -194,7 +208,7 @@ public class EmpAction {
 
 
     /*
-        工具类
+        工具方法
      */
     /**
      *

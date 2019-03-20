@@ -51,3 +51,7 @@ function del(deptid,deptName){
 function changeDept(deptid) {
     window.location.href = "/web/manager/get.do?deptId=" + deptid;
 }
+//列出部门详情
+function detailDept(deptid){
+    window.location.href = "/web/manager/detailDept.do?deptId=" + deptid;
+}

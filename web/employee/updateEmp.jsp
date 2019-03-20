@@ -25,17 +25,27 @@
         <div class="left">
             <span>性别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <select name="sex">
-                <option value="男">男</option>
-                <option value="女">女</option>
+                <option value="${emp.sex}" selected>${emp.sex}</option>
+                <c:if test="${emp.sex != '男'}">
+                    <option value="男">男</option>
+                </c:if>
+
+                <c:if test="${emp.sex != '女'}">
+                    <option value="女">女</option>
+                </c:if>
             </select><br>
             <span>所属部门：</span>
             <select name="empDept">
-                <option value="总经办">总经办</option>
-                <option value="渠道部">渠道部</option>
-                <option value="市场营销部">市场营销部</option>
-                <option value="教质部">教质部</option>
-                <option value="教学部">教学部</option>
-                <option value="就业部">就业部</option>
+                <c:forEach items="${listDept}" var="dept">
+                    <c:choose>
+                        <c:when test="${dept.deptName == emp.empDept}">
+                            <option value="${dept.deptName}" selected>${dept.deptName}</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="${dept.deptName}">${dept.deptName}</option>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
             </select><br>
         </div>
         <span>入职时间：</span>

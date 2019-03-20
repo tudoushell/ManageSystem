@@ -27,12 +27,9 @@
                 <input type="text"name="empName" id="empNames">
                 <span>部门：</span>
                 <select name="empDept" id="emDepts">
-                    <option value="总经办">总经办</option>
-                    <option value="渠道部">渠道部</option>
-                    <option value="市场营销部">市场营销部</option>
-                    <option value="教质部">教质部</option>
-                    <option value="教学部">教学部</option>
-                    <option value="就业部">就业部</option>
+                    <c:forEach items="${listDept}" var="dept">
+                        <option value="${dept.deptName}">${dept.deptName}</option>
+                    </c:forEach>
                 </select>
                 <input type="submit" value="查询" id="search">
             </form>
@@ -43,7 +40,7 @@
             <tr>
                 <th>员工编号</th>
                 <th>员工姓名</th>
-                <th>姓别</th>
+                <th>性别</th>
                 <th>所属部门</th>
                 <th>入职时间</th>
                 <th>操作列表</th>

@@ -35,7 +35,7 @@
         <form action="change.do" method="post" accept-charset="UTF-8">
             <label for="deptid">部门编号:</label>
             <input type="text" id="deptid" name="deptId" value="${dt.deptId}"/><br>
-            <label for="deptname">部门姓名:</label>
+            <label for="deptname">部门名称:</label>
             <input type="text" id="deptname" name="deptName" value="${dt.deptName}"/><br>
             <label for="deptloc">部门位置:</label>
             <input type="text" id="deptloc" name="deptLoc" value="${dt.deptLoc}"/><br>

@@ -10,11 +10,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class DeptAction {
     private DeptService deptService = (DeptService) BeanFactory.getObject("deptservice");
     private EmpService empService = (EmpService) BeanFactory.getObject("empservice");
+
+    public String doDetailDept(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("utf-8");
+        String deptId = request.getParameter("deptId");
+        Department dept = deptService.getDept(deptId);
+        request.setAttribute("dept", dept);
+        return "success";
+    }
+
     /**
      * 修改部门信息
      * @param request

@@ -33,6 +33,9 @@
         <result name="success" type="redirect" >/employee/empManager.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>
     </action>
+    <action name="detailDept.do" class="DeptAction" method="doDetailDept">
+        <result name="success" type="redirect" >/manager/detailDept.jsp</result>
+    </action>
     <action name="addEmp.do" class="EmpAction" method="doAddEmp">
         <result name="success" type="redirect" >/manager/success.jsp</result>
         <result name="fail" type="forward">/employee/error.jsp</result>

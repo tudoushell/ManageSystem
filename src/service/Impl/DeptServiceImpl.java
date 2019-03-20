@@ -139,9 +139,9 @@ public class DeptServiceImpl implements DeptService {
 
     public static void main(String [] args){
          DeptService ds = new DeptServiceImpl();
-         boolean flag = ds.updateDept(new Department("a","ddd","sdf","ds"));
+//         boolean flag = ds.updateDept(new Department("a","ddd","sdf","ds"));
 //        Department dt = ds.getDept("a");
-        System.out.println(flag);
+        System.out.println(ds.getDept("A0001"));
 
     }
 
