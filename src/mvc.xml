@@ -29,6 +29,8 @@
         <result name="success" type="redirect" >/manager/success.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>
     </action>
+    <action name="checkDept.do" class="DeptAction" method="doCheckDeptId">
+    </action>
     <action name="empList.do" class="EmpAction" method="doList">
         <result name="success" type="redirect" >/employee/empManager.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>

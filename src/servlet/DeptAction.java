@@ -17,6 +17,32 @@ public class DeptAction {
     private DeptService deptService = (DeptService) BeanFactory.getObject("deptservice");
     private EmpService empService = (EmpService) BeanFactory.getObject("empservice");
 
+    /**
+     * 来检测部门编号是否存在
+     * @param request
+     * @param response
+     */
+    public String doCheckDeptId(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        String deptId = request.getParameter("deptId");
+        Department dept = deptService.getDept(deptId);
+        String result;
+        if(dept != null){
+            result = "该部门编号已存在";
+        }else{
+            result = "";
+        }
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().print(result);
+        return null;
+    }
+    /**
+     * 获取部门详细信息
+     * @param request
+     * @param response
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     public String doDetailDept(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");
         String deptId = request.getParameter("deptId");

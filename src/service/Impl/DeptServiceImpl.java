@@ -141,7 +141,8 @@ public class DeptServiceImpl implements DeptService {
          DeptService ds = new DeptServiceImpl();
 //         boolean flag = ds.updateDept(new Department("a","ddd","sdf","ds"));
 //        Department dt = ds.getDept("a");
-        System.out.println(ds.getDept("A0001"));
+       Department de =  ds.getDept("A0001");
+        System.out.println(de != null);
 
     }
 

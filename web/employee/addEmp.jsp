@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="../css/addEmp.css">
     <script type="text/javascript" src="../laydate/laydate.js"></script>
     <script type="text/javascript" src="../js/addEmp.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script>
+
+    </script>
 </head>
 <body>
 <div id="wrap">
