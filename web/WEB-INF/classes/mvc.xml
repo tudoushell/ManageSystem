@@ -29,6 +29,8 @@
         <result name="success" type="redirect" >/manager/success.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>
     </action>
+    <action name="checkDept.do" class="DeptAction" method="doCheckDeptId">
+    </action>
     <action name="empList.do" class="EmpAction" method="doList">
         <result name="success" type="redirect" >/employee/empManager.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>
@@ -51,6 +53,11 @@
     <action name="updateEmp.do" class="EmpAction" method="doUpdateEmp">
         <result name="success" type="redirect" >/manager/success.jsp</result>
         <result name="fail" type="forward">/employee/error.jsp</result>
+    </action>
+    <action name="detailEmp.do" class="EmpAction" method="doDetailEmp">
+        <result name="success" type="redirect">/employee/detailEmp.jsp</result>
+    </action>
+    <action name="checkEmp.do" class="EmpAction" method="doCheckEmp">
     </action>
     <action name="listReimburse.do" class="ReimburseAction" method="doListReimburse">
         <result name="success" type="redirect">/finance/reimburseManage.jsp</result>

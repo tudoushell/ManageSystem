@@ -7,3 +7,7 @@ function del(empNo) {
 function updateDept(empNo) {
     location.href = "/web/employee/getEmp.do?empNo=" + empNo;
 }
+
+function detailEmp(empNo) {
+    location.href = "/web/employee/detailEmp.do?empNo=" + empNo;
+}

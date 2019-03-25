@@ -59,7 +59,9 @@
                         <a href="javascript:updateDept('${emp.empNo}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
-                        <img src="../img/detail.png" alt="#">
+                        <a href="javascript:detailEmp('${emp.empNo}')">
+                            <img src="../img/detail.png" alt="#">
+                        </a>
                     </td>
                 </tr>
             </c:forEach>

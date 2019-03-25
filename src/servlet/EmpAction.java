@@ -10,6 +10,7 @@ import service.EmpService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.util.HashMap;
@@ -20,6 +21,50 @@ public class EmpAction {
     private EmpService empService = (EmpService) BeanFactory.getObject("empservice");
     private DeptService deptService = (DeptService) BeanFactory.getObject("deptservice");
 
+
+    /**
+     * 用于判断员工的编号是否存在
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    public String doCheckEmp(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        String empNo = request.getParameter("empNo");
+        Employee emp = empService.getEmpByNo(empNo);
+        System.out.println(emp);
+        String result = "";
+        if(emp != null){
+          result = "该员工编号已存在";
+        }
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html");
+        response.getWriter().print(result);
+        return  null;
+    }
+
+    /**
+     * 获取员工详细信息
+     * @return
+     */
+
+    public String doDetailEmp(HttpServletRequest request, HttpServletResponse response)
+            throws UnsupportedEncodingException {
+
+        request.setCharacterEncoding("UTF-8");
+        String empNo = request.getParameter("empNo");
+        Employee emp = empService.getEmpByNo(empNo);
+        request.setAttribute("empList",emp);
+        return "success";
+    }
+    /**
+     * 修改员工信息
+     * @param request
+     * @param response
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     public String doUpdateEmp(HttpServletRequest request , HttpServletResponse response) throws UnsupportedEncodingException {
                 request.setCharacterEncoding("UTF-8");
                 //从getEmp获取参数

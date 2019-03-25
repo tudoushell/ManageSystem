@@ -15,14 +15,28 @@
     <script type="text/javascript" src="../js/addEmp.js"></script>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script>
-
+        $(function () {
+            $("input[name='empNo']").change(function () {
+                var value = $(this).val();
+                value = $.trim(value);
+                if(value != " "){
+                    var url = "/web/manager/checkEmp.do";
+                    var args = {"empNo": value, "time" : new Date()};
+                    $.post(url,args,function(data){
+                        $('#message').html(data);
+                    });
+                }
+            });
+        });
     </script>
 </head>
 <body>
 <div id="wrap">
     <form action="addEmp.do" method="post" class="emp_info" accept-charset="UTF-8">
-        <span>员工编号：</span>
-        <input type="text" name="empNo"><br>
+        <span id="num">员工编号：</span>
+        <input type="text" name="empNo">
+        <span id="message"></span>
+        <br>
         <span>员工姓名：</span>
         <input type="text" name="empName"><br>
         <div class="left">

@@ -4,11 +4,16 @@
 }
 
 #wrap{
-    text-align: center;
+    text-align: left;
     width: 600px;
     margin: 30px auto;
 }
 .left{
     text-align: left;
-    margin-left: 192px;
+    /*margin-left: 192px;*/
+}
+
+#message{
+    color: red;
+    font-size: 12px;
 }
