@@ -12,6 +12,21 @@ import java.util.List;
 public class RoleAction {
     private RoleService roleService = (RoleService) BeanFactory.getObject("roleservice");
 
+
+    /**
+     * 删除角色信息
+     * @return
+     */
+    public String deleteRole(HttpServletRequest request, HttpServletResponse response){
+        String id = request.getParameter("roleId");
+        int roleId = Integer.parseInt(id);
+        if(roleService.deleteRole(roleId)) {
+            request.setAttribute("result", "删除成功！");
+            request.setAttribute("method", "listRole.do");
+            return "success";
+        }
+        return null;
+    }
     /**
      * 列出角色管理
      * @param request

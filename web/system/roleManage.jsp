@@ -13,6 +13,7 @@
     <title>角色管理</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <script src="../js/operateRole.js"></script>
 </head>
 <body>
 
@@ -34,10 +35,10 @@
                     <td>${role.id}</td>
                     <td>${role.roleName}</td>
                     <td>
-                        <a href="javascript:del('${role.id}');">
+                        <a href="javascript:del('${role.id}','${role.roleName}');">
                             <img class="del_table" src="../img/bullet_delete.png" alt="#">
                         </a>
-                        <a href="javascript:changeDept('${role.id}');">
+                        <a href="javascript:changeRole('${role.id}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
                         <img src="../img/detail.png" alt="#">

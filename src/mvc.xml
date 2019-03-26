@@ -105,4 +105,10 @@
         <result name="success" type="redirect">/system/roleManage.jsp</result>
         <result name="fail" type="forward">/manager/listRole.do</result>
     </action>
+    <action name="deleteRole.do" class="RoleAction" method="deleteRole">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+    </action>
+    <action name="getRole.do" class="RoleAction" method="getRole">
+        <result name="success" type="redirect">/system/updateRole.jsp</result>
+    </action>
 </actions>

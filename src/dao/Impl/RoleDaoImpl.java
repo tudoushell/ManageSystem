@@ -11,6 +11,26 @@ import java.util.List;
 public class RoleDaoImpl implements RoleDao {
 
     @Override
+    public boolean updateRole(Role role) {
+        String sql = "UPDATE role set role_name=? WHERE id=?";
+        int flag = JDBCUtil.update(sql,role.getRoleName(),role.getId());
+        if(flag != 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteRole(int roleId) {
+        String sql = "DELETE FROM role where id=?";
+        int flag = JDBCUtil.update(sql,roleId);
+        if(flag != 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public List<Role> listRole() {
         String sql = "SELECT * FROM role";
         List<Object> list = JDBCUtil.executeQuery(sql, new RoleRowMapping());
