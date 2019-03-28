@@ -41,8 +41,6 @@
                         <a href="javascript:changeRole('${role.id}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
-
-                        <img src="../img/detail.png" alt="#">
                     </td>
                 </tr>
             </c:forEach>

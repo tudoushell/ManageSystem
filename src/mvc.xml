@@ -115,4 +115,8 @@
         <result name="success" type="redirect">/manager/success.jsp</result>
         <result name="fail" type="forward">/system/error.jsp</result>
     </action>
+    <action name="saveRole.do" class="RoleAction" method="doSaveRole">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+        <result name="fail" type="forward">/system/error.jsp</result>
+    </action>
 </actions>

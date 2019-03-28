@@ -8,12 +8,44 @@ import service.RoleService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
 import java.util.List;
 
 public class RoleAction {
     private RoleService roleService = (RoleService) BeanFactory.getObject("roleservice");
 
+    /**
+     * 添加角色信息
+     * @param request
+     * @param response
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public String doSaveRole(HttpServletRequest request, HttpServletResponse response)
+            throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
+        String roleName = request.getParameter("roleName");
+        //如果角色名已存，则不添加
+        if(roleService.getRoleByName(roleName) != null){
+            request.setAttribute("result", "该角色名已存在！");
+            request.setAttribute("method", "addRole.jsp");
+            return "fail";
+        }
+        roleService.saveRole(new Role(1,roleName,new Date(new java.util.Date().getTime()).toString()));
+        request.setAttribute("result", "添加成功！");
+        request.setAttribute("method", "listRole.do");
+        return "success";
+    }
 
+
+    /**
+     *
+     * 更新角色信息
+     * @param request
+     * @param response
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     public  String doUpdateRole(HttpServletRequest request, HttpServletResponse response)
             throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
