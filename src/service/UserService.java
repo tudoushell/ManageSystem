@@ -5,6 +5,13 @@ import entity.User;
 public interface UserService {
 
     /**
+     * 通过roleid来获取信息
+     * @param roleId
+     * @return
+     */
+    User getUserByRoleId(String roleId);
+
+    /**
      * 修改用户密码
      * @param username
      * @param password

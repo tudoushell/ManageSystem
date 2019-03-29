@@ -4,6 +4,7 @@ import beanfactory.BeanFactory;
 import entity.Role;
 import exception.RoleException;
 import service.RoleService;
+import service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class RoleAction {
     private RoleService roleService = (RoleService) BeanFactory.getObject("roleservice");
-
+    private UserService userService = (UserService) BeanFactory.getObject("userservice");
     /**
      * 添加角色信息
      * @param request
@@ -83,6 +84,11 @@ public class RoleAction {
     public String deleteRole(HttpServletRequest request, HttpServletResponse response){
         String id = request.getParameter("roleId");
         int roleId = Integer.parseInt(id);
+        if(userService.getUserByRoleId(id) != null){
+            request.setAttribute("result", "该角色下有员工，禁止删除");
+            request.setAttribute("method", "listRole.do");
+            return "fail";
+        }
         if(roleService.deleteRole(roleId)) {
             request.setAttribute("result", "删除成功！");
             request.setAttribute("method", "listRole.do");

@@ -9,6 +9,16 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
+    @Override
+    public User getUserByRoleId(String roleId) {
+        String sql = "SELECT * FROM user WHERE role_id=?";
+        List<Object> list = JDBCUtil.executeQuery(sql, new UserRowMapping(), roleId);
+        if(list != null) {
+            return (User) list.get(0);
+        }
+        return null;
+    }
+
     /**
      * 更改用户密码
      * @param userAccount
@@ -44,6 +54,6 @@ public class UserDaoImpl implements UserDao {
 
     public static void main(String[] args) {
         UserDao userDao = new UserDaoImpl();
-        System.out.println(userDao.updateUser("admin","admin"));
+        System.out.println(userDao.getUserByRoleId("1"));
     }
 }

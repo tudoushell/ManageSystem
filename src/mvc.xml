@@ -107,6 +107,7 @@
     </action>
     <action name="deleteRole.do" class="RoleAction" method="deleteRole">
         <result name="success" type="redirect">/manager/success.jsp</result>
+        <result name="fail" type="forward">/system/error.jsp</result>
     </action>
     <action name="getRole.do" class="RoleAction" method="getRole">
         <result name="success" type="redirect">/system/updateRole.jsp</result>

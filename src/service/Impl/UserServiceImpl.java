@@ -13,6 +13,12 @@ public class UserServiceImpl implements UserService {
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
     @Override
+    public User getUserByRoleId(String roleId) {
+        User user = userDao.getUserByRoleId(roleId);
+        return user;
+    }
+
+    @Override
     public boolean updateUser(String username, String password) {
         try {
             transaction.start();
@@ -61,7 +67,7 @@ public class UserServiceImpl implements UserService {
 
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
-        System.out.println(userService.isUser("admin","admin"));
+        System.out.println(userService.getUserByRoleId("1"));
 //        System.out.println(a);
     }
 }
