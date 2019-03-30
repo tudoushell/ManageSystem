@@ -6,6 +6,17 @@ import java.util.List;
 
 public interface UserDao {
 
+
+    /**
+     * 通过条件来查询的所有用户信息
+     * 或者列出所有的用户信息
+     * @param columnName 数据库的列名
+     * @param flag 用于是否进行分页
+     * @param args 参数值
+     * @return
+     */
+    List<User> listUserByConditionOrAll(String[] columnName, boolean flag ,Object ... args);
+
     /**
      * 通过roleId来获取用户信息
      * @param roleId

@@ -16,6 +16,15 @@ public class EmpServiceImpl implements EmpService{
 
 
     @Override
+    public List<Employee> listEmpByConditionOrAll(String[] columnName, boolean flag, Object... args) throws EmpException {
+        List<Employee> listEmp = empDao.listEmpByConditionOrAll(columnName,flag,args);
+        if (listEmp == null){
+            throw new EmpException("没有员工信息");
+        }
+        return listEmp;
+    }
+
+    @Override
     public boolean isEmpInDept(String deptName) {
         return empDao.isEmpInDetp(deptName);
     }
@@ -181,13 +190,13 @@ public class EmpServiceImpl implements EmpService{
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EmpException {
         EmpService empService = (EmpService) BeanFactory.getObject("empservice");
 //        List<Employee> list = empService.listEmps();
 //        int list = empService.countEmpByConditions("小","就业部");
 //        System.out.println(list);
 //        boolean flag = empService.updateEmp(new Employee("123","2","1","1","1","1","1","1","1"));
 //        System.out.println(flag);
-        System.out.println(empService.isEmpInDept("就业部"));
+        System.out.println(empService.listEmpByConditionOrAll(new String[]{"emp_name",""},true,"adf","1",0));
     }
 }

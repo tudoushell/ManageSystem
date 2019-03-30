@@ -7,6 +7,17 @@ import java.util.List;
 
 public interface EmpService {
 
+
+    /**
+     * 根据条件来进行查询或列出所有员工信息
+     * @param columnName
+     * @param flag
+     * @param args
+     * @return
+     * @throws EmpException
+     */
+    List<Employee> listEmpByConditionOrAll(String[] columnName, boolean flag, Object ... args) throws EmpException;
+
     /**
      * 判断部门中有没有员工
      * @param deptName

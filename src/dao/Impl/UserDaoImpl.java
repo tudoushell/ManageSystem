@@ -5,9 +5,37 @@ import entity.RowMapping.UserRowMapping;
 import entity.User;
 import util.JDBCUtil;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
+
+    @Override
+    public List<User> listUserByConditionOrAll(String[] columnName, boolean flag, Object... args) {
+        String sql = "SELECT * FROM user where 1=1";
+
+        for(int i = 0; i < columnName.length; i++){
+            if("".equals(columnName[i])){
+                columnName[i] = "1";
+                args[i] = "1";
+            }
+            sql += " AND "+ columnName[i] + " like ?";
+        }
+        if (flag){
+            sql += " limit ?,3";
+        }
+        List<Object> obj = JDBCUtil.executeQuery(sql, new UserRowMapping(), args);
+        List<User> userList = new ArrayList<>();
+        if(obj != null){
+            Iterator<Object> it = obj.iterator();
+            while (it.hasNext()){
+                userList.add((User) it.next());
+            }
+            return userList;
+        }
+        return null;
+    }
 
     @Override
     public User getUserByRoleId(String roleId) {
@@ -54,6 +82,7 @@ public class UserDaoImpl implements UserDao {
 
     public static void main(String[] args) {
         UserDao userDao = new UserDaoImpl();
-        System.out.println(userDao.getUserByRoleId("1"));
+        String[] a = {"",""};
+        System.out.println(userDao.listUserByConditionOrAll(a,false,"123","1234"));
     }
 }

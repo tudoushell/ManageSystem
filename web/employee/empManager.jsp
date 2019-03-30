@@ -27,6 +27,7 @@
                 <input type="text"name="empName" id="empNames">
                 <span>部门：</span>
                 <select name="empDept" id="emDepts">
+                        <option value="请选择">请选择</option>
                     <c:forEach items="${listDept}" var="dept">
                         <option value="${dept.deptName}">${dept.deptName}</option>
                     </c:forEach>

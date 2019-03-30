@@ -7,6 +7,15 @@ import java.util.List;
 public interface EmpDao {
 
     /**
+     * 根据条件来列出的员工信息或列出所有员工信息
+     * @param columnName 数据库列名
+     * @param flag 为true进行分页
+     * @param args 参数值
+     * @return
+     */
+    List<Employee> listEmpByConditionOrAll(String[] columnName, boolean flag ,Object ... args);
+
+    /**
      * 判断部门下有没有员工
      * @param deptName
      * @return

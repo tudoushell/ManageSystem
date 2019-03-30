@@ -7,9 +7,37 @@ import entity.RowMapping.EmployeeRowMapping;
 import util.JDBCUtil;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class EmpDaoImpl implements EmpDao {
+
+    @Override
+    public List<Employee> listEmpByConditionOrAll(String[] columnName, boolean flag, Object... args) {
+        //new 一个数组防止更改原来的columnName的值
+        String[] columnNames = {columnName[0],columnName[1]};
+        String sql = "SELECT * FROM employee WHERE 1=1";
+        for(int i = 0; i < columnNames.length; i++){
+            if("".equals(columnNames[i])){
+                columnNames[i] = "1";
+                args[i] = "1";
+            }
+            sql += " AND "+ columnNames[i] + " like ?";
+        }
+        if (flag){
+            sql += " limit ?,3";
+        }
+        List<Object> obj = JDBCUtil.executeQuery(sql, new EmployeeRowMapping(), args);
+        List<Employee> empList = new ArrayList<>();
+        if(obj != null){
+            Iterator<Object> it = obj.iterator();
+            while (it.hasNext()){
+                empList.add((Employee) it.next());
+            }
+            return empList;
+        }
+        return null;
+    }
 
     @Override
     public boolean isEmpInDetp(String deptName) {
@@ -147,7 +175,7 @@ public class EmpDaoImpl implements EmpDao {
     public static void main(String[] args) {
         EmpDaoImpl empDao = (EmpDaoImpl) BeanFactory.getObject("empdao");
 //        boolean flag = empDao.updateEmp(new Employee("123","1","1","1","1","1","1","1","1"));
-        System.out.println(empDao.isEmpInDetp("就业部"));
+        System.out.println(empDao.listEmpByConditionOrAll(new String[]{"",""},true,"","",0));
 //        System.out.println(flag);
     }
 }
