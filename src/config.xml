@@ -49,6 +49,11 @@
         <property name="AccountDao" ref="AccountDao"/>
         <property name="Transaction" ref="Transaction"/>
     </bean>
+    <bean key="SysConfigDao" value="dao.Impl.SysConfigDaoImpl"/>
+    <bean key="SysConfigService" value="service.Impl.SysConfigServiceImpl">
+        <property name="SysConfigDao" ref="SysConfigDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
     <bean key="UserAction" value="servlet.UserAction">
         <property name="UserService" ref="UserService"/>
     </bean>
@@ -66,5 +71,8 @@
     </bean>
     <bean key="RoleAction" value="servlet.RoleAction">
         <property name="RoleService" ref="RoleService"/>
+    </bean>
+    <bean key="AccountAction" value="servlet.AccountAction">
+        <property name="AccountService" ref="AccountService"/>
     </bean>
 </beans>

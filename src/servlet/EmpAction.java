@@ -183,7 +183,7 @@ public class EmpAction {
 
         try {
             //统计根据条件来查询员工数量或查询所有员工数量
-            int sum = empService.listEmpByConditionOrAll(columnNames,false,"%" + empName + "%" , empDept).size();
+            int sum = empService.listEmpByConditionOrAll(columnNames,false,"%" + empName + "%", empDept).size();
             //进行分页
             //每页显示的页数
             int COUNT = 3;

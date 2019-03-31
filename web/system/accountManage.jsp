@@ -25,17 +25,17 @@
                 <span>账号：</span>
                 <input type="text" name="account">
                 <span>账号状态：</span>
-                <select name="roleName" id="Type">
+                <select name="accountStatus" id="Type">
                     <option value="请选择">请选择</option>
-                    <c:forEach items="${listRole}" var="role">
-                        <option value="${role.roleName}">${role.roleName}</option>
+                    <c:forEach items="${listAccount}" var="listAccount">
+                        <option value="${listAccount.configPageValue}">${listAccount.configPageValue}</option>
                     </c:forEach>
                 </select>
                 <span>角色：</span>
-                <select name="menuName" id="status">
+                <select name="roleName" id="status">
                     <option value="请选择">请选择</option>
-                    <c:forEach items="${listMenu}" var="menu">
-                        <option value="${menu.menuName}">${menu.menuName}</option>
+                    <c:forEach items="${listRoleName}" var="listRole">
+                        <option value="${listRole.configPageValue}">${listRole.configPageValue}</option>
                     </c:forEach>
                 </select>
                 <input type="submit" value="查询" id="search">
