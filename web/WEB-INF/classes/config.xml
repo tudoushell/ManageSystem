@@ -44,6 +44,11 @@
         <property name="PermissionsDao" ref="PermissionsDao"/>
         <property name="Transaction" ref="Transaction"/>
     </bean>
+    <bean key="AccountDao" value="dao.Impl.AccountDaoImpl"/>
+    <bean key="AccountService" value="service.Impl.AccountServiceImpl">
+        <property name="AccountDao" ref="AccountDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
     <bean key="UserAction" value="servlet.UserAction">
         <property name="UserService" ref="UserService"/>
     </bean>

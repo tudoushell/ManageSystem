@@ -6,18 +6,20 @@ public class User {
     private String empNo;
     private String empName;
     private String roleId;
+    private String accountStautsId;
     private String createTime;
 
     public User() {
         super();
     }
 
-    public User(String userAccount, String userPwd, String empNo, String empName, String roleId, String createTime) {
+    public User(String userAccount, String userPwd, String empNo, String empName, String roleId, String accountStautsId, String createTime) {
         this.userAccount = userAccount;
         this.userPwd = userPwd;
         this.empNo = empNo;
         this.empName = empName;
         this.roleId = roleId;
+        this.accountStautsId = accountStautsId;
         this.createTime = createTime;
     }
 
@@ -69,6 +71,14 @@ public class User {
         this.empName = empName;
     }
 
+    public String getAccountStautsId() {
+        return accountStautsId;
+    }
+
+    public void setAccountStautsId(String accountStautsId) {
+        this.accountStautsId = accountStautsId;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -77,6 +87,7 @@ public class User {
                 ", empNo='" + empNo + '\'' +
                 ", empName='" + empName + '\'' +
                 ", roleId='" + roleId + '\'' +
+                ", accountStautsId='" + accountStautsId + '\'' +
                 ", createTime='" + createTime + '\'' +
                 '}';
     }

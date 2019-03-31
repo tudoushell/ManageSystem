@@ -47,6 +47,7 @@ CREATE TABLE user(
 	  emp_no VARCHAR(20) COMMENT '所属员工编号',
 	  emp_Name VARCHAR(10) NOT NULL COMMENT '员工姓名',
 	  role_id VARCHAR(10) NOT NULL COMMENT '角色',
+	  account_status_id VARCHAR(4) NOT NULL COMMENT '账号状态',
 	  create_time DATE NOT NULL COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
@@ -417,4 +418,69 @@ select role.id,role_name,permissions.menu_id,menu.menu_name from role,permission
 	FROM role,permissions,menu  
 	WHERE role.id=role_id AND permissions.menu_id=menu.id;
 
+```
+
+* 创建配置表
+
+```
+
+CREATE TABLE sys_config(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+	config_type VARCHAR(20) NOT NULL COMMENT '配置类型',
+	config_key VARCHAR(20) NOT NULL COMMENT '配置值',
+	config_page_value VARCHAR(20) NOT NULL COMMENT '页面值',
+	create_time DATE COMMENT '创建时间'
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+```
+
+* 配置表插入值
+
+```
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'role_id',
+	'1',
+	'管理员'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'role_id',
+	'2',
+	'普通用户'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'role_id',
+	'3',
+	'人事专员'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'account_status_id',
+	'1',
+	'正常'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'account_status_id',
+	'2',
+	'注销'
+);
+
+```
+
+* 创建用户表(User)和配置表(sys_config)的视图
+
+```
+CREATE VIEW v_account AS 
+	 select 
+	 t3.id,t3.user_account,t3.emp_name,t3.emp_no,t4.config_page_value as account_status,t3.role_name
+	 from (
+			select t1.id,t1.user_account,t1.emp_name,t1.emp_no,t1.account_status_id,t2.config_page_value as role_name
+					from user t1 inner join sys_config t2 
+					 on role_id=t2.config_key 
+					 where t2.config_type='role_id'
+			)t3 
+			inner join sys_config t4 
+			on t3.account_status_id = t4.config_key 
+			where config_type='account_status_id';
 ```

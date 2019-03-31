@@ -63,7 +63,7 @@
                     <ul class="systemManager">
                         <c:forEach items="${menuList}" var="menu">
                             <c:if test="${menu == 8}">
-                                <li><a href="#" class="otherManager">账户维护</a></li>
+                                <li><a href="listAccount.do?page=1" class="otherManager" target="contentPage">账户维护</a></li>
                             </c:if>
                             <c:if test="${menu == 9}">
                                 <li><a href="/web/system/listRole.do" class="otherManager" target="contentPage">角色管理</a></li>

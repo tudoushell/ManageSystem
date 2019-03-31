@@ -120,4 +120,7 @@
         <result name="success" type="redirect">/manager/success.jsp</result>
         <result name="fail" type="forward">/system/error.jsp</result>
     </action>
+    <action name="listAccount.do" class="AccountAction" method="doListAccount">
+        <result name="success" type="redirect">/ststem/accountManage.jsp</result>
+    </action>
 </actions>

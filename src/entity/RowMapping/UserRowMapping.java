@@ -15,6 +15,7 @@ public class UserRowMapping implements RowMapperObject {
         user.setEmpNo(rs.getString("emp_no"));
         user.setEmpName(rs.getString("emp_name"));
         user.setRoleId(rs.getString("role_id"));
+        user.setAccountStautsId(rs.getString("account_status_id"));
         user.setCreateTime(rs.getString("create_time"));
         return user;
     }
