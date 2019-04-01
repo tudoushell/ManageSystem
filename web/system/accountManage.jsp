@@ -12,7 +12,7 @@
     <title>帐户管理</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/finacial.css">
-    <script src="../js/operatePerm.js"></script>
+    <script src="../js/operateAccount.js"></script>
 </head>
 <body>
 <div class="top_part" style=" background-color: #95bfe0;">
@@ -21,14 +21,14 @@
 <div class="bottom_content clearfix">
     <div class="main_table">
         <div id="finSearch">
-            <form action="listPrivileges.do?page=1"  method="post" accept-charset="UTF-8">
+            <form action="listAccount.do?page=1"  method="post" accept-charset="UTF-8">
                 <span>账号：</span>
                 <input type="text" name="account">
                 <span>账号状态：</span>
                 <select name="accountStatus" id="Type">
                     <option value="请选择">请选择</option>
-                    <c:forEach items="${listAccount}" var="listAccount">
-                        <option value="${listAccount.configPageValue}">${listAccount.configPageValue}</option>
+                    <c:forEach items="${listAccountStatus}" var="accountStatus">
+                        <option value="${accountStatus.configPageValue}">${accountStatus.configPageValue}</option>
                     </c:forEach>
                 </select>
                 <span>角色：</span>
@@ -51,14 +51,14 @@
                 <th>角色</th>
                 <th>操作列表</th>
             </tr>
-            <c:forEach items="${listPrivileges}" var="privileges">
+            <c:forEach items="${listAccount}" var="account">
                 <tr>
-                    <td>${privileges.roleId}</td>
-                    <td>${privileges.roleName}</td>
-                    <td>${privileges.menuId}</td>
-                    <td>${privileges.menuName}</td>
+                    <td>${account.userAccount}</td>
+                    <td>${account.empName}</td>
+                    <td>${account.accountStatus}</td>
+                    <td>${account.roleName}</td>
                     <td>
-                        <a href="javascript:del('${privileges.id}');">
+                        <a href="javascript:del('${account.empNo}');">
                             <img class="del_table" src="../img/bullet_delete.png" alt="#">
                         </a>
                         <a href="javascript:updatePerm('${privileges.roleId}','${privileges.menuId}','${privileges.id}');">
@@ -70,10 +70,10 @@
             </tbody>
         </table>
         <div class="changePage">
-            <a href="listPrivileges.do?page=1&roleName=${roleName}&menuName=${menuName}">首页</a>
-            <a href="listPrivileges.do?page=${page - 1}&roleName=${roleName}&menuName=${menuName}">上一页</a>
-            <a href="listPrivileges.do?page=${page + 1}&roleName=${roleName}&menuName=${menuName}">下一页</a>
-            <a href="listPrivileges.do?page=${allPage}&roleName=${roleName}&menuName=${menuName}">尾页</a>
+            <a href="listAccount.do?page=1&account=${account}&accountStatus=${accountStatus}&roleName=${roleName}">首页</a>
+            <a href="listAccount.do?page=${page - 1}&account=${account}&accountStatus=${accountStatus}&roleName=${roleName}">上一页</a>
+            <a href="listAccount.do?page=${page + 1}&account=${account}&accountStatus=${accountStatus}&roleName=${roleName}">下一页</a>
+            <a href="listAccount.do?page=${allPage}&account=${account}&accountStatus=${accountStatus}&roleName=${roleName}">尾页</a>
             <span>第${page}页</span>
             <span>共${allPage}页</span>
         </div>

@@ -123,4 +123,7 @@
     <action name="listAccount.do" class="AccountAction" method="doListAccount">
         <result name="success" type="redirect">/system/accountManage.jsp</result>
     </action>
+    <action name="delAccount.do" class="AccountAction" method="doDelAccount">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+    </action>
 </actions>

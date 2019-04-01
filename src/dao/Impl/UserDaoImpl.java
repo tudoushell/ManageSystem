@@ -12,6 +12,16 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     @Override
+    public Boolean deleteUserByEmpNo(String empNo) {
+        String sql = "DELETE FROM user where emp_no=?";
+        int flag = JDBCUtil.update(sql,empNo);
+        if (flag != 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public List<User> listUserByConditionOrAll(String[] columnName, boolean flag, Object... args) {
         String sql = "SELECT * FROM user where 1=1";
 

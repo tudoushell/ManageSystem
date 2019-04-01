@@ -13,6 +13,26 @@ public class UserServiceImpl implements UserService {
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
     @Override
+    public Boolean deleteUserByEmpNo(String empNo) {
+        try {
+            transaction.start();
+            boolean flag = userDao.deleteUserByEmpNo(empNo);
+            if (flag){
+                transaction.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public User getUserByRoleId(String roleId) {
         User user = userDao.getUserByRoleId(roleId);
         return user;

@@ -8,7 +8,7 @@ public class Account {
     private String userAccount;
     private String empName;
     private String empNo;
-    private String AccountStatus;
+    private String accountStatus;
     private String roleName;
 
     public Account() {
@@ -20,7 +20,7 @@ public class Account {
         this.userAccount = userAccount;
         this.empName = empName;
         this.empNo = empNo;
-        AccountStatus = accountStatus;
+        this.accountStatus = accountStatus;
         this.roleName = roleName;
     }
 
@@ -57,11 +57,11 @@ public class Account {
     }
 
     public String getAccountStatus() {
-        return AccountStatus;
+        return accountStatus;
     }
 
     public void setAccountStatus(String accountStatus) {
-        AccountStatus = accountStatus;
+        this.accountStatus = accountStatus;
     }
 
     public String getRoleName() {
@@ -79,7 +79,7 @@ public class Account {
                 ", userAccount='" + userAccount + '\'' +
                 ", empName='" + empName + '\'' +
                 ", empNo='" + empNo + '\'' +
-                ", AccountStatus='" + AccountStatus + '\'' +
+                ", accountStatus='" + accountStatus + '\'' +
                 ", roleName='" + roleName + '\'' +
                 '}';
     }

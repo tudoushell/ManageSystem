@@ -21,4 +21,9 @@ public class AccountServiceImpl implements AccountService {
         }
         return listAccount;
     }
+
+    public static void main(String[] args) throws AccountException {
+        AccountService accountService = new AccountServiceImpl();
+        System.out.println(accountService.listAccountByConditionOrAll(new String[]{"account_status","",""},false,"正常","",""));
+    }
 }

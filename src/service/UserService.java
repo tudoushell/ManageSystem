@@ -5,6 +5,12 @@ import entity.User;
 public interface UserService {
 
     /**
+     * 通过员工编号来删除员工信息
+     * @param empNo
+     * @return
+     */
+    Boolean deleteUserByEmpNo(String empNo);
+    /**
      * 通过roleid来获取信息
      * @param roleId
      * @return

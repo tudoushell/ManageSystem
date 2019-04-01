@@ -6,7 +6,12 @@ import java.util.List;
 
 public interface UserDao {
 
-
+    /**
+     * 根据员工号来删除信息
+     * @param empNo
+     * @return
+     */
+    Boolean deleteUserByEmpNo(String empNo);
     /**
      * 通过条件来查询的所有用户信息
      * 或者列出所有的用户信息

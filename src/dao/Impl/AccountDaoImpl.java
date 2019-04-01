@@ -38,6 +38,6 @@ public class AccountDaoImpl implements AccountDao {
 
     public static void main(String[] args) {
         AccountDao accountDao = new AccountDaoImpl();
-        accountDao.listAccountByConditionOrAll(new String[]{"","",""},true,"","","",0);
+        System.out.println(accountDao.listAccountByConditionOrAll(new String[]{"","account_status",""},false,"","正常",""));
     }
 }
