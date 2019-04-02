@@ -12,6 +12,16 @@ import java.util.List;
 public class AccountDaoImpl implements AccountDao {
 
     @Override
+    public Account getAccountByEmpNo(String empNo) {
+        String sql = "SELECT id, user_account, emp_name, emp_no, account_status, role_name FROM v_account WHERE emp_no=?";
+        List<Object> list = JDBCUtil.executeQuery(sql, new AccountRowMapping(), empNo);
+        if (list != null){
+            return (Account) list.get(0);
+        }
+        return null;
+    }
+
+    @Override
     public List<Account> listAccountByConditionOrAll(String[] columnName, boolean flag, Object... args) {
         String[] copyColumnName = {columnName[0], columnName[1], columnName[2]};
         String sql = "SELECT id, user_account, emp_name, emp_no, account_status, role_name FROM v_account WHERE 1=1";
@@ -38,6 +48,7 @@ public class AccountDaoImpl implements AccountDao {
 
     public static void main(String[] args) {
         AccountDao accountDao = new AccountDaoImpl();
-        System.out.println(accountDao.listAccountByConditionOrAll(new String[]{"","account_status",""},false,"","正常",""));
+//        System.out.println(accountDao.listAccountByConditionOrAll(new String[]{"","account_status",""},false,"","正常",""));
+        System.out.println(accountDao.getAccountByEmpNo("1"));
     }
 }

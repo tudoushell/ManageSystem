@@ -61,7 +61,7 @@
                         <a href="javascript:del('${account.empNo}');">
                             <img class="del_table" src="../img/bullet_delete.png" alt="#">
                         </a>
-                        <a href="javascript:updatePerm('${privileges.roleId}','${privileges.menuId}','${privileges.id}');">
+                        <a href="javascript:updateAccount('${account.empNo}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
                     </td>

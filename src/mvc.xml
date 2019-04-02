@@ -126,4 +126,7 @@
     <action name="delAccount.do" class="AccountAction" method="doDelAccount">
         <result name="success" type="redirect">/manager/success.jsp</result>
     </action>
+    <action name="getAccount.do" class="AccountAction" method="doGetAccount">
+        <result name="success" type="redirect">/system/updateAccount.jsp</result>
+    </action>
 </actions>

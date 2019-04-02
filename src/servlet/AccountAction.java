@@ -20,16 +20,44 @@ public class AccountAction {
     private UserService userService = (UserService) BeanFactory.getObject("userservice");
 
 
+    /**
+     * 根据员工编号来获取信息
+     * @param request
+     * @param response
+     * @return
+     */
+    public String doGetAccount(HttpServletRequest request, HttpServletResponse response)
+            throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
+        String empNo = request.getParameter("empNo");
+        Account account = accountService.getAccountByEmpNo(empNo);
+        //从数据库获取信息并发送给前台
+        request.setAttribute("userAccount", account.getUserAccount());
+        request.setAttribute("empNo", account.getEmpNo());
+        request.setAttribute("empName", account.getEmpName());
+        request.setAttribute("accountStatus", account.getAccountStatus());
+        request.setAttribute("roleName", account.getRoleName());
+        return "success";
+    }
+
 
 
     /**
      * 根据员工编号删除员工帐号
+     * 如果帐号为正常状态则不能删除，
+     * 只有为注销状态才可以删除
      * @param request
      * @param response
      * @return
      */
     public String doDelAccount(HttpServletRequest request, HttpServletResponse response){
         String empNo = request.getParameter("empNo");
+        Account account = accountService.getAccountByEmpNo(empNo);
+        if ("正常".equals(account.getAccountStatus())){
+            request.setAttribute("result", "该帐号为正常状态，不能删除！");
+            request.setAttribute("method", "listAccount.do?page=1");
+            return "success";
+        }
         userService.deleteUserByEmpNo(empNo);
         request.setAttribute("result", "删除成功");
         request.setAttribute("method", "listAccount.do?page=1");
@@ -49,9 +77,9 @@ public class AccountAction {
         request.setCharacterEncoding("UTF-8");
         //获取角色名和帐号状态设置下拉框
         List<SysConfig> listRoleName = sysConfigService.listRoleNameOrAccountStatus("role_id");
-        request.setAttribute("listRoleName",listRoleName);
+        request.getSession().setAttribute("listRoleName",listRoleName);
         List<SysConfig> listAccountStatus = sysConfigService.listRoleNameOrAccountStatus("account_status_id");
-        request.setAttribute("listAccountStatus",listAccountStatus);
+        request.getSession().setAttribute("listAccountStatus",listAccountStatus);
         //2.进行分页或列出有的帐号信息
         String account = request.getParameter("account");
         String accountStatus = request.getParameter("accountStatus");

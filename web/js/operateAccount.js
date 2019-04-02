@@ -4,10 +4,6 @@ function del(empNo) {
         location.href = "/web/system/delAccount.do?empNo=" + empNo;
     }
 }
-function updateDept(empNo) {
-    location.href = "/web/employee/getEmp.do?empNo=" + empNo;
-}
-
-function detailEmp(empNo) {
-    location.href = "/web/employee/detailEmp.do?empNo=" + empNo;
+function updateAccount(empNo) {
+    location.href = "/web/system/getAccount.do?empNo=" + empNo;
 }

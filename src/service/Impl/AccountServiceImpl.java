@@ -14,6 +14,12 @@ public class AccountServiceImpl implements AccountService {
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
     @Override
+    public Account getAccountByEmpNo(String empNo) {
+        Account account = accountDao.getAccountByEmpNo(empNo);
+        return account;
+    }
+
+    @Override
     public List<Account> listAccountByConditionOrAll(String[] columnName, boolean flag, Object... args) throws AccountException {
         List<Account> listAccount = accountDao.listAccountByConditionOrAll(columnName, flag, args);
         if (listAccount == null){
