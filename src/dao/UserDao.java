@@ -7,6 +7,13 @@ import java.util.List;
 public interface UserDao {
 
     /**
+     * 修改员工信息
+     * @param user
+     * @return
+     */
+    Boolean updataUserByEmpNo(User user);
+
+    /**
      * 根据员工号来删除信息
      * @param empNo
      * @return

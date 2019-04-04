@@ -12,6 +12,19 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     @Override
+    public Boolean updataUserByEmpNo(User user) {
+        String sql = "UPDATE user set user_pwd=?,role_id=?,account_status_id=? where emp_no=?";
+        int flag = JDBCUtil.update(sql, user.getUserPwd(),
+                             user.getRoleId(),
+                             user.getAccountStautsId(),
+                             user.getEmpNo());
+        if (flag != 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public Boolean deleteUserByEmpNo(String empNo) {
         String sql = "DELETE FROM user where emp_no=?";
         int flag = JDBCUtil.update(sql,empNo);
@@ -92,7 +105,12 @@ public class UserDaoImpl implements UserDao {
 
     public static void main(String[] args) {
         UserDao userDao = new UserDaoImpl();
-        String[] a = {"",""};
-        System.out.println(userDao.listUserByConditionOrAll(a,false,"123","1234"));
+        User user = new User();
+        user.setUserPwd("123456");
+        user.setRoleId("1");
+        user.setAccountStautsId("1");
+        user.setEmpNo("2");
+        System.out.println(userDao.updataUserByEmpNo(user));
+
     }
 }

@@ -3,6 +3,7 @@ package servlet;
 import beanfactory.BeanFactory;
 import entity.Account;
 import entity.SysConfig;
+import entity.User;
 import exception.AccountException;
 import service.AccountService;
 import service.SysConfigService;
@@ -19,6 +20,45 @@ public class AccountAction {
     private SysConfigService sysConfigService = (SysConfigService) BeanFactory.getObject("sysconfigservice");
     private UserService userService = (UserService) BeanFactory.getObject("userservice");
 
+    /**
+     * 通过员工的编号来更新员工信息(user表)
+     * @param request
+     * @param response
+     * @return
+     */
+    public String doUpdateAccount(HttpServletRequest request, HttpServletResponse response)
+            throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
+        //先获取帐户信息，防止用户恶意修改员工编号
+        Account account = (Account) request.getSession().getAttribute("accountInfo");
+        String empNo = account.getEmpNo();
+        //获取用户输入的密码
+        String password = request.getParameter("pwd");
+        String newPwd = request.getParameter("newPwd");
+        //如果输入的密码不一致，则报错
+        if (! password.equals(newPwd)){
+            request.setAttribute("result", "输入的密码不一致");
+            request.setAttribute("method","getAccount.do?empNo=" + empNo);
+            return "fail";
+        }
+        //从页面获取状态和角色信息
+        String roleName = request.getParameter("roleName");
+        String accountStatus = request.getParameter("accountStatus");
+        //从配置表获取状态和角色的id
+        String roleId = sysConfigService.getSysConfigInfo(roleName).getConfigKey();
+        String statusId = sysConfigService.getSysConfigInfo(accountStatus).getConfigKey();
+        //将密码、状态、角色存入User
+        User user = new User();
+        user.setEmpNo(empNo);
+        user.setRoleId(roleId);
+        user.setAccountStautsId(statusId);
+        user.setUserPwd(newPwd);
+        userService.updateUserByEmpNo(user);
+        request.setAttribute("result", "修改成功！");
+        request.setAttribute("method", "listAccount.do?page=1");
+
+        return "success";
+    }
 
     /**
      * 根据员工编号来获取信息
@@ -32,6 +72,7 @@ public class AccountAction {
         String empNo = request.getParameter("empNo");
         Account account = accountService.getAccountByEmpNo(empNo);
         //从数据库获取信息并发送给前台
+        request.getSession().setAttribute("accountInfo", account);
         request.setAttribute("userAccount", account.getUserAccount());
         request.setAttribute("empNo", account.getEmpNo());
         request.setAttribute("empName", account.getEmpName());

@@ -13,6 +13,12 @@ public class SysConfigServiceImpl implements SysConfigService {
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
     @Override
+    public SysConfig getSysConfigInfo(String configPageValue) {
+        SysConfig sysConfig = sysConfigDao.getSysConfigInfo(configPageValue);
+        return sysConfig;
+    }
+
+    @Override
     public List<SysConfig> listRoleNameOrAccountStatus(String configType) {
         List<SysConfig> listConfig =  sysConfigDao.getRoleNameOrAccountStatus(configType);
         return listConfig;

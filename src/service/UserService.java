@@ -5,6 +5,12 @@ import entity.User;
 public interface UserService {
 
     /**
+     * 通过员工编号来修改员工信息
+     * @param user
+     * @return
+     */
+    Boolean updateUserByEmpNo(User user);
+    /**
      * 通过员工编号来删除员工信息
      * @param empNo
      * @return

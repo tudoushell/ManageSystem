@@ -12,6 +12,13 @@ import java.util.List;
 public class SysConfigDaoImpl implements SysConfigDao {
 
     @Override
+    public SysConfig getSysConfigInfo(String configPageValue) {
+        String sql = "SELECT * FROM sys_config WHERE config_page_value=?";
+        SysConfig sysConfig = (SysConfig) JDBCUtil.executeQuery(sql, new SysConfigRowMapping(), configPageValue).get(0);
+        return sysConfig;
+    }
+
+    @Override
     public List<SysConfig> getRoleNameOrAccountStatus(String configType) {
         String sql = "SELECT * FROM sys_config WHERE config_type=?";
         List<Object> list = JDBCUtil.executeQuery(sql, new SysConfigRowMapping(), configType);
@@ -27,6 +34,7 @@ public class SysConfigDaoImpl implements SysConfigDao {
 
     public static void main(String[] args) {
         SysConfigDao s = new SysConfigDaoImpl();
-        System.out.println(s.getRoleNameOrAccountStatus("role_id"));
+//        System.out.println(s.getRoleNameOrAccountStatus("role_id"));
+        System.out.println(s.getSysConfigInfo("管理员"));
     }
 }

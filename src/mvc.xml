@@ -129,4 +129,8 @@
     <action name="getAccount.do" class="AccountAction" method="doGetAccount">
         <result name="success" type="redirect">/system/updateAccount.jsp</result>
     </action>
+    <action name="updateAccount.do" class="AccountAction" method="doUpdateAccount">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+        <result name="fail" type="forward">/system/error.jsp</result>
+    </action>
 </actions>
