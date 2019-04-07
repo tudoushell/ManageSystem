@@ -12,6 +12,61 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     @Override
+    public User getUserByEmpNo(String empNo) {
+        String sql = "SELECT user_account," +
+                             "user_pwd," +
+                             "emp_no," +
+                             "emp_name,role_id," +
+                             "account_status_id," +
+                             "create_time" +
+                             " FROM user WHERE emp_no=?";
+        List<Object> list = JDBCUtil.executeQuery(sql, new UserRowMapping(), empNo);
+        if (list != null){
+            return (User) list.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public User getUserByAccount(String account) {
+        String sql = "SELECT user_account," +
+                "user_pwd," +
+                "emp_no," +
+                "emp_name,role_id," +
+                "account_status_id," +
+                "create_time" +
+                " FROM user WHERE user_account=?";
+        List<Object> list = JDBCUtil.executeQuery(sql, new UserRowMapping(), account);
+        if (list != null){
+            return (User) list.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean saveUser(User user) {
+        String sql = "INSERT INTO user (user_account," +
+                                        "user_pwd," +
+                                        "emp_no," +
+                                        "emp_name," +
+                                        "role_id," +
+                                        "account_status_id," +
+                                        "create_time" +
+                                     ") values(?,?,?,?,?,?,curdate())" ;
+       int flag =  JDBCUtil.update(sql, user.getUserAccount(),
+                                         user.getUserPwd(),
+                                         user.getEmpNo(),
+                                         user.getEmpName(),
+                                         user.getRoleId(),
+                                         user.getAccountStautsId()
+                                         );
+       if (flag != 0){
+           return true;
+       }
+        return false;
+    }
+
+    @Override
     public Boolean updataUserByEmpNo(User user) {
         String sql = "UPDATE user set user_pwd=?,role_id=?,account_status_id=? where emp_no=?";
         int flag = JDBCUtil.update(sql, user.getUserPwd(),
@@ -105,12 +160,21 @@ public class UserDaoImpl implements UserDao {
 
     public static void main(String[] args) {
         UserDao userDao = new UserDaoImpl();
-        User user = new User();
-        user.setUserPwd("123456");
-        user.setRoleId("1");
-        user.setAccountStautsId("1");
-        user.setEmpNo("2");
-        System.out.println(userDao.updataUserByEmpNo(user));
-
+//        User user = new User();
+//        user.setUserPwd("123456");
+//        user.setRoleId("1");
+//        user.setAccountStautsId("1");
+//        user.setEmpNo("2");
+//        System.out.println(userDao.updataUserByEmpNo(user));
+//        User user = new User();
+//        user.setUserAccount("test3");
+//        user.setUserPwd("qwe123");
+//        user.setAccountStautsId("1");
+//        user.setRoleId("2");
+//        user.setEmpNo("10101");
+//        user.setEmpName("happy");
+//        System.out.println(userDao.saveUser(user));
+        System.out.println(userDao.getUserByEmpNo("1"));
+        System.out.println(userDao.getUserByAccount("test"));
     }
 }

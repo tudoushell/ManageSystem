@@ -24,7 +24,6 @@
             font-size: 12px;
         }
     </style>
-    <script href=""></script>
     <script>
         window.onload = function () {
           var returns = document.getElementById("returns");
@@ -38,7 +37,6 @@
           var deptId = document.getElementById("deptid");
             deptId.onblur = function () {
               var values = this.value;
-              console.log(values);
               var request;
               if(window.XMLHttpRequest){
                     request = new XMLHttpRequest();

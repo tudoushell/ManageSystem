@@ -3,6 +3,25 @@ package service;
 import entity.User;
 
 public interface UserService {
+    /**
+     * 通过帐号来获取信息
+     * @param account
+     * @return
+     */
+    User getUserByAccount(String account);
+
+    /**
+     * 通过员工号来获取信息
+     * @param empNo
+     * @return
+     */
+    User getUserByEmpNo(String empNo);
+    /**
+     * 添加用户信息
+     * @param user
+     * @return
+     */
+    Boolean saveUser(User user);
 
     /**
      * 通过员工编号来修改员工信息

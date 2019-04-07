@@ -13,6 +13,35 @@ public class UserServiceImpl implements UserService {
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
     @Override
+    public User getUserByAccount(String account) {
+        return userDao.getUserByAccount(account);
+    }
+
+    @Override
+    public User getUserByEmpNo(String empNo) {
+        return userDao.getUserByEmpNo(empNo);
+    }
+
+    @Override
+    public Boolean saveUser(User user) {
+        try {
+            transaction.start();
+            if (userDao.saveUser(user)){
+                transaction.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public Boolean updateUserByEmpNo(User user) {
         try {
             transaction.start();

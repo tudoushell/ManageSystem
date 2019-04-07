@@ -133,4 +133,8 @@
         <result name="success" type="redirect">/manager/success.jsp</result>
         <result name="fail" type="forward">/system/error.jsp</result>
     </action>
+    <action name="saveAccount.do" class="AccountAction" method="doSaveAccount">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+        <result name="fail" type="forward">/system/error.jsp</result>
+    </action>
 </actions>

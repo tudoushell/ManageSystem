@@ -32,7 +32,7 @@
 </head>
 <body>
     <div id="wrap">
-        <form action="#" method="post" accept-charset="UTF-8">
+        <form action="updateAccount.do" method="post" accept-charset="UTF-8">
            <span>账号：</span>
             <input type="text" name="account" value="${userAccount}"><br>
             <span>密码：</span>

@@ -5,7 +5,25 @@ import entity.User;
 import java.util.List;
 
 public interface UserDao {
+    /**
+     * 通过员工编号来获取信息
+     * @param empNo
+     * @return
+     */
+    User getUserByEmpNo(String empNo);
+    /**
+     * 通过员工帐号来获取信息
+     * @param account
+     * @return
+     */
+    User getUserByAccount(String account);
 
+    /**
+     * 添加用户信息
+     * @param user
+     * @return
+     */
+    Boolean saveUser(User user);
     /**
      * 修改员工信息
      * @param user
