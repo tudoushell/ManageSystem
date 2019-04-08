@@ -41,7 +41,7 @@
                 <input type="submit" value="查询" id="search">
             </form>
         </div>
-        <p><a href="/web/system/addPermission.jsp"><img id="add_table" src="../img/add.png" alt="add">添加权限</a></p>
+        <p><a href="/web/system/addAccount.jsp"><img id="add_table" src="../img/add.png" alt="add">添加帐户</a></p>
         <table>
             <tbody>
             <tr>

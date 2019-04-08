@@ -17,7 +17,7 @@
             padding: 0;
         }
         #wrap{
-            width: 310px;
+            width: 330px;
             margin: 20px auto;
             text-align: left;
         }
@@ -27,6 +27,10 @@
         input{
             margin-bottom: 10px;
         }
+        #accountHint,#empNoHint{
+            font-size: 13px;
+            color: red;
+        }
     </style>
     <script>
       window.onload = function (ev) {
@@ -34,15 +38,49 @@
         back.onclick = function (ev1) {
             window.location.href = "listAccount.do?page=1";
         };
+        // 判断帐户是否存在
         var accounts = document.getElementById("accounts");
         accounts.onblur = function (ev1) {
-
+            var values = this.value;
+            var request = getRequest();
+            var method = "GET";
+            var url = "checkAccount.do?account=" + values;
+            request.open(method, url);
+            request.send();
+            request.onreadystatechange = function () {
+                if (request.readyState == 4){
+                    if (request.status == 200 || request.status == 302){
+                        document.getElementById("accountHint").innerHTML = request.responseText;
+                    }
+                }
+            }
         };
+        // 判断员工编号是否存在
         var empNoes = document.getElementById("empNoes");
         empNoes.onblur = function (ev1) {
-
+            var values = this.value;
+            var request = getRequest();
+            var method = "GET";
+            var url = "checkEmpNo.do?empNo=" + values;
+            request.open(method, url);
+            request.send();
+            request.onreadystatechange = function () {
+                if (request.readyState == 4){
+                    if (request.status == 200 || request.status == 302){
+                        document.getElementById("empNoHint").innerHTML = request.responseText;
+                    }
+                }
+            }
         };
-
+        function getRequest() {
+            var request;
+            if (window.XMLHttpRequest){
+                request = new XMLHttpRequest();
+            } else {
+                request = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return request;
+        }
 
       };
     </script>
@@ -50,7 +88,7 @@
 </head>
 <body>
 <div id="wrap">
-    <form action="#" method="post" accept-charset="UTF-8">
+    <form action="saveAccount.do" method="post" accept-charset="UTF-8">
         <span>帐号：</span>
         <input type="text" name="account" id="accounts">
         <span id="accountHint"></span><br>

@@ -11,6 +11,7 @@ import service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,111 @@ public class AccountAction {
     private AccountService accountService = (AccountService) BeanFactory.getObject("accountservice");
     private SysConfigService sysConfigService = (SysConfigService) BeanFactory.getObject("sysconfigservice");
     private UserService userService = (UserService) BeanFactory.getObject("userservice");
+
+
+    public String doSaveAccount(HttpServletRequest request, HttpServletResponse response)
+            throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
+        //从前台获取信息
+        String account = request.getParameter("account");
+        String password = request.getParameter("pwd");
+        String newPwd = request.getParameter("newPwd");
+        String empNo = request.getParameter("empNo");
+        String empName = request.getParameter("empName");
+        String accountStatus = request.getParameter("accountStatus");
+        String roleName = request.getParameter("roleName");
+        //进行帐号判断
+        if (userService.getUserByAccount(account) != null ){
+            request.setAttribute("result", "帐号已存在");
+            request.setAttribute("method", "addAccount.jsp");
+            return "fail";
+        }
+        if ("".equals(account)){
+            request.setAttribute("result", "帐号不能为空");
+            request.setAttribute("method", "addAccount.jsp");
+            return "fail";
+        }
+        if (! password.equals(newPwd)){
+            request.setAttribute("result", "输入的密码不一致");
+            request.setAttribute("method", "addAccount.jsp");
+            return "fail";
+        }
+
+        if (userService.getUserByEmpNo(empNo) != null){
+            request.setAttribute("result", "员工编号已存在");
+            request.setAttribute("method", "addAccount.jsp");
+            return "fail";
+        }
+
+        if ("".equals(empNo)){
+            request.setAttribute("result", "员工编号不能为空");
+            request.setAttribute("method", "addAccount.jsp");
+            return "fail";
+        }
+        if ("".equals(empName)){
+            request.setAttribute("result", "员工姓名不能为空");
+            request.setAttribute("method", "addAccount.jsp");
+            return "fail";
+        }
+        String statusId = sysConfigService.getSysConfigInfo(accountStatus).getConfigKey();
+        String roleId = sysConfigService.getSysConfigInfo(roleName).getConfigKey();
+        User user = new User();
+        user.setEmpName(empName);
+        user.setEmpNo(empNo);
+        user.setRoleId(roleId);
+        user.setAccountStautsId(statusId);
+        user.setUserAccount(account);
+        user.setUserPwd(password);
+        userService.saveUser(user);
+        request.setAttribute("result", "添加成功！");
+        request.setAttribute("method", "listAccount.do?page=1");
+        return "success";
+    }
+
+    public String doCheckEmpNo(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        String empNo = request.getParameter("empNo");
+        String result = "";
+        User user = userService.getUserByEmpNo(empNo);
+        if (! "".equals(empNo)){
+            if (user != null){
+                result = "员工编号已存在！";
+            }
+        }else {
+            result = "员工编号不能为空";
+        }
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().print(result);
+        return null;
+    }
+
+    /**
+     * 判断帐号是否存在
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    public String  doCheckAccount(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        String account = request.getParameter("account");
+        String result = "";
+        User user = userService.getUserByAccount(account);
+        if (!"".equals(account)){
+            if (user != null){
+                result = "该帐号已存在！";
+            }
+        }else {
+            result = "帐号不能为空";
+        }
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().print(result);
+        return null;
+    }
+
+
 
     /**
      * 通过员工的编号来更新员工信息(user表)
