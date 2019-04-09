@@ -6,10 +6,37 @@ import entity.RowMapping.ReimburseRowMapping;
 import util.JDBCUtil;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ReimburseDaoImpl implements ReimburseDao {
 
+
+    @Override
+    public List<Reimburse> listReimburseByConditionOrAll(String[] columnName, boolean flag, Object... args) {
+        String[] copyColumn = {columnName[0], columnName[1]};
+        String sql = "SELECT * FROM reimburse WHERE 1=1";
+        for (int i = 0; i < copyColumn.length; i++) {
+            if ("".equals(copyColumn[i])){
+                copyColumn[i] = "1";
+                args[i] = "1";
+            }
+            sql += " AND " + copyColumn[i] + " LIKE ?";
+        }
+        if (flag){
+            sql += " limit ?,3";
+        }
+        List<Object> list = JDBCUtil.executeQuery(sql, new ReimburseRowMapping(), args);
+        List<Reimburse> listReimburse = new ArrayList<>();
+        if (list != null){
+            Iterator<Object> it = list.iterator();
+            while (it.hasNext()){
+                listReimburse.add((Reimburse) it.next());
+            }
+            return listReimburse;
+        }
+        return null;
+    }
 
     @Override
     public boolean updateReimburse(Reimburse reim) {
@@ -185,6 +212,6 @@ public class ReimburseDaoImpl implements ReimburseDao {
     public static void main(String[] args) {
         ReimburseDao reimburseDao = new ReimburseDaoImpl();
 //        System.out.println(reimburseDao.saveReimburse(new Reimburse("sdaf","adsf","fadsf",324,"sdf","dsf","adsf")));
-        System.out.println(reimburseDao.getReimburseMaxId());
+        System.out.println(reimburseDao.listReimburseByConditionOrAll(new String[]{"reim_type",""},true,"差旅费","",0));
     }
 }

@@ -8,7 +8,7 @@ import util.JDBCUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenDaoImpl implements MenuDao {
+public class MenuDaoImpl implements MenuDao {
     @Override
     public List<Menu> listMenu() {
         String sql = "SELECT * FROM menu";
@@ -24,7 +24,7 @@ public class MenDaoImpl implements MenuDao {
     }
 
     public static void main(String[] args) {
-        MenuDao menuDao = new MenDaoImpl();
+        MenuDao menuDao = new MenuDaoImpl();
         System.out.println(menuDao.listMenu());
     }
 }

@@ -8,6 +8,15 @@ import java.util.List;
 public interface ReimburseService {
 
     /**
+     * 根据条件来列出报销信息或列出所有
+     * @param columnName 数据库的列名
+     * @param flag 标志是否分页
+     * @param args 参数数
+     * @return
+     */
+    List<Reimburse> listReimburseByConditionOrAll(String[] columnName, boolean flag, Object ... args) throws ReimburseException;
+
+    /**
      * 更新报销单
      * @param reimburse
      * @return

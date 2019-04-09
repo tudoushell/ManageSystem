@@ -36,7 +36,7 @@
       window.onload = function (ev) {
         var back = document.getElementById("back");
         back.onclick = function (ev1) {
-            window.location.href = "listAccount.do?page=1";
+            window.location.href = "/web/manager/listAccount.do?page=1";
         };
         // 判断帐户是否存在
         var accounts = document.getElementById("accounts");

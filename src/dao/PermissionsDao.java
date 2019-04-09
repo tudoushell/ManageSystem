@@ -3,7 +3,6 @@ package dao;
 import entity.Permissions;
 
 public interface PermissionsDao {
-
     /**
      * 修改权限
      * @param id

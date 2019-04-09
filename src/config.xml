@@ -34,7 +34,7 @@
         <property name="RoleDao" ref="RoleDao"/>
         <property name="Transaction" ref="Transaction"/>
     </bean>
-    <bean key="MenuDao" value="dao.Impl.MenDaoImpl"/>
+    <bean key="MenuDao" value="dao.Impl.MenuDaoImpl"/>
     <bean key="MenuService" value="service.Impl.MenuServiceImpl">
         <property name="MenuDao" ref="MenuDao"/>
         <property name="Transaction" ref="Transaction"/>

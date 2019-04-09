@@ -5,6 +5,14 @@ import entity.Reimburse;
 import java.util.List;
 
 public interface ReimburseDao {
+    /**
+     * 通过条件列出报销信息或者全部信息
+     * @param columnName
+     * @param flag
+     * @param args
+     * @return
+     */
+    List<Reimburse> listReimburseByConditionOrAll(String[] columnName, boolean flag, Object ... args);
 
     /**
      * 更新报销单的信息

@@ -15,6 +15,16 @@ public class ReimburseServiceImpl implements ReimburseService {
     private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
     @Override
+    public List<Reimburse> listReimburseByConditionOrAll(String[] columnName, boolean flag, Object... args)
+            throws ReimburseException {
+        List<Reimburse> listReimburse = reimburseDao.listReimburseByConditionOrAll(columnName, flag, args);
+        if (listReimburse == null){
+            throw new ReimburseException("没有报销信息");
+        }
+        return listReimburse;
+    }
+
+    @Override
     public boolean updateReimburse(Reimburse reimburse) {
         try {
             transaction.start();
