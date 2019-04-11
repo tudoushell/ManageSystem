@@ -14,7 +14,7 @@ public class ReimburseDaoImpl implements ReimburseDao {
 
     @Override
     public List<Reimburse> listReimburseByConditionOrAll(String[] columnName, boolean flag, Object... args) {
-        String[] copyColumn = {columnName[0], columnName[1]};
+        String[] copyColumn = {columnName[0], columnName[1],columnName[2]};
         String sql = "SELECT * FROM reimburse WHERE 1=1";
         for (int i = 0; i < copyColumn.length; i++) {
             if ("".equals(copyColumn[i])){
@@ -212,6 +212,7 @@ public class ReimburseDaoImpl implements ReimburseDao {
     public static void main(String[] args) {
         ReimburseDao reimburseDao = new ReimburseDaoImpl();
 //        System.out.println(reimburseDao.saveReimburse(new Reimburse("sdaf","adsf","fadsf",324,"sdf","dsf","adsf")));
-        System.out.println(reimburseDao.listReimburseByConditionOrAll(new String[]{"reim_type",""},true,"差旅费","",0));
+        System.out.println(reimburseDao.listReimburseByConditionOrAll(new String[]{"reim_type","",""},true,
+                "差旅费","","",0));
     }
 }

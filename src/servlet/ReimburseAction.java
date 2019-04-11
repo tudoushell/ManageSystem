@@ -203,14 +203,68 @@ public class ReimburseAction {
     /**
      * 对doListReimburse代码进行重构
      */
+
+    /**
+     * 根据条件来查询报销和列出所有的报销单
+     * 根据用户的权限来列出权限
+     * 获取用户的权限 1为管理员 2为普通用户 3.人事专员
+     * 如果为1和3则可以查看所有报销，2只能查看自己的报销情况
+     * @param request
+     * @param response
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     public String doListReimburse(HttpServletRequest request, HttpServletResponse response)
             throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
+        //从前台获取数据
+        String reimType = request.getParameter("reimType");
+        String reimStatus  = request.getParameter("reimStatus");
+        //先获取当前用户id和用户姓名
+        User user = (User)request.getSession().getAttribute("user");
+        String roleId = user.getRoleId();
+        String empName = user.getEmpName();
 
+        //新建一个数据列名
+        String[] columnName = {"","",""};
+        if (! ("请选择".equals(reimType) || "".equals(reimType))){  //报销类型条件查询
+            columnName[0] = "reim_type";
+        }
 
+        if (! ("请选择".equals(reimStatus) || "".equals(reimStatus))){ //报销状态条件查询
+            columnName[1] = "reim_status";
+        }
 
+        if ("2".equals(roleId)){ //如果为普通用户则只能查看自己的报销信息
+            columnName[2] = "reim_name";
+        }
 
-        return null;
+        try {
+            //根据条件查询获取报销条数或全部条数
+            int sum = reimburseService.listReimburseByConditionOrAll(columnName,false,
+                                                                        reimType, reimStatus, empName).size();
+            //分页
+            int COUNT = 3;
+            int page = Integer.parseInt(request.getParameter("page"));
+            Map<String,Integer> map = EmpAction.divisionPage(COUNT,page,sum);
+            int allPages = map.get("allPages");
+            page = map.get("page");
+            //列出报销信息
+            List<Reimburse> listReim = reimburseService.listReimburseByConditionOrAll(columnName, true,
+                                                    reimType, reimStatus, empName,(page - 1) * COUNT);
+
+            request.setAttribute("page",page);
+            //尾页
+            request.setAttribute("allPage",allPages);
+            if (listReim != null){
+                request.setAttribute("listReimburse",listReim);
+                request.setAttribute("reimType",reimType);
+                request.setAttribute("reimStatus",reimStatus);
+            }
+        } catch (ReimburseException e) {
+            return "success";
+        }
+        return "success";
     }
 
 //    /**
