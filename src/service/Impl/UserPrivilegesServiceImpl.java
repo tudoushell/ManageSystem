@@ -13,8 +13,16 @@ import java.util.List;
 public class UserPrivilegesServiceImpl implements UserPrivilegesService {
 
     private UserPrivilegesDao userPrivilegesDao = (UserPrivilegesDao) BeanFactory.getObject("userprivilegesdao");
-    private Transaction transaction = (Transaction) BeanFactory.getObject("transaction");
 
+
+    @Override
+    public List<UserPrivileges> listPrivilegesByConditionOrAll(String[] columnName, boolean flag, Object... args) throws PrivilegesException {
+        List<UserPrivileges> list = userPrivilegesDao.listPrivilegesByConditionOrAll(columnName, flag, args);
+        if (list == null){
+            throw new PrivilegesException("没有权限值");
+        }
+        return list;
+    }
 
     @Override
     public List<String> listRoleIdPrivileges(int roleId) {

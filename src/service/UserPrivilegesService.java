@@ -8,6 +8,15 @@ import java.util.List;
 public interface UserPrivilegesService {
 
     /**
+     * 按条件列出权限或者列出所有
+     * @param columnName
+     * @param flag
+     * @param args
+     * @return
+     */
+    List<UserPrivileges> listPrivilegesByConditionOrAll(String[] columnName, boolean flag, Object ... args) throws PrivilegesException;
+
+    /**
      * 根据角色id来列出权限
      * @param roleId
      * @return

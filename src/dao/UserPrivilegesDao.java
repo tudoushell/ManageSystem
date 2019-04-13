@@ -7,6 +7,14 @@ import java.util.List;
 public interface UserPrivilegesDao {
 
     /**
+     * 根据条件列出用户的权限或所有的权限
+     * @param columnName 数据库的列名
+     * @param flag 是否进行分页
+     * @param args 列参数值
+     * @return
+     */
+    List<UserPrivileges> listPrivilegesByConditionOrAll(String[] columnName, boolean flag, Object ... args);
+    /**
      * 列出角色的权限
      * @return
      */

@@ -6,9 +6,36 @@ import entity.UserPrivileges;
 import util.JDBCUtil;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class UserPrivilegesDaoImpl implements UserPrivilegesDao {
+
+    @Override
+    public List<UserPrivileges> listPrivilegesByConditionOrAll(String[] columnName, boolean flag, Object... args) {
+        String[] copyColumnName = {columnName[0],columnName[1]};
+        String sql = "SELECT * FROM user_privileges WHERE 1 = 1";
+        for (int i = 0; i < copyColumnName.length; i++) {
+            if ("".equals(copyColumnName[i])){
+                copyColumnName[i] = "1";
+                args[i] = "1";
+            }
+            sql += " AND " + copyColumnName[i] + " LIKE ?";
+        }
+        if (flag){
+            sql += " limit ?,3";
+        }
+        List<Object> list = JDBCUtil.executeQuery(sql, new UserPrivilegesRowMapping(), args);
+        if (list != null){
+            List<UserPrivileges> listPrivileges = new ArrayList<>();
+            Iterator<Object> it = list.iterator();
+            while (it.hasNext()){
+                listPrivileges.add((UserPrivileges) it.next());
+            }
+            return listPrivileges;
+        }
+        return null;
+    }
 
     @Override
     public List<String> listRoleIdPrivileges(int roleId) {
@@ -104,9 +131,7 @@ public class UserPrivilegesDaoImpl implements UserPrivilegesDao {
 
     public static void main(String[] args) {
         UserPrivilegesDao dao = new UserPrivilegesDaoImpl();
-        System.out.println(dao.getRoleId("管理员"));
-        System.out.println(dao.getMenuId("权限管理"));
-        System.out.println(dao.listRoleIdPrivileges(1));
+        System.out.println(dao.listPrivilegesByConditionOrAll(new String[]{"role_name",""},false,"",""));
 
     }
 }
