@@ -12,6 +12,26 @@ import java.util.List;
 public class HolidayDaoImpl implements HolidayDao {
 
     @Override
+    public Holiday getHolidayByHolidayNo(String holidayNo) {
+        String sql = "SELECT id," +
+                            "holiday_user," +
+                            "holiday_no," +
+                            "holiday_type," +
+                            "holiday_bz," +
+                            "start_time," +
+                            "end_time," +
+                            "holiday_status," +
+                            "create_time" +
+                            " FROM v_holiday" +
+                            " WHERE holiday_no=?";
+        List<Object> list = JDBCUtil.executeQuery(sql, new HolidayRowMapping(), holidayNo);
+        if (list != null){
+            return (Holiday) list.get(0);
+        }
+        return null;
+    }
+
+    @Override
     public int getMaxId() {
         String sql = "SELECT max(id) FROM holiday;";
         int Count = (int)JDBCUtil.executeQueryData(sql);
@@ -106,16 +126,17 @@ public class HolidayDaoImpl implements HolidayDao {
 
     public static void main(String[] args) {
         HolidayDao holidayDao = new HolidayDaoImpl();
-//        System.out.println(holidayDao.listHolidayByConditionOrAll(new String[]{"","",""},false,"","",""));
-        Holiday holiday = new Holiday();
-        holiday.setHolidayNo("QJ124");
-        holiday.setHolidayUser("haha");
-        holiday.setStartTime("2019-04-12");
-        holiday.setEndTime("2019-4-20");
-        holiday.setHolidayBz("回家吃饭");
-        holiday.setHolidayStatus("1");
-        holiday.setHolidayType("5");
-        System.out.println(holidayDao.updateHoliday(holiday));
+        System.out.println(holidayDao.getHolidayByHolidayNo("QJ234324"));
+//        System.out.println(holidayDao.listHolidayByConditionOrAll(new String[]{"holiday_user","",""},false,"s","",""));
+//        Holiday holiday = new Holiday();
+//        holiday.setHolidayNo("QJ124");
+//        holiday.setHolidayUser("haha");
+//        holiday.setStartTime("2019-04-12");
+//        holiday.setEndTime("2019-4-20");
+//        holiday.setHolidayBz("回家吃饭");
+//        holiday.setHolidayStatus("1");
+//        holiday.setHolidayType("5");
+//        System.out.println(holidayDao.updateHoliday(holiday));
 //        holidayDao.saveHoliday(holiday);
 
     }

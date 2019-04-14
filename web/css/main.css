@@ -118,7 +118,7 @@ a{
 }
 
 .main_table{
-    width: 600px;
+    width: 730px;
     margin: 0 auto;
 }
 .main_table > p {
@@ -137,7 +137,7 @@ table{
 }
 th,td,tr{
     width: 200px;
-    height: 30px;
+    height: 40px;
     border: 5px solid #e3e3e3;
 
 }

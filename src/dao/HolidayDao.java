@@ -6,6 +6,12 @@ import java.util.List;
 
 public interface HolidayDao {
     /**
+     * 通过请假编号来获取信息
+     * @param holidayNo
+     * @return
+     */
+    Holiday getHolidayByHolidayNo(String holidayNo);
+    /**
      * 获取最大的id号
      * @return
      */

@@ -2,7 +2,8 @@ window.onload = function (ev) {
     lay('#version').html('-v'+ laydate.v);
     //执行一个laydate实例
     laydate.render({
-        elem: '#time' //指定元素
+        elem: '#time',//指定元素
+        trigger: 'click'
     });
     var back = document.getElementById("back");
     back.onclick = function (ev1) {

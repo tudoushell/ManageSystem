@@ -47,7 +47,7 @@
                             <li><a href="empList.do?page=1" class="otherManager" target="contentPage">员工管理</a></li>
                             </c:if>
                             <c:if test="${menu == 6}">
-                            <li><a href="#" class="otherManager">请假管理</a></li>
+                            <li><a href="listHoliday.do?page=1" class="otherManager" target="contentPage">请假管理</a></li>
                             </c:if>
                         </c:forEach>
                     </ul>

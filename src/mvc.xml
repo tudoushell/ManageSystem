@@ -139,4 +139,10 @@
     </action>
     <action name="checkAccount.do" class="AccountAction" method="doCheckAccount"/>
     <action name="checkEmpNo.do" class="AccountAction" method="doCheckEmpNo"/>
+    <action name="listHoliday.do" class="HolidayAction" method="doListHoliday">
+        <result name="success" type="redirect">/holiday/holidayManage.jsp</result>
+    </action>
+    <action name="delHoliday.do" class="HolidayAction" method="doDelHoliday">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+    </action>
 </actions>

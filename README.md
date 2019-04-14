@@ -440,7 +440,7 @@ CREATE TABLE holiday(
 
 ```
 INSERT INTO holiday (holiday_no,holiday_user,holiday_type,holiday_bz,start_time,end_time,holiday_status,create_time)
-values('QJ2','bb','2','回家',curdate(),curdate(),'2',curdate());
+values('QJ234324','som','2','回家',curdate(),curdate(),'2',curdate());
 ```
 
 
