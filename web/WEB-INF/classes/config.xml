@@ -54,6 +54,11 @@
         <property name="SysConfigDao" ref="SysConfigDao"/>
         <property name="Transaction" ref="Transaction"/>
     </bean>
+    <bean key="HolidayDao" value="dao.Impl.HolidayDaoImpl"/>
+    <bean key="HolidayService" value="service.Impl.HolidayServiceImpl">
+        <property name="HolidayDao" ref="HolidayDao"/>
+        <property name="Transaction" ref="Transaction"/>
+    </bean>
     <bean key="UserAction" value="servlet.UserAction">
         <property name="UserService" ref="UserService"/>
     </bean>
@@ -74,5 +79,8 @@
     </bean>
     <bean key="AccountAction" value="servlet.AccountAction">
         <property name="AccountService" ref="AccountService"/>
+    </bean>
+    <bean key="HolidayAction" value="servlet.HolidayAction">
+        <property name="HolidayService" ref="HolidayService"/>
     </bean>
 </beans>

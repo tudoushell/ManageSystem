@@ -82,7 +82,7 @@
     <action name="detailReimburse.do" class="ReimburseAction" method="doDetailReimburse">
         <result name="success" type="redirect">/finance/detailReimburse.jsp</result>
     </action>
-    <action name="listPrivileges.do" class="PrivilegesAction" method="dolistPrivileges">
+    <action name="listPrivileges.do" class="PrivilegesAction" method="doListPrivileges">
         <result name="success" type="redirect">/system/permission.jsp</result>
         <result name="fail" type="forward">/manager/error.jsp</result>
     </action>

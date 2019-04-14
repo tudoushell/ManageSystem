@@ -56,6 +56,6 @@ public class BeanFactory {
         return  map.get(name);
     }
     public static void main(String[] args){
-        System.out.println(BeanFactory.getObject("sysconfigservice"));
+        System.out.println(BeanFactory.getObject("holidayservice"));
     }
 }

@@ -420,6 +420,30 @@ select role.id,role_name,permissions.menu_id,menu.menu_name from role,permission
 
 ```
 
+* 创建请假表
+
+```
+CREATE TABLE holiday(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+	holiday_no VARCHAR(20) NOT NULL COMMENT '请假编号',
+	holiday_user VARCHAR(20) NOT NULL COMMENT '申请人',
+	holiday_type VARCHAR(5) NOT NULL COMMENT '请假类型',
+	holiday_bz  VARCHAR(100) NOT NULL COMMENT '请假事由',
+	start_time date NOT NULL COMMENT '开始时间',
+	end_time date NOT NULL COMMENT '结束时间',
+	holiday_status VARCHAR(20) NOT NULL COMMENT '申请状态',
+	create_time date NOT NULL COMMENT '创建时间'
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+```
+
+* 插入数据
+
+```
+INSERT INTO holiday (holiday_no,holiday_user,holiday_type,holiday_bz,start_time,end_time,holiday_status,create_time)
+values('QJ2','bb','2','回家',curdate(),curdate(),'2',curdate());
+```
+
+
 * 创建配置表
 
 ```
@@ -466,6 +490,54 @@ INSERT INTO sys_config (config_type,config_key,config_page_value) values(
 	'注销'
 );
 
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'holiday_type',
+	'1',
+	'事假'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'holiday_type',
+	'2',
+	'婚假'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'holiday_type',
+	'3',
+	'年假'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'holiday_type',
+	'4',
+	'调休'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'holiday_type',
+	'5',
+	'病假'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'holiday_type',
+	'6',
+	'丧假'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'holiday_status',
+	'1',
+	'草稿'
+);
+
+INSERT INTO sys_config (config_type,config_key,config_page_value) values(
+	'holiday_status',
+	'2',
+	'提交'
+);
+
 ```
 
 * 创建用户表(User)和配置表(sys_config)的视图
@@ -483,4 +555,26 @@ CREATE VIEW v_account AS
 			inner join sys_config t4 
 			on t3.account_status_id = t4.config_key 
 			where config_type='account_status_id';
+```
+
+* 创建请假表(holiday）和配置表(sys_config)的视图
+
+```
+CREATE VIEW v_holiday AS
+			select
+					t3.id,t3.holiday_no,t3.holiday_user,t3.holiday_type,t3.holiday_bz,t3.start_time,t3.end_time,
+					t4.config_page_value as holiday_status,t3.create_time
+			from (
+					select 
+							t1.id,holiday_no,holiday_user,t2.config_page_value as 							holiday_type,holiday_bz,start_time,end_time,
+							holiday_status,t1.create_time
+							from 
+							holiday t1 inner join sys_config t2
+							on holiday_type=t2.config_key 
+							where t2.config_type='holiday_type'
+			)t3 
+			inner join sys_config t4  
+			on t3.holiday_status=t4.config_key
+			where t4.config_type='holiday_status'; 
+
 ```
