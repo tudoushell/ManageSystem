@@ -18,7 +18,27 @@ public class HolidayAction {
     private HolidayService holidayService = (HolidayService) BeanFactory.getObject("holidayservice");
     private SysConfigService sysConfigService = (SysConfigService) BeanFactory.getObject("sysconfigservice");
 
-
+    /**
+     * 列出请假详细信息
+     * @param request
+     * @param response
+     * @return
+     */
+    public String doGetHoliday(HttpServletRequest request, HttpServletResponse response){
+        String holidayNo = request.getParameter("holidayNo");
+        Holiday holiday = holidayService.getHolidayByHolidayNo(holidayNo);
+        request.setAttribute("holiday", holiday);
+        return "success";
+    }
+    /**
+     * 删除请假信息
+     * 管理员、人事可以删除已提交的和草稿
+     * 普通用户只能删除请假状态为草稿的
+     * @param request
+     * @param response
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     public String doDelHoliday(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
         String holidayNo = request.getParameter("holidayNo");

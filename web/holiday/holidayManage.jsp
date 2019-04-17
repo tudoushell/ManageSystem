@@ -72,7 +72,7 @@
                         <a href="javascript:updateAccount('${holiday.holidayNo}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
-                        <a href="javascript:detailDept('${holiday.holidayNo}');">
+                        <a href="javascript:detailHoliday('${holiday.holidayNo}');">
                             <img src="../img/detail.png" alt="#">
                         </a>
                     </td>
