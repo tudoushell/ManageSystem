@@ -6,7 +6,17 @@ import exception.HolidayException;
 import java.util.List;
 
 public interface HolidayService {
-
+    /**
+     * 获取订单的最大的id
+     * @return
+     */
+    int getMaxId();
+    /**
+     * 添加请假信息
+     * @param holiday
+     * @return
+     */
+    boolean saveHoliday(Holiday holiday);
     /**
      * 根据请假单号来删除信息
      * @param holidayNo

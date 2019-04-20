@@ -154,9 +154,9 @@ public class PrivilegesAction {
             request.setCharacterEncoding("UTF-8");
             //设置下拉框的值
             List<Role> listRole = roleService.listRole();
-            request.setAttribute("listRole",listRole);
+            request.getSession().setAttribute("listRole",listRole);
             List<Menu> listMenu = menuService.listMenu();
-            request.setAttribute("listMenu",listMenu);
+            request.getSession().setAttribute("listMenu",listMenu);
             //从前台获取数据
             String roleName = request.getParameter("roleName");
             String menuName = request.getParameter("menuName");

@@ -28,5 +28,6 @@
         <p>结束时间：${holiday.endTime}</p>
         <p>申请状态：${holiday.holidayStatus}</p>
     </div>
+    <script type="text/javascript" src="../laydate/laydate.js"></script>
 </body>
 </html>

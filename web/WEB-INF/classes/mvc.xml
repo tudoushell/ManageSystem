@@ -145,4 +145,11 @@
     <action name="delHoliday.do" class="HolidayAction" method="doDelHoliday">
         <result name="success" type="redirect">/manager/success.jsp</result>
     </action>
+    <action name="getHoliday.do" class="HolidayAction" method="doGetHoliday">
+        <result name="success" type="redirect">/holiday/detailHoliday.jsp</result>
+    </action>
+    <action name="saveHoliday.do" class="HolidayAction" method="doSaveHoliday">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+        <result name="fail" type="forward">/holiday/addHoliday.jsp</result>
+    </action>
 </actions>

@@ -18,6 +18,19 @@ public class HolidayAction {
     private HolidayService holidayService = (HolidayService) BeanFactory.getObject("holidayservice");
     private SysConfigService sysConfigService = (SysConfigService) BeanFactory.getObject("sysconfigservice");
 
+
+    public String doSaveHoliday(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
+        //从前台获取数据
+        String holidayType = request.getParameter("holidayType");
+        String holidayBz = request.getParameter("holidayBz");
+        String startTime = request.getParameter("startTime");
+        String endTime = request.getParameter("endTime");
+        String holidayStatus = request.getParameter("holidayStatus");
+        //对前台的数据进行判断
+
+        return  null;
+    }
     /**
      * 列出请假详细信息
      * @param request
@@ -76,8 +89,8 @@ public class HolidayAction {
         //1.先从数据库中获取下拉框的值holidayType和holidayStatus
         List<SysConfig> listHolidayType = sysConfigService.listRoleNameOrAccountStatus("holiday_type");
         List<SysConfig> listHolidayStatus = sysConfigService.listRoleNameOrAccountStatus("holiday_status");
-        request.setAttribute("listHolidayType", listHolidayType);
-        request.setAttribute("listHolidayStatus", listHolidayStatus);
+        request.getSession().setAttribute("listHolidayType", listHolidayType);
+        request.getSession().setAttribute("listHolidayStatus", listHolidayStatus);
 
         //2.从前台获取用户所选的下拉框值
         String holidayUser = request.getParameter("holidayUser");
