@@ -33,8 +33,10 @@
 ![部门管理](projectImg/deptManage.png)
 #### 员工管理
 ![员工管理](projectImg/empManage.png)
+#### 请假管理
+![员工管理](projectImg/holidayManage.png)
 #### 报销管理
-![报销管理](projectImg/reimburseManage.png)
+![请假管理](projectImg/reimburseManage.png)
 #### 账户维护
 ![账户维护](projectImg/accountManage.png)
 #### 角色管理
