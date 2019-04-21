@@ -9,3 +9,7 @@ function del(holidayNo) {
 function detailHoliday(holidayNo) {
     location.href = "/web/holiday/getHoliday.do?holidayNo=" + holidayNo;
 }
+
+function updateHoliday(holidayNo) {
+    location.href = "/web/holiday/toUpdateHoliday.do?holidayNo=" + holidayNo;
+}

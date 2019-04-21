@@ -150,6 +150,14 @@
     </action>
     <action name="saveHoliday.do" class="HolidayAction" method="doSaveHoliday">
         <result name="success" type="redirect">/manager/success.jsp</result>
-        <result name="fail" type="forward">/holiday/addHoliday.jsp</result>
+        <result name="fail" type="forward">/holiday/error.jsp</result>
+    </action>
+    <action name="toUpdateHoliday.do" class="HolidayAction" method="toUpdateHoliday">
+        <result name="success" type="redirect">/holiday/updateHoliday.jsp</result>
+        <result name="fail" type="forward">/manager/success.jsp</result>
+    </action>
+    <action name="updateHoliday.do" class="HolidayAction" method="doUpdateHoliday">
+        <result name="success" type="redirect">/manager/success.jsp</result>
+        <result name="fail" type="forward">/holiday/error.jsp</result>
     </action>
 </actions>

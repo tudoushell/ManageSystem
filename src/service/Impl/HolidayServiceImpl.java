@@ -15,13 +15,48 @@ public class HolidayServiceImpl implements HolidayService {
     private Transaction transaction  = (Transaction) BeanFactory.getObject("transaction");
 
     @Override
+    public boolean updateHoliday(Holiday holiday) {
+        try {
+            transaction.start();
+            boolean flag = holidayDao.updateHoliday(holiday);
+            if (flag){
+                transaction.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public int getMaxId() {
         return holidayDao.getMaxId();
     }
 
     @Override
     public boolean saveHoliday(Holiday holiday) {
-        return holidayDao.saveHoliday(holiday);
+        try {
+            transaction.start();
+            boolean flag = holidayDao.saveHoliday(holiday);
+            if (flag){
+                transaction.commit();
+                return true;
+            }
+        } catch (SQLException e) {
+            try {
+                transaction.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override

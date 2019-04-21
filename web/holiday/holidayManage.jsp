@@ -69,7 +69,7 @@
                         <a href="javascript:del('${holiday.holidayNo}');">
                             <img class="del_table" src="../img/bullet_delete.png" alt="#">
                         </a>
-                        <a href="javascript:updateAccount('${holiday.holidayNo}');">
+                        <a href="javascript:updateHoliday('${holiday.holidayNo}');">
                             <img src="../img/calendar_edit.png" alt="#">
                         </a>
                         <a href="javascript:detailHoliday('${holiday.holidayNo}');">

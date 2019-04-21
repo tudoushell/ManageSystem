@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public class LoginFilter implements Filter {
     String[] dologin;
-//    String dologin;
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
            //获取局部配置
@@ -23,21 +22,15 @@ public class LoginFilter implements Filter {
         HttpServletRequest hsr = (HttpServletRequest) servletRequest;
         User user = (User) hsr.getSession().getAttribute("user");
         String uri = hsr.getRequestURI();
-        String type = null;
+        boolean flag = false;
+        for (int i = 0; i < dologin.length; i++) { //dologin出现的网址不进行过滤
+                flag = true;
+            if (uri.endsWith(dologin[i])){
+                flag = false;
+            }
+        }
 
-//         用于带type参数类型的语句
-//        try {
-//            type = hsr.getParameter("type");
-//        }catch (Exception e){
-//
-//        }
-        for (int i = 0; i < dologin.length - 2; i++) {
-                if(uri.endsWith(dologin[i]) || uri.endsWith(dologin[i + 1]) || uri.endsWith(dologin[i + 2])){
-                    break;
-                }
-//                if(uri.endsWith(dologin[i]) || dologin[i + 1].equalsIgnoreCase(type)){
-//                    break;
-//                }
+        if (flag){  //没有在dologin列表中网址进行过滤
                 if (user == null) {
                     HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
                     //当未登录时，使用这个语句时，提交的网址仍执行
@@ -47,7 +40,6 @@ public class LoginFilter implements Filter {
                 }
         }
         filterChain.doFilter(servletRequest,servletResponse);
-
     }
 
     @Override

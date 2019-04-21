@@ -7,6 +7,12 @@ import java.util.List;
 
 public interface HolidayService {
     /**
+     * 修改holiday信息
+     * @param holiday
+     * @return
+     */
+    boolean updateHoliday(Holiday holiday);
+    /**
      * 获取订单的最大的id
      * @return
      */
