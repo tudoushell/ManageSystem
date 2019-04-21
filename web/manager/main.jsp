@@ -27,10 +27,10 @@
                                 </c:when>
                             </c:choose>
                     </span>
-                    <h2>XX管理系统</h2>
+                    <h2>公司管理系统</h2>
                 </div>
                 <div class="smalltitle">
-                    <p>欢迎使用XX管理系统</p>
+                    <p>欢迎使用公司管理系统</p>
                 </div>
             </div>
             <!-- 内容 -->
@@ -83,7 +83,7 @@
             </div>
             <!-- 底部 -->
             <div id="footer">
-                <p>&copy;版权归属XX公司</p>
+                <p>&copy;版权归属Binary</p>
             </div>
         </div>
     </body>
